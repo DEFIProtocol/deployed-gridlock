@@ -19,16 +19,16 @@ function TokenDetails() {
   const cryptoDetails = data?.data?.coin
 
     if(isFetching) return <Loader />;
+    console.log(name);
+    console.log(address);
 
-    console.log(cryptoDetails)
-    console.log(coinHistory)
     const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
     
   return (
     <div className="tokenPage">
       <Row className="coin-stats-card">
       <Title level={2} className="header-item">
-        <img src={data?.data?.coin?.iconUrl} className="logo" />
+        <img src={data?.data?.coin?.iconUrl} className="logo" alt="no logo" />
         {data?.data?.coin.name} ({data?.data?.coin.symbol})
       </Title>
         <div className="header-item">USD Price <br />${(cryptoDetails?.price) && millify(cryptoDetails?.price)}</div>

@@ -10,7 +10,6 @@ const style = {
     padding: "5%",
   },
   input: {
-    margin: '2%',
     width: '80%',
     margin: "0px auto",
     backgroundColor: "#202020",

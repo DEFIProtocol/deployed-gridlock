@@ -6,7 +6,7 @@ import tokenList from "../tokenList.json";
 import { useSendTransaction, useWaitForTransaction } from "wagmi";
 
 function Swap(props) {
-  const {address, isConnect } = props;
+  const {address, isConnected } = props;
   const [messageApi, contextHolder] = message.useMessage();
   const [slippage, setSlippage] = useState(2.5);
   const [tokenOneAmount, setTokenOneAmount] = useState(null);
@@ -43,6 +43,7 @@ function Swap(props) {
       setTokenTwoAmount(null)
     }
   }
+  console.log(isConnected);
 
   function switchTokens(){
     setPrices(null);
@@ -118,7 +119,7 @@ function Swap(props) {
     if(txDetails.to && address){
       sendTransaction();
     }
-  },[txDetails])
+  },[txDetails, address, sendTransaction])
 
   useEffect(() => {
     messageApi.destroy()
@@ -129,7 +130,7 @@ function Swap(props) {
         duration: 0,
       })
     }
-  },[isLoading])
+  },[isLoading, messageApi])
 
   useEffect(() => {
     messageApi.destroy();
@@ -146,7 +147,7 @@ function Swap(props) {
         duration: 1.50,
       })
     }
-  },[isSuccess])
+  },[isSuccess, messageApi])
 
   return (
     <>

@@ -23,7 +23,7 @@ function Admin() {
             <Link key={currency.uuid} to = {`/crypto/${currency.uuid}`}>
               <Card 
                 title = {`${currency.rank}.${currency.name}`}
-                extra={<img className="logo" src={currency.iconUrl} />}
+                extra={<img className="logo" src={currency.iconUrl} alt="no logo" />}
                 hoverable
                 >
                   <p>Price: {millify(currency.price)}</p>
