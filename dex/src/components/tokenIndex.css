@@ -1,0 +1,280 @@
+/* Token page */
+/* Order */
+.tokenPage {
+  color: lime !important;
+  width: 90% !important;
+}
+.left-column{
+  width: 70%;
+}
+.chart-order{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2%;
+}
+.chart {
+  background-color: #202020!important;
+  width: 100% !important;
+  height: 90%;
+  color: lime !important;
+  border-radius: .5em;
+  margin: 5px;
+}
+.right-column{
+  width: 27%;
+}
+.card-order{
+  background-color: #202020 !important;
+  width: 100% !important;
+  color: lime !important;
+  border-radius: .5em;
+  margin: 5px;
+}
+.orderChoice {
+  margin: 5% auto;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.selected {
+  color: lime !important;
+  border-bottom: 3px solid lime !important;
+}
+.unselected {
+  color: white !important;
+}
+.website-container {
+  background-color: #202020 !important;
+  width: 100% !important;
+  color: lime !important;
+  border-radius: .5em;
+  margin: 5px;
+  padding-left: 10%;
+}
+.website-header{
+  color: lime !important;
+  text-align: left;
+  width: 100%;
+}
+.website{
+  text-align: left;
+  width: 100%;
+  padding: 0px 0px 15% 15%;
+}
+.description {
+  text-align: left;
+  width: 100%;
+  padding: 0px 5% 5% 0%;
+}
+.stats-card{
+  background-color: #202020 !important;
+  width: 100% !important;
+  border-radius: .5em;
+  margin: 5px;
+}
+
+.stats-card-data{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: lime;
+}
+.stat-item {
+  padding: 3%;
+}
+
+.coin-stats-card {
+  background-color: lime !important ;
+  display: flex !important;
+  width: 100% !important;
+  justify-content: space-between;
+  border-radius: .5em;
+}
+.header-item{
+  color: black;
+  margin: 2%;
+  font-weight: 700;
+}
+
+@media screen and (max-width:750px){
+  .left-column{
+      width: 100%;
+  }
+  .chart-order{
+      flex-direction: column;
+  }
+  .right-column{
+      width: 100%;
+  }
+}
+@media screen and (max-width:890px){
+  .coin-stats-card{
+      flex-direction: column;
+  }
+}
+
+/* Stat
+
+.coin-link a{
+  color: var(--pink);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.coin-link:hover, .coin-stats:hover{
+  background-color: var(--bgSecondary);
+}
+
+@media screen and (max-width:1000px){
+  .stats-container{
+      flex-direction: column;
+  }
+  .coin-desc-link{
+      flex-direction: column;
+  }
+  .stats-container h2{
+      margin-top: 0px;
+  }
+}
+
+@media screen and (max-width: 500px){
+  .coin-links{
+    padding: 0px;
+  }
+  .coin-detail-container{
+    margin: 0;
+  }
+}
+@media screen and (max-width: 500px){
+  .heading{
+    margin-top: 20px;
+  }
+}
+
+*/
+/* Cryptocurrency Page */
+.column-title{
+  margin-left: 17%;
+  width: 77%;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+
+
+
+
+  /* ETHDEX */
+  
+  .ETHDEX {
+    width: 100% !important;
+    align-items: center !important;
+    align-self: center !important;
+    background: linear-gradient(
+        180deg,
+        rgba(7, 8, 21, 1),
+        #1e5100 1%,
+        rgba(7, 8, 21, 1) 
+      ) !important;
+  }
+  
+  .searchBar {
+    margin: 40px auto !important;
+    background-color: #202020 !important;
+    color: #909090 !important;
+    text-align: center !important;
+    line-height: 2em !important;
+  }
+  
+  .heading {
+    color: lime !important;
+    text-align: center !important;
+  }
+  
+  .column1 {
+    float: left !important;
+    margin-right: 30% !important;
+    margin-left: 10% !important;
+  }
+  
+  .column2 {
+    float: left !important;
+    margin-right: 20% !important;
+  }
+  
+  .cardContainer {
+    padding: 5px 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    cursor: pointer !important;
+  }
+  
+  .daoCard {
+    background-color: #202020 !important;
+    width: 90% !important;
+    color: lime !important;
+    border: 1px solid #202020 !important;
+    margin: 0px auto !important;
+  }
+  
+  .name {
+    color: lime !important;
+  }
+  
+  .logo {
+    height: 32px !important;
+    width: 32px !important;
+    margin-right: 20px !important;
+    float: left !important;
+  }
+  
+  .symbol {
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    line-height: 14px !important;
+    color: lime !important;
+    position: absolute !important;
+  }
+  
+  .type {
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    padding: 20px !important;
+    color: lime !important;
+    position: absolute !important;
+    left: 40% !important;
+    float: top !important;
+    top: 20% !important;
+  }
+  
+  .lastPrice {
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    padding: 20px !important;
+    color: lime !important;
+    left: 70% !important;
+    float: top !important;
+    position: absolute !important;
+    top: 20% !important;
+  }
+  
+  .favorites {
+    float: right  !important;
+    top: 10% !important;
+    font-size: 125% !important;
+  }
+  
+  @media screen and (max-width: 750px) {
+    .daoCard {
+      background-color: #202020 !important;
+      width: 100% !important;
+      color: lime !important;
+      border: 1px solid #202020 !important;
+      margin: 0px auto !important;
+    }
+  }
+  

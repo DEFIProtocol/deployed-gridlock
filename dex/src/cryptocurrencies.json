@@ -1,0 +1,50 @@
+[
+    {
+        "ticker": "BTC",
+        "name": "Bitcoin",
+        "uuid": "Qwsogvtv82FCd",
+        "img": "https://cdn.coinranking.com/bOabBYkcX/bitcoin_btc.svg"
+    },
+    {
+        "ticker": "ETH",
+        "name": "Ethereum",
+        "uuid": "razxDUgYGNAdQ",
+        "img": "https://cdn.coinranking.com/rk4RKHOuW/eth.svg"
+    },
+    {
+        "ticker": "BNB",
+        "name": "Binance",
+        "uuid": "WcwrkfNI4FUAe",
+        "img": "https://cdn.coinranking.com/B1N19L_dZ/bnb.svg"
+    },
+    {
+        "ticker": "XRP",
+        "name": "XRP",
+        "uuid": "-l8Mn2pVlRs-p",
+        "img": "https://cdn.coinranking.com/B1oPuTyfX/xrp.svg"
+    },
+    {
+        "ticker": "ADA",
+        "name": "Cardano",
+        "uuid": "qzawljRxB5bYu",
+        "img": "https://cdn.coinranking.com/ryY28nXhW/ada.svg"
+    },
+    {
+        "ticker": "SOL",
+        "name": "Solana",
+        "uuid": "zNZHO_Sjf",
+        "img": "https://cdn.coinranking.com/yvUG4Qex5/solana.svg"
+    },
+    {
+        "ticker": "DOGE",
+        "name": "Dogecoin",
+        "uuid": "a91GCGd_u96cF",
+        "img": "https://cdn.coinranking.com/H1arXIuOZ/doge.svg"
+    },
+    {
+        "ticker": "LTC",
+        "name": "Litecoin",
+        "uuid": "D7B1x_ks7WhV5",
+        "img": "https://cdn.coinranking.com/BUvPxmc9o/ltcnew.svg"
+    }
+]
