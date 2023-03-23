@@ -17,7 +17,7 @@ function App() {
         <Route path="/tokens" element={<Tokens />} />
         <Route exact path="/admin" element={<Admin />} /> 
         <Route exact path="/cryptocurrencies" element={<Cryptocurrencies />} />    
-        <Route exact path="/:name?/:address?/:uuid?" element={<TokenDetails address={address} />} />
+        <Route exact path="/:name?/:uuid?" element={<TokenDetails address={address} />} />
       </Routes>
     </div>
   </div>;

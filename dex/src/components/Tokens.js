@@ -50,7 +50,7 @@ function Tokens() {
                   {!toks.includes(token.uuid)?null :(
 
                     <Card className="daoCard">
-                    <Link to={`/${token?.name}/${token?.address}/${token?.uuid}`}>
+                    <Link to={`/${token?.name}/${token?.uuid}`}>
                       <div style={{ display: "flex", alignItems: "center" }} >
                         <img className="logo" src={token.iconUrl} alt="noLogo" />
                         <div>

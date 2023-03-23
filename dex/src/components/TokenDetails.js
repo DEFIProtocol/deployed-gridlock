@@ -11,7 +11,7 @@ const {Title} = Typography;
 const {Option} = Select;
 
 function TokenDetails() {
-  const { name, address, uuid } = useParams();
+  const { name, uuid } = useParams();
   const [timeperiod, setTimeperiod] = useState("7d");
   const { data, isFetching } = useGetCryptoDetailsQuery(uuid)
   const { data: coinHistory } = useGetCryptoHistoryQuery({coinId: uuid, timePeriod: timeperiod});
@@ -20,7 +20,6 @@ function TokenDetails() {
 
     if(isFetching) return <Loader />;
     console.log(name);
-    console.log(address);
 
     const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
     
