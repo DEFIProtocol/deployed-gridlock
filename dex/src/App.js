@@ -13,9 +13,9 @@ function App() {
     <Header connect={connect} isConnect={isConnected} address={address} />
     <div className="mainWindow">
       <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/swap" element={<Swap isConnect={isConnected} address={address}/>} />
-        <Route path="/tokens" element={<Tokens />} />
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/swap" element={<Swap isConnect={isConnected} address={address}/>} />
+        <Route exact path="/tokens" element={<Tokens />} />
         <Route exact path="/admin" element={<Admin />} /> 
         <Route exact path="/cryptocurrencies" element={<Cryptocurrencies />} />    
         <Route exact path="/:name?/:uuid?" element={<TokenDetails address={address} />} />

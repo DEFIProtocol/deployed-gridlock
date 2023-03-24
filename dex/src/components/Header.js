@@ -32,7 +32,7 @@ function Header(props) {
         <MenuOutlined className="acitve-menu" onClick = {isOpen === false ? () => setIsOpen(true) : () => setIsOpen(false)}></MenuOutlined>
         : null
         }
-        <Link to ="/home" className="link">
+        <Link to ="/" className="link">
           <div className="gridLock">
             gridLock
           </div>
@@ -45,7 +45,7 @@ function Header(props) {
           <Link to="/tokens" className="link">
             <div className="headerItem">Tokens</div>
           </Link>
-          <Link to="/" className="link">
+          <Link to="/swap" className="link">
             <div className="headerItem">Swap</div>
           </Link>
       </div>
