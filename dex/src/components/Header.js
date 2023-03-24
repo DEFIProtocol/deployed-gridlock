@@ -45,9 +45,6 @@ function Header(props) {
           <Link to="/tokens" className="link">
             <div className="headerItem">Tokens</div>
           </Link>
-          <Link to="/swap" className="link">
-            <div className="headerItem">Swap</div>
-          </Link>
       </div>
         ) : activeMenu ?
         <div className="header-items-container2">
