@@ -23,7 +23,9 @@ header {
   padding-right: 10px;
 
 }
-
+.header-page{
+  width: 100vw;
+}
 .leftH {
   display: flex;
   align-items: center;

@@ -59,7 +59,7 @@ function Home() {
                 Mission Statement
             </Title>
             <div>
-                Our organization would like to bridge the gap between investors and crypto companies. We chose gridLock, because the plan is to lock down the grid that is the blockchain. Doing so by helping crypto companies gain access to capital allowing them to more easily expand, increasing the utility of cryptocurrencies. This will also give investors more clear cut descriptions of what certain fungible tokens represent. We have big plans to store company details (description, website, announcements, ect..) in a public contract on the blockchain, provide a portal for companies to register with SEC, enable DAO voting, and build accounting tables off of company transactions. 
+                Our organization would like to bridge the gap between investors and crypto companies. We chose gridLock, because the plan is to lock down the grid that is the blockchain. Doing so by helping crypto companies gain access to capital allowing them to more easily expand, increasing the utility of cryptocurrencies. This will also give investors more clear cut descriptions of what certain fungible tokens represent. We have big plans to store company details (e.g. description, website, announcements) in a public contract on the blockchain, provide a portal for companies to register with SEC, enable DAO voting, and build accounting tables off of company transactions. 
             </div>
         </Card>
         <Card style={style.companyDesc}>
