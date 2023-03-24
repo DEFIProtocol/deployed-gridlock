@@ -49,7 +49,7 @@ function Cryptocurrencies() {
 
                     <Card className="daoCard">
                   <Link to={`/coins/${token?.name}/${token?.uuid}`}>
-                  <div style={{ display: "flex", alignItems: "center" }} >
+                  <div style={{ display: "flex", textAlign: "left" }} >
                   <img className="logo" src={token.iconUrl} alt="noLogo" />
                   <div>
                           <h4 className="name">{token.name}</h4>
