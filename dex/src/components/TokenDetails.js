@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Row, Typography, Select, Col } from "antd";
 import HTMLReactParser from 'html-react-parser';
 import "./tokenIndex.css";
-import { LimitOrder, MarketOrder, LineChart, Loader, OrderUnavailable } from "./elements";
+import { MarketOrder, LineChart, Loader, OrderUnavailable } from "./elements";
 import millify from "millify";
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from './services/cryptoApi';
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./order.css";
 import tokenList from '../../tokenList';
-import { Input, Popover, Radio, Modal, message } from "antd";
+import { Popover, Radio, message } from "antd";
 import { SettingOutlined, } from "@ant-design/icons";
 import axios from 'axios';
 import { useSendTransaction, useWaitForTransaction } from "wagmi";
@@ -66,7 +66,7 @@ function MarketOrder(props) {
       console.log(tokenTwo);
       setTxDetails(tx.data.tx)
     } else {
-      var tokenAmount = () => {
+      var tokenSellAmount = () => {
         if(checked === "eth") {
           return String(Math.trunc(amount/ethExRate *(baseLine.padEnd(tokenObject.decimals+baseLine.length, '0')))) 
         }else if (checked === "usd"){
@@ -83,7 +83,7 @@ function MarketOrder(props) {
         return 
       }
       const tx = await axios.get(
-        `https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${tokenObject.address}&toTokenAddress=${ethAddress}&amount=${tokenAmount()}&fromAddress=${address}&slippage=${slippage}&fee=1.25`
+        `https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${tokenObject.address}&toTokenAddress=${ethAddress}&amount=${tokenSellAmount()}&fromAddress=${address}&slippage=${slippage}&fee=1.25`
       )
       let decimals = Number(`1E${tokenObject.decimals}`)
       let tokenTwo = (Number(tx.data.toTokenAmount)/decimals).toFixed(2)
@@ -107,7 +107,7 @@ function MarketOrder(props) {
         duration: 0,
       })
     }
-  }, [isLoading])
+  }, [isLoading, messageApi])
 
   useEffect(() => {
     messageApi.destroy();
@@ -124,7 +124,7 @@ function MarketOrder(props) {
         duration: 1.5
       })
     }
-  }, [isSuccess])
+  }, [isSuccess, messageApi, txDetails.to])
 
 
   const settings = (

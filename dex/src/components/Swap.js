@@ -151,7 +151,7 @@ function Swap(props) {
         duration: 1.50,
       })
     }
-  },[isSuccess, messageApi])
+  },[isSuccess, messageApi, txDetails.to])
 
   return (
     <>

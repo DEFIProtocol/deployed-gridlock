@@ -69,7 +69,7 @@ function Home() {
         <div>
                 Fungible tokens are entitlements to real world assets. Some tokens represent ownership in a company, or government issued currencies know as stablecoins, and others represent entitlements to gold or physical assets. Many people remain unaware but people's pension's and retirement accounts hold something known as gold certificates. The data below is provided by USdebtclock.org.
                 <div>
-                    <img src={USdebtClock} alt="no image" style={style.USdebtClock}  />
+                    <img src={USdebtClock} alt="no" style={style.USdebtClock}  />
                 </div>
                 This table shows you that even the paper gold and silver listed in financial markets are not backed by the very asset. When this came to our attention it deeply bothered us, so we would like to create a token backed by a 1-to-1 ratio of tokens to silver.
             </div>

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Row, Typography, Select, Col } from "antd";
 import HTMLReactParser from 'html-react-parser';
 import "./tokenIndex.css";
-import { LimitOrder, MarketOrder, LineChart, Loader, OrderUnavailable } from "./elements";
+import { LineChart, Loader, OrderUnavailable } from "./elements";
 import millify from "millify";
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from './services/cryptoApi';
 
@@ -11,7 +11,6 @@ const {Title} = Typography;
 const {Option} = Select;
 
 function CryptoDetails(props) {
-  const { address } = props;
   const { name, uuid } = useParams();
   const [timeperiod, setTimeperiod] = useState("7d");
   const { data, isFetching } = useGetCryptoDetailsQuery(uuid)
