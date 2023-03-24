@@ -1,42 +1,5 @@
 import React, { useState } from 'react';
-
-const style = {
-  checkbox: {
-    display: 'flex',
-    accentColor: 'limegreen',
-  },
-  checkboxContainer: {
-    margin: '3%',
-  },
-  input: {
-    margin: '2%',
-    width: '100%',
-    alignItems: 'center',
-  },
-  buttonContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    textAlign: 'center',
-  },
-  buyButton: {
-    backgroundColor: 'green',
-    color: 'black',
-    margin: '10px',
-    height: '40px',
-    width: '80px',
-    border: 'solid 3px black',
-    borderRadius: '0.5rem',
-  },
-  sellButton: {
-    backgroundColor: 'red',
-    color: 'black',
-    margin: '10px',
-    height: '40px',
-    width: '80px',
-    border: 'solid 3px black',
-    borderRadius: '0.5rem',
-  },
-};
+import "./order.css";
 
 function LimitOrder() {
   const [checked, setChecked] = useState({
@@ -60,7 +23,8 @@ function LimitOrder() {
 
   return (
     <div>
-      <div style={style.checkboxContainer}>
+      <div className="checkboxContainer">
+        <div className="checkboxes" >
         <input
           type="checkbox"
           name="Priced in USD"
@@ -84,14 +48,15 @@ function LimitOrder() {
           {' '}
           Order Priced in ETH
         </label>
+        </div>
       </div>
-      <input type="number" placeholder="Price" style={style.input} />
-      <input type="number" placeholder="Amount" style={style.input} />
-      <div style={style.buttonContainer}>
-        <button style={style.buyButton} type="button" placeholder="Buy">
+      <input type="number" placeholder="Price" className="input" />
+      <input type="number" placeholder="Amount" className="input" />
+      <div className="buttonContainer">
+        <button className="buyButton" type="button" placeholder="Buy">
           Buy
         </button>
-        <button style={style.sellButton} type="button" placeholder="Sell">
+        <button className="sellButton" type="button" placeholder="Sell">
           Sell
         </button>
       </div>

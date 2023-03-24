@@ -32,9 +32,11 @@ function Header(props) {
         <MenuOutlined className="acitve-menu" onClick = {isOpen === false ? () => setIsOpen(true) : () => setIsOpen(false)}></MenuOutlined>
         : null
         }
-        <div className="gridLock">
-          gridLock
-        </div>
+        <Link to ="/home" className="link">
+          <div className="gridLock">
+            gridLock
+          </div>
+        </Link>
         {!activeMenu && isOpen ? (
         <div className="header-items-container">
           <Link to="/cryptocurrencies" className="link">
@@ -49,13 +51,13 @@ function Header(props) {
       </div>
         ) : activeMenu ?
         <div className="header-items-container2">
-        <Link to="/cryptocurrencies" className="link">
+          <Link to="/cryptocurrencies" className="link">
             <div className="headerItem">Crypto Coins</div>
           </Link>
           <Link to="/tokens" className="link">
             <div className="headerItem">Tokens</div>
           </Link>
-          <Link to="/" className="link">
+          <Link to="/swap" className="link">
             <div className="headerItem">Swap</div>
           </Link>
           </div> : null}

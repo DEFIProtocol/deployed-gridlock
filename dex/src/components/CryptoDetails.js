@@ -10,7 +10,7 @@ import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from './services/c
 const {Title} = Typography;
 const {Option} = Select;
 
-function TokenDetails(props) {
+function CryptoDetails(props) {
   const { address } = props;
   const { name, uuid } = useParams();
   const [timeperiod, setTimeperiod] = useState("7d");
@@ -69,7 +69,8 @@ function TokenDetails(props) {
               Market Order
             </div>
           </div>
-          {orderType === 'limit' ? <OrderUnavailable /> /*<LimitOrder uuid={uuid} />*/ : <MarketOrder uuid={uuid} address={address} usdPrice={cryptoDetails?.price} tokenName={cryptoDetails.name} />}
+          <OrderUnavailable />
+          {/*orderType === 'limit' ? <LimitOrder uuid={uuid} /> : <MarketOrder uuid={uuid} address={address} usdPrice={cryptoDetails?.price} tokenName={cryptoDetails.name} /> */}
         </Row>
         <Row className="website-container">
           <Title level={2} className="website-header">
@@ -93,10 +94,4 @@ function TokenDetails(props) {
   )
 }
 
-export default TokenDetails;
-/*{cryptoDetails.links?.map((link) => (
-            <Row className="coin-link" key={link.name}>
-              <Title level={5} className="link-name">{link.type}</Title>
-              <a href={link.url} target="_blank" rel="noreferrer">{link.name}</a>
-            </Row>
-          ))}*/
+export default CryptoDetails;

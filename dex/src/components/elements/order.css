@@ -1,0 +1,59 @@
+/* Market Order */
+
+.checkbox {
+    display: flex;
+    accent-color: limegreen;
+}
+.checkboxContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 98%;
+  margin: 5%;
+}
+.input {
+  width: 70%;
+  margin: 10% auto;
+  background-color: #202020;
+  color: #909090;
+  text-align: center;
+}
+.buttonContainer {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0px auto;
+    padding: 5%;
+    width: 100%;
+  }
+.buyButton {
+    background-color: green;
+    color: black;
+    height: 40px;
+    width: 80px;
+    border: solid 3px black;
+    border-radius: 0.5rem;
+  }
+.sellButton {
+    background-color: red;
+    color: black;
+    height: 40px;
+    width: 80px;
+    border: solid 3px black;
+    border-radius: 0.5rem;
+  }
+  .checkboxes{
+    width: 90%;
+    flex: flex-start;
+    text-align: left;
+  }
+  .cog {
+    color: #51586f;
+    transition: 0.3s;
+  }
+  
+  .cog:hover {
+    color: white;
+    rotate: 90deg;
+    cursor: pointer;
+  }
+  

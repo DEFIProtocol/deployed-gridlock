@@ -48,7 +48,7 @@ function Cryptocurrencies() {
                   {!selectedCryptos.includes(token.uuid) ? null : (
 
                     <Card className="daoCard">
-                  <Link to={`/${token?.name}/${token?.uuid}`}>
+                  <Link to={`/coins/${token?.name}/${token?.uuid}`}>
                   <div style={{ display: "flex", alignItems: "center" }} >
                   <img className="logo" src={token.iconUrl} alt="noLogo" />
                   <div>
