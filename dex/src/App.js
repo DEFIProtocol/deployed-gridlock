@@ -1,5 +1,5 @@
 import "./App.css";
-import {Header, Swap, Tokens, Admin, TokenDetails, Cryptocurrencies, CryptoDetails, Home } from "./components";
+import {Header,Tokens, Admin, TokenDetails, Cryptocurrencies, CryptoDetails, Home } from "./components";
 import { Routes, Route } from "react-router-dom";
 import { useConnect, useAccount } from "wagmi";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
@@ -14,7 +14,6 @@ function App() {
     <div className="mainWindow">
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/swap" element={<Swap isConnect={isConnected} address={address}/>} />
         <Route exact path="/tokens" element={<Tokens />} />
         <Route exact path="/admin" element={<Admin />} /> 
         <Route exact path="/cryptocurrencies" element={<Cryptocurrencies />} />    
