@@ -88,7 +88,7 @@ header {
 .header-items-container{
   display: flex;
   justify-content: flex-start;
-  margin-right: 30vw;
+  z-index: 1;
 }
 .header-items-container2{
   display: flex;
