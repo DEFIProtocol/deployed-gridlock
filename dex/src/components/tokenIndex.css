@@ -155,8 +155,8 @@
 */
 /* Cryptocurrency Page */
 .column-title{
-  margin-left: 17%;
-  width: 77%;
+  margin-left: 20%;
+  width: 70%;
   display: flex;
   justify-content: space-between;
 }
@@ -221,23 +221,21 @@
     margin: 0px auto !important;
   }
   
-  .name {
+  .symbol {
     color: lime !important;
   }
   
   .logo {
     height: 32px !important;
     width: 32px !important;
-    margin-right: 20px !important;
     float: left !important;
   }
   
-  .symbol {
+  .name {
     font-weight: 600 !important;
     font-size: 15px !important;
     line-height: 14px !important;
     color: lime !important;
-    position: absolute !important;
   }
   
   .type {
@@ -246,8 +244,7 @@
     padding: 20px !important;
     color: lime !important;
     position: absolute !important;
-    left: 40% !important;
-    float: top !important;
+    left: 45% !important;
     top: 20% !important;
   }
   

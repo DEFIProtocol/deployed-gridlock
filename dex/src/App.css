@@ -24,12 +24,12 @@ header {
 
 }
 .header-page{
-  width: 100%;
+  width: 80%;
 }
 .leftH {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px;
 }
 
 .gridLock{
@@ -45,9 +45,7 @@ header {
 
 .rightH {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 20px;
+  align-items: flex-end;
 }
 
 .headerItem {

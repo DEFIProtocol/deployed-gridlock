@@ -61,14 +61,14 @@ function Header(props) {
             <div className="headerItem">Swap</div>
           </Link>
           </div> : null}
+        </div>
         <div className="rightH">
         <div className="headerItem">
           <img src={Eth} alt="eth" className ="eth" />
-          Ethereum
+          {!activeMenu ? "Eth" : "Ethereum"}
         </div>
         <div className="connectButton" onClick={connect}>
           {address ? (address.slice(0,5) +"..."+address.slice(38)) : "Connect"}
-        </div>
         </div>
       </div>
     </header>

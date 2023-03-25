@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.47af1c90.css",
-    "main.js": "/static/js/main.3d8751a6.js",
+    "main.css": "/static/css/main.82871b93.css",
+    "main.js": "/static/js/main.b1bc3c18.js",
     "static/media/USdebtClock.png": "/static/media/USdebtClock.2d02d14b6efe3437c3ce.png",
     "index.html": "/index.html",
     "static/media/eth.svg": "/static/media/eth.df265e367364f285053a1285ad8d418d.svg",
-    "main.47af1c90.css.map": "/static/css/main.47af1c90.css.map",
-    "main.3d8751a6.js.map": "/static/js/main.3d8751a6.js.map"
+    "main.82871b93.css.map": "/static/css/main.82871b93.css.map",
+    "main.b1bc3c18.js.map": "/static/js/main.b1bc3c18.js.map"
   },
   "entrypoints": [
-    "static/css/main.47af1c90.css",
-    "static/js/main.3d8751a6.js"
+    "static/css/main.82871b93.css",
+    "static/js/main.b1bc3c18.js"
   ]
 }
