@@ -107,6 +107,9 @@
   .right-column{
       width: 100%;
   }
+  .chart {
+    height: 50vh;
+  }
 }
 @media screen and (max-width:890px){
   .coin-stats-card{

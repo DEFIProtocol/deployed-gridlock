@@ -139,7 +139,7 @@ function MarketOrder(props) {
       </div>
     </>
   )
-
+  
   return (
     <>
     {contextHolder}
@@ -149,7 +149,7 @@ function MarketOrder(props) {
           type="checkbox"
           name="Priced in Eth"
           value="eth"
-          checked={checked === "eth" ? checked : null}
+          checked={checked === "eth" ? checked : !checked}
           onChange={(e) => setChecked(e.target.value)}
           />
         <label htmlFor="ethEx" style={{ color: 'DarkGray' }}>
