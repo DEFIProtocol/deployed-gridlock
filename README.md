@@ -21,7 +21,7 @@ Much of the ownership distribution will be to independent changes made to improv
 
 # Phase 1 Development needs
 
-1. Call the token IERC20 smart contract and get the creators address. 
+1. get the creators address and display all transactions from contract address. 
     .25% or more
 2. Create a vault contract that stores company details, and are updatable by creator address. (Template available in DEFIProtocol/Vault)
     .5% or more
