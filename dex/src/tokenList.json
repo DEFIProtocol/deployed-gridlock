@@ -5,7 +5,8 @@
         "name": "USD Coin",
         "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
         "uuid": "aKzUVe4Hh_CON",
-        "decimals": 6
+        "decimals": 6,
+        "type": "currency"
     },
     {
         "ticker": "LINK",
@@ -13,7 +14,8 @@
         "name": "Chainlink",
         "address": "0x514910771af9ca656af840dff83e8264ecf986ca",
         "uuid": "VLqpJwogdhHNb",
-        "decimals": 18
+        "decimals": 18,
+        "type": "company"
     },
     {
         "ticker": "USDT",
@@ -21,7 +23,8 @@
         "name": "Tether USD",
         "address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
         "uuid": "HIVsRcGKkPFtW",
-        "decimals": 6
+        "decimals": 6,
+        "type": "currency"
     },
     {
         "ticker": "GUSD",
@@ -29,7 +32,8 @@
         "name": "Gemini USD",
         "address": "0x056Fd409E1d7A124BD7017459dFEa2F387b6d5Cd",
         "uuid": "T93ksC96YL_Gc",
-        "decimals": 2
+        "decimals": 2,
+        "type": "currency"
     },
     {
         "ticker": "DAI",
@@ -37,7 +41,8 @@
         "name": "Dai Stablecoin",
         "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
         "uuid": "MoTuySvg7",
-        "decimals": 18
+        "decimals": 18,
+        "type": "currency"
     },
     {
         "ticker": "WETH",
@@ -45,7 +50,8 @@
         "name": "Wrapped Ethereum",
         "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
         "uuid": "Mtfb0obXVh59u",
-        "decimals": 18
+        "decimals": 18,
+        "type": "wrapped-crypto"
     },
     {
         "ticker": "UNI",
@@ -53,7 +59,8 @@
         "name": "Uniswap",
         "address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
         "uuid": "_H5FVG9iW",
-        "decimals": 18
+        "decimals": 18,
+        "type": "company"
     },
     {
         "ticker": "CRV",
@@ -61,7 +68,8 @@
         "name": "Curve DAO Token",
         "address": "0xd533a949740bb3306d119cc777fa900ba034cd52",
         "uuid": "QGbUTVMjG",
-        "decimals": 18
+        "decimals": 18,
+        "type": "company"
     },
     {
         "ticker": "MKR",
@@ -69,7 +77,8 @@
         "name": "Maker",
         "address": "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2",
         "uuid": "qFakph2rpuMOL",
-        "decimals": 18
+        "decimals": 18,
+        "type": "company"
     },
     {
         "ticker": "AAVE",
@@ -77,7 +86,8 @@
         "name": "AAVE",
         "address": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
         "uuid": "ixgUfzmLR",
-        "decimals": 18
+        "decimals": 18,
+        "type": "company"
     },
       {
         "ticker": "UMA",
@@ -88,7 +98,8 @@
         "img": "https://tokens.1inch.io/0x04fa0d235c4abf4bcf4787af4cf447de572ef828.png",
         "tags": [
           "tokens"
-        ]
+        ],
+        "type": "company"
       },
       {
         "ticker": "MATH",
@@ -99,7 +110,8 @@
         "img": "https://tokens.1inch.io/0x08d967bb0134f2d07f7cfb6e246680c53927dd30.png",
         "tags": [
           "tokens"
-        ]
+        ],
+        "type": "company"
       },
       {
         "ticker": "STAKE",
@@ -111,7 +123,8 @@
         "eip2612": true,
         "tags": [
           "tokens"
-        ]
+        ],
+        "type": "stake"
       },
       {
         "ticker": "TRB",
@@ -122,7 +135,8 @@
         "img": "https://tokens.1inch.io/0x0ba45a8b5d5575935b8158a88c631e9f9c95a2e5.png",
         "tags": [
           "tokens"
-        ]
+        ],
+        "type": "company"
       },
     {
         "ticker": "YFI",
@@ -133,7 +147,8 @@
         "img": "https://tokens.1inch.io/0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e.png",
         "tags": [
           "tokens"
-        ]
+        ],
+        "type": "company"
       },
     {
         "ticker": "wNXM",
@@ -145,7 +160,8 @@
         "eip2612": true,
         "tags": [
           "tokens"
-        ]
+        ],
+        "type": "wrapped-crpto"
       },
       {
         "ticker": "BAT",
@@ -156,7 +172,8 @@
         "img": "https://tokens.1inch.io/0x0d8775f648430679a709e98d2b0cb6250d2887ef.png",
         "tags": [
           "tokens"
-        ]
+        ],
+        "type": "company"
       },
      {
         "ticker": "ABYSS",
@@ -167,7 +184,8 @@
         "img": "https://tokens.1inch.io/0x0e8d6b471e332f140e7d9dbb99e5e3822f728da6.png",
         "tags": [
           "tokens"
-        ]
+        ],
+        "type": "stake"
       },
       {
         "ticker": "MANA",
@@ -178,7 +196,8 @@
         "img": "https://tokens.1inch.io/0x0f5d2fb29fb7d3cfee444a200298f468908cc942.png",
         "tags": [
           "tokens"
-        ]
+        ],
+        "type": "company"
       },
      {
         "ticker": "XIO",
@@ -189,7 +208,8 @@
         "img": "https://tokens.1inch.io/0x0f7f961648ae6db43c75663ac7e5414eb79b5704.png",
         "tags": [
           "tokens"
-        ]
+        ],
+        "type": "company"
       },
     {
         "ticker": "NMR",
@@ -200,7 +220,8 @@
         "img": "https://tokens.1inch.io/0x1776e1f26f98b1a5df9cd347953a26dd3cb46671.png",
         "tags": [
           "tokens"
-        ]
+        ],
+        "type": "company"
       },
       {
         "ticker": "EWTB",
@@ -211,7 +232,8 @@
         "img": "https://tokens.1inch.io/0x178c820f862b14f316509ec36b13123da19a6054.png",
         "tags": [
           "tokens"
-        ]
+        ],
+        "type": "company"
       },
        {
         "ticker": "BNT",
@@ -222,18 +244,20 @@
         "img": "https://tokens.1inch.io/0x1f573d6fb3f13d689ff844b4ce37794d79a7ff1c.png",
         "tags": [
           "tokens"
-        ]
+        ],
+        "type": "company"
       },
       {
         "ticker": "REPv2",
-        "name": "Reputation V2",
+        "name": "Augur",
         "decimals": 18,
         "address": "0x221657776846890989a759ba2973e427dff5c9bb",
         "uuid": "7GNq0jOgaN086",
         "img": "https://tokens.1inch.io/0x221657776846890989a759ba2973e427dff5c9bb.png",
         "tags": [
           "tokens"
-        ]
+        ],
+        "type": "company"
       },
      {
         "ticker": "WBTC",
@@ -3729,6 +3753,13 @@
           "PEG:BTC"
         ]
       },
+      {
+        "ticker": "ETH",
+        "name": "Ethereum",
+        "uuid": "razxDUgYGNAdQ",
+        "img": "https://cdn.coinranking.com/rk4RKHOuW/eth.svg",
+        "address": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
+    },
       {
         "ticker": "sETH",
         "name": "Synth sETH",

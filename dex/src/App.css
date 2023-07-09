@@ -93,7 +93,8 @@ header {
 .header-items-container2{
   display: flex;
   justify-content: space-between;
-  margin-right: 30vw;
+  width: 35vw;
+  margin-left: 5vw;
 }
 .active-menu{
   float: left;

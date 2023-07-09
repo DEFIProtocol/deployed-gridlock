@@ -16,6 +16,7 @@ The more decentralized we are the stronger we will be, so fill free to fix even 
 
 Phase 1 is to prepare a form of crypto stock market, or fungible tokens. Business operations will be filing for a C-corp with the SEC, and recieving eligiblity to list securities that are fungible tokens. Thus far, 9 tokens have filed with the SEC, and our first step will be to set up a portal for crypto owners to file there token as a form of ownership with the stock. There are strength in numbers so the more companies we send them, the less likely they will be to reject us any longer. 
 
+<<<<<<< HEAD
 Much of the ownership distribution will be to independent changes made to improve the application. If you see a bug and fix it, then you will be rewarded. Have an idea to improve the project, you will be rewarded. We hope to complete Phase 1 by May 1 2024, let BUIDL!!!
 
 
@@ -41,12 +42,37 @@ Much of the ownership distribution will be to independent changes made to improv
     .5% or more
 10. Set up back-end using MongoDb as a starting point for the company. Add users to a table with watchlist that either attaches uuid or contract address.(Added at the end of token card and top of token details page removable from home page)
     .5% or more
+=======
+# Phase 1 Development needs
+
+1. Call the token IERC20 smart contract and get the creators address. 
+    .25%
+2. Create a vault contract that stores company details, and are updatable by creator address. (Template available in DEFIProtocol/Vault)
+    .5%
+3. Retrieve all transcations from wallet address and import them into a table in the app. 
+    .25%.
+4. Create income statement off of available transactions above. Additional tables if applicable cash flows, balance sheet will yield more ownership. (Track incoming and outgoing transactions) 
+    .5% or more.
+5. Enable DAO voting based on token ownership at a given block. ie. 10% ownership gets 10% of voting power.(Template available at DEFIProtocol/Blockchain-Vote).
+    .5%
+6. Change chart to a more desirable landscape.
+    .25%
+7. Get more reliable data source than coin ranking. Coin ranking has inaccurate market data, and pricing for some coins. Looking at Coin Market Cap preferably or Binance as a last option.
+    .5%
+8. Enable limit orders using 1Inch limit order protocol(Most Decentralized)(docs available at https://docs.1inch.io/docs/limit-order-protocol/introduction)
+    2%
+9. Set up Homescreen with wallet holding, and preferably a chart.
+    .5%
+10. Set up back-end using MongoDb as a starting point for the company. Add users to a table with watchlist that either attaches uuid or contract address.(Added at the end of token card and top of token details page removable from home page)
+    .5%
+>>>>>>> 994daf591 (updating homepage)
 
 # Phase 2
 
 Phase 2 will create a derivative of the Forex market and enable purchase of Bitcoin and Ethereum in fiat. A custodial wallet will need to be put in place, but would also like to offer a cold storage options where users control there own private keys.  Creating trading pairs between USDC(USD), USDT(USD), XCHF(Franc), EURS(EUR), EURT(EUR), AG(EUR) and any other trading pair available. More details will be avaiable toward the end of Phase 1.
 
 1. Add trading pair header with trading pairs listed in Cards.(Similar to Tokens page)
+<<<<<<< HEAD
     .25% or more
 2. Implement charts and buying and selling function for trading pairs.
     .5% or more
@@ -54,6 +80,15 @@ Phase 2 will create a derivative of the Forex market and enable purchase of Bitc
     .5-1% or more
 4. Cold storage wallet option.
     .5-1% or more
+=======
+    .25%
+2. Implement charts and buying and selling function for trading pairs.
+    .5%
+3. Custodial wallet creation.
+    .5-1%
+4. Cold storage wallet option.
+    .5-1%
+>>>>>>> 994daf591 (updating homepage)
 
 # Phase 3
 

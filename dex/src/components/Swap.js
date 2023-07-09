@@ -6,7 +6,7 @@ import tokenList from "../tokenList.json";
 import { useSendTransaction, useWaitForTransaction } from "wagmi";
 
 function Swap(props) {
-  const {address, isConnected } = props;
+  const {address, isConnect } = props;
   const [messageApi, contextHolder] = message.useMessage();
   const [slippage, setSlippage] = useState(2.5);
   const [tokenOneAmount, setTokenOneAmount] = useState(null);
@@ -45,7 +45,7 @@ function Swap(props) {
       setTokenTwoAmount(null)
     }
   }
-  console.log(isConnected);
+  console.log(isConnect);
 
   function switchTokens(){
     setPrices(null);
@@ -96,10 +96,11 @@ function Swap(props) {
     console.log(res.data);
     setPrices(res.data);
   }
-
+  console.log(tokenOne)
   async function fetchDexSwap(){
-    var baseLine = 1;
-    var tokenAmount = Math.trunc(tokenOneAmount * (baseLine.padEnd(tokenOne.decimals+ baseLine.length, '0')))
+    const baseLine = "1"
+    var tokenAmount = Math.trunc(tokenOneAmount * (baseLine.padEnd(tokenOne.decimals, '0')))
+    console.log(tokenAmount);
     const allowance = await axios.get(`https://api.1inch.io/v5.0/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`)
     if(allowance.data.allowance === "0"){
       const approve = await axios.get(`https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${tokenOne.address}`)
@@ -153,6 +154,7 @@ function Swap(props) {
     }
   },[isSuccess, messageApi, txDetails.to])
 
+  console.log(txDetails);
   return (
     <>
     {contextHolder}
@@ -209,7 +211,7 @@ function Swap(props) {
           <DownOutlined />
         </div>
       </div>
-      <div className="swapButton" disabled={!tokenOneAmount || !address} onClick={fetchDexSwap} >Swap</div>
+      <div className="swapButton" disabled={!tokenOneAmount || !isConnect} onClick={fetchDexSwap} >Swap</div>
     </div>
     </>
   )

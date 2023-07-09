@@ -12,7 +12,7 @@ function MarketOrder(props) {
   const tokenObject= tokenList.find((token) => token.uuid === uuid);
   const { cryptoDetails } = useEthereum();
   const [messageApi, contextHolder] = message.useMessage()
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState(null);
   const [slippage, setSlippage] = useState(2.5);
   const ethAddress = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
   const ethExRate = usdPrice / cryptoDetails?.price
@@ -40,8 +40,7 @@ function MarketOrder(props) {
     setSlippage(e.taget.value);
   }
 
-  async function fetchDexSwap(e) {
-    if (e=== "buy"){
+  async function fetchDexBuy() {
       var tokenAmount = () => {
         if(checked === "eth") {
           return String(amount *(baseLine.padEnd(18+baseLine.length, '0'))) 
@@ -51,7 +50,8 @@ function MarketOrder(props) {
           return  String((amount * ethExRate) * (baseLine.padEnd(18+baseLine.length, "0")))
         };
       }
-      const allowance = await axios.get(`https://api.1inch.io/v5.0/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`)
+      const allowance = await axios.get(`https://api.1inch.io/v5.0/1/approve/allowance?tokenAddress=0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE&walletAddress=${address}`)
+                                       //https://api.1inch.io/v5.0/1/approve/allowance?tokenAddress=0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE&walletAddress=0x911158658d4530710F6d6D59156db174BEfD4Dac
       if(allowance.data.allowance === "0"){
         const approve = await axios.get(`https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${ethAddress}`)
         setTxDetails(approve.data)
@@ -65,7 +65,9 @@ function MarketOrder(props) {
       let tokenTwo = (Number(tx.data.toTokenAmount)/decimals).toFixed(2)
       console.log(tokenTwo);
       setTxDetails(tx.data.tx)
-    } else {
+    }
+
+    async function fetchDexSell(){
       var tokenSellAmount = () => {
         if(checked === "eth") {
           return String(Math.trunc(amount/ethExRate *(baseLine.padEnd(tokenObject.decimals+baseLine.length, '0')))) 
@@ -90,7 +92,6 @@ function MarketOrder(props) {
       console.log(tokenTwo);
       setTxDetails(tx.data.tx)
     }
-  }
 
   useEffect(() => {
     if(txDetails.to && address){
@@ -126,6 +127,7 @@ function MarketOrder(props) {
     }
   }, [isSuccess, messageApi, txDetails.to])
 
+  console.log(txDetails)
 
   const settings = (
     <>
@@ -192,10 +194,10 @@ function MarketOrder(props) {
       </div>
       <input type="text" placeholder="Amount" className="input" onChange={(e) => setAmount(e.target.value)} />
       <div className="buttonContainer">
-        <button className="buyButton" type="button" placeholder="Buy" value="buy" disabled={!amount || !address } onClick={(e) => fetchDexSwap(e.target.value)} >
+        <button className="buyButton" type="button" placeholder="Buy" value="buy" disabled={!amount || !address } onClick={fetchDexBuy} >
           Buy
         </button>
-        <button className="sellButton" type="button" placeholder="Sell" value="sell" disabled={!amount || !address } onClick={(e) => fetchDexSwap(e.target.value)} >
+        <button className="sellButton" type="button" placeholder="Sell" value="sell" disabled={!amount || !address } onClick={fetchDexSell} >
           Sell
         </button>  
       </div>

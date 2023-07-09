@@ -1,5 +1,5 @@
 import "./App.css";
-import {Header, Tokens, Admin, TokenDetails, Cryptocurrencies, CryptoDetails, Home, Swap} from "./components";
+import {Header, Tokens, Admin, TokenDetails, Cryptocurrencies, CryptoDetails, Home, Swap } from "./components";
 import { Routes, Route } from "react-router-dom";
 import { useConnect, useAccount } from "wagmi";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
