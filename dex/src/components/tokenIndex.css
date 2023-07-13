@@ -277,4 +277,121 @@
       margin: 0px auto !important;
     }
   }
-  
+
+/* Home */
+
+.homePage{
+  height: 100%
+}
+
+.missionStatement {
+  font-size: 2em;
+  color: white;
+  border-top: 2px white solid;
+}
+
+.USdebtClock {
+  width: 30vw;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  border-radius: .5em
+}
+.subtitle {
+  font-size: 1.5em;
+  color: white;
+  text-align: left;
+  margin-bottom: 10px
+}
+.city {
+  height: 100vh;
+  width: 90vw;
+  border-radius: .5em;
+}
+.cityContainer {
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 4%
+}
+.cityText {
+  color: white;
+  font-size: 2em;
+  margin-bottom: 2%;
+}
+.fungibleTokens {
+  color: white;
+  background: transparent;
+  border: none;
+  display: flex;
+  width: 80%;
+  margin: 0px auto;
+  margin-bottom: 0%;
+  margin-top: 3%
+}
+.fungibleTokenItem {
+  width: 50%;
+  float: left;
+  height: 70vh
+}
+.futureDevelopments{
+  color: white;
+  width: 27%;
+  float: left;
+  margin: 3%;
+  margin-top: 5%
+}
+.futureDevelopmentPic {
+  height: 30vh;
+  width: 20vw;
+  color: lime;
+  font-size: 12em;
+  border-radius: .5em;
+}
+.futureDevelopmentTitle {
+  font-size: 2em;
+  color: white;
+}
+
+@media screen and (max-width: 750px) {
+  .homePage{
+    width: 100%;
+    margin: 0% auto;
+  }
+  .city {
+    height: 50vh;
+    width: 80%;
+    border-radius: .5em;
+  }
+  .futureDevelopmentPic {
+    height: 40vh;
+    width: 80%;
+  }
+  .futureDevelopments{
+    width: 90%;
+    margin: 0% auto;
+    margin-top: 30%;
+  }
+  .futureDevelopmentPic {
+    height: 30vh;
+    width: 90%;
+    color: lime;
+    font-size: 12em;
+    border-radius: .5em;
+    margin: 0% auto;
+    margin-top: 20%
+  }
+  .USdebtClock {
+    width: 100%;
+    margin: 0% auto;
+    margin-top: 40%;
+    margin-bottom: 0%;
+  }
+  .fungibleTokenItem {
+    width: 90%;
+    float: none;
+    margin: 3% auto;
+    margin-bottom: 0%
+  }
+  .fungibleTokens {
+    margin: 0% auto;
+  }
+}
