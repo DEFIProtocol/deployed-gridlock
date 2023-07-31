@@ -37,16 +37,15 @@ function Cryptocurrencies() {
           ? null : cryptos
               .filter((val) => {
                 if (query === "") {
-                  return val;
+                  return selectedCryptos.includes(val.uuid);
                 } else {
-                  return val?.name.toLowerCase().includes(query.toLowerCase());
+                  return val?.name.toLowerCase().includes(query.toLowerCase()) && 
+                  selectedCryptos.includes(val.uuid);
                   //  && val.Symbol.toLowerCase().includes(query.toLowerCase());
                 }
               })
               .map((token, index) => (
                 <div className="cardContainer" key={index}>
-                  {!selectedCryptos.includes(token.uuid) ? null : (
-
                     <Card className="daoCard">
                   <Link to={`/coins/${token?.name}/${token?.uuid}`}>
                   <div style={{ display: "flex", textAlign: "left" }} >
@@ -66,7 +65,6 @@ function Cryptocurrencies() {
                       </div>
                       </Link>
                       </Card>
-                    )}
                       </div>
               ))}
       </div>
