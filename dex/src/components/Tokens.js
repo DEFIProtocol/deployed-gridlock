@@ -39,16 +39,15 @@ function Tokens() {
           : cryptos
               .filter((val) => {
                 if (query === "") {
-                  return val;
+                  return toks.includes(val.uuid);
                 } else {
-                  return val?.name.toLowerCase().includes(query.toLowerCase());
+                  return val?.name.toLowerCase().includes(query.toLowerCase()) && 
+                  toks.includes(val.uuid);
                   //  && val.Symbol.toLowerCase().includes(query.toLowerCase());
                 }
               })
               .map((token, index) => (
                 <div className="cardContainer" key={index}>
-                  {!toks.includes(token.uuid)?null :(
-
                     <Card className="daoCard">
                     <Link to={`/${token?.name}/${token?.uuid}`}>
                       <div style={{ display: "flex", textAlign: "left" }} >
@@ -70,7 +69,6 @@ function Tokens() {
                       </div>
                     </Link>
                   </Card>
-                    )}
                 </div>
               ))}
       </div>
