@@ -1,6 +1,6 @@
 import "./tokenIndex.css";
 import React from 'react';
-import { Typography, Card } from 'antd';
+import { Card } from 'antd';
 import USdebtClock from "../USdebtClock.png";
 import city from "../city.jpg";
 import handshake from "../handshake.jpg";
@@ -10,9 +10,6 @@ import vote from "../vote.jpg";
 import { StarFilled } from "@ant-design/icons";
 
 // remaking the modern financial system on top of the blockchain
-// 
-
-const { Title } = Typography;
 
 function Home() {
 

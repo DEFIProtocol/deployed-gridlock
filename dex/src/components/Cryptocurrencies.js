@@ -45,23 +45,24 @@ function Cryptocurrencies() {
                 }
               })
               .map((token, index) => (
-                <div className="cardContainer" key={index}>
+                <div key={index}>
                     <Card className="daoCard">
                   <Link to={`/coins/${token?.name}/${token?.uuid}`}>
-                  <div style={{ display: "flex", textAlign: "left" }} >
-                  <img className="logo" src={token.iconUrl} alt="noLogo" />
-                  <div>
+                  <div className="cardContainer" >
+                    <div>
+                      <img className="logo" src={token.iconUrl} alt="noLogo" />
+                        <div style={{float: "right"}} >
                           <h4 className="name">{token.name}</h4>
                           <span className="symbol">{token.symbol}</span>
-                        </div>
-                        <div>
-                          <span className="type">
-                            {token.marketCap == null ? "--" : millify(token.marketCap)}
-                          </span>
-                          <span className="lastPrice">
-                            {token.price == null ? "--" : millify(token.price)}
-                          </span>
-                        </div>
+                        </div>  
+                    </div>
+                    <span className="type">
+                      {token.marketCap == null ? "--" : millify(token.marketCap)}
+                    </span>
+                    <span className="lastPrice">
+                      {token.price == null ? "--" : millify(token.price)}
+                    </span>
+                    <div></div>
                       </div>
                       </Link>
                       </Card>

@@ -17,7 +17,7 @@ function App() {
     <div className="mainWindow">
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/tokens" element={<Tokens />} />
+        <Route path="/tokens" element={<Tokens address={address} />} />
         <Route path="/admin" element={<Admin />} /> 
         <Route path="/cryptocurrencies" element={<Cryptocurrencies />} /> 
         <Route path="/account" element={<Account isConnect={isConnected} address={address} />} />   
