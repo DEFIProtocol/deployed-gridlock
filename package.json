@@ -1,0 +1,19 @@
+{
+  "name": "deployed-gridlock",
+  "version": "1.0.0",
+  "description": "gridLock is intended to be a open-source project that is accepting contributions from developers of all skill levels, and developers will be rewarded with ownership. It was built off of the Moralis dexStarter template on IAmJaysWay github page. If Jay or Moralis view this before me contacting you, I plan on awarding you based on the ownership of the intellectual property.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DEFIProtocol/deployed-gridlock.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DEFIProtocol/deployed-gridlock/issues"
+  },
+  "homepage": "https://github.com/DEFIProtocol/deployed-gridlock#readme"
+}
