@@ -9,6 +9,15 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.get("/*", function (req, res) {
+  res.sendFile(req.pathpath.join(_dirname, "../dex/build/index.html"),
+  function(err){
+    if(err){
+      res.status(500).send(err);
+    }
+  })
+})
+
 // Connection URL and Database Name
 const url = process.env.REACT_APP_MONGODB_URI;
 const dbName = 'gridlockDb'; // Replace this with your desired database name
@@ -88,7 +97,7 @@ app.get('/api/data', async (req, res) => {
 });
 
 // Start the server on a specified port (e.g., 3000)
-const PORT = 3005;
+const PORT = process.env.port || 3005;
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
