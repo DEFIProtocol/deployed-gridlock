@@ -4,10 +4,11 @@ import express from 'express';
 import cors from "cors";
 
 dotenv.config();
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors(FRONTEND_URL));
 
 // Connection URL and Database Name
 const url = process.env.REACT_APP_MONGODB_URI;

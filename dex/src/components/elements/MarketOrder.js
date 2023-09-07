@@ -14,6 +14,7 @@ function MarketOrder(props) {
   const [messageApi, contextHolder] = message.useMessage()
   const [amount, setAmount] = useState(null);
   const [slippage, setSlippage] = useState(2.5);
+  const [txDetailsSent, setTxDetailsSent] = useState(false);
   const ethAddress = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
   const ethExRate = usdPrice / cryptoDetails?.price
   const baseLine = "1";
@@ -39,65 +40,97 @@ function MarketOrder(props) {
   function handleSlippageChange(e){
     setSlippage(e.taget.value);
   }
-
+  
+  const axiosHeaders = {
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${process.env.REACT_APP_1INCH_API_KEY}`
+    }
+  };
+  
   async function fetchDexBuy() {
-      var tokenAmount = () => {
-        if(checked === "eth") {
-          return String(amount *(baseLine.padEnd(18+baseLine.length, '0'))) 
-        }else if (checked === "usd"){
-          return String((amount/cryptoDetails.price) * (baseLine.padEnd(18+ baseLine.length, '0'))) ;
-        } else {
-          return  String((amount * ethExRate) * (baseLine.padEnd(18+baseLine.length, "0")))
-        };
+    const tokenAmount = () => {
+      if (checked === "eth") {
+        return String(amount * (baseLine.padEnd(18 + baseLine.length, '0')));
+      } else if (checked === "usd") {
+        return String((amount / cryptoDetails.price) * (baseLine.padEnd(18 + baseLine.length, '0')));
+      } else {
+        return String((amount * ethExRate) * (baseLine.padEnd(18 + baseLine.length, "0")));
       }
-      const allowance = await axios.get(`https://api.1inch.io/v5.0/1/approve/allowance?tokenAddress=0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE&walletAddress=${address}`)
-                                       //https://api.1inch.io/v5.0/1/approve/allowance?tokenAddress=0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE&walletAddress=0x911158658d4530710F6d6D59156db174BEfD4Dac
-      if(allowance.data.allowance === "0"){
-        const approve = await axios.get(`https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${ethAddress}`)
-        setTxDetails(approve.data)
-        console.log("Not Approved")
-        return 
-      }
-      const tx = await axios.get(
-        `https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${ethAddress}&toTokenAddress=${tokenObject.address}&amount=${tokenAmount()}&fromAddress=${address}&slippage=${slippage}&fee=1.25`
-      )
-      let decimals = Number(`1E${tokenObject.decimals}`)
-      let tokenTwo = (Number(tx.data.toTokenAmount)/decimals).toFixed(2)
-      console.log(tokenTwo);
-      setTxDetails(tx.data.tx)
+    };
+  
+    const allowanceResponse = await axios.get(
+      `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`,
+      axiosHeaders
+    );
+    const allowance = allowanceResponse.data;
+  
+    if (allowance.allowance === "0") {
+      const approveResponse = await axios.get(
+        `https://api.1inch.dev/swap/v5.2/1/approve/transaction?tokenAddress=${ethAddress}&amount=${tokenAmount()}`,
+        axiosHeaders
+      );
+      setTxDetails(approveResponse.data);
+      console.log("Not Approved");
+      return;
     }
-
-    async function fetchDexSell(){
-      var tokenSellAmount = () => {
-        if(checked === "eth") {
-          return String(Math.trunc(amount/ethExRate *(baseLine.padEnd(tokenObject.decimals+baseLine.length, '0')))) 
-        }else if (checked === "usd"){
-          return String(Math.trunc((amount/usdPrice) * (baseLine.padEnd(tokenObject.decimals+ baseLine.length, '0')))) ;
-        } else {
-          return  String(amount * (baseLine.padEnd(tokenObject.decimals+baseLine.length, "0")))
-        };
+  
+    const txResponse = await axios.get(
+      `https://api.1inch.dev/swap/v5.2/1/swap?src=${ethAddress}&dst=${tokenObject.address}&amount=${tokenAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+      axiosHeaders
+    );
+  
+    let decimals = Number(`1E${tokenObject.decimals}`);
+    let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
+    console.log(tokenTwo);
+    return setTxDetails(txResponse.data.tx);
+  }
+  
+  async function fetchDexSell() {
+    const tokenSellAmount = () => {
+      if (checked === "eth") {
+        return String(Math.trunc(amount / ethExRate * (baseLine.padEnd(tokenObject.decimals + baseLine.length, '0'))));
+      } else if (checked === "usd") {
+        return String(Math.trunc((amount / usdPrice) * (baseLine.padEnd(tokenObject.decimals + baseLine.length, '0'))));
+      } else {
+        return String(amount * (baseLine.padEnd(tokenObject.decimals + baseLine.length, "0")));
       }
-      const allowance = await axios.get(`https://api.1inch.io/v5.0/approve/allowance?tokenAddress=${tokenObject.address}&walletAddress=${address}`)
-      if(allowance.data.allowance === "0"){
-        const approve = await axios.get(`https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${tokenObject.address}`)
-        setTxDetails(approve.data)
-        console.log("Not Approved")
-        return 
-      }
-      const tx = await axios.get(
-        `https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${tokenObject.address}&toTokenAddress=${ethAddress}&amount=${tokenSellAmount()}&fromAddress=${address}&slippage=${slippage}&fee=1.25`
-      )
-      let decimals = Number(`1E${tokenObject.decimals}`)
-      let tokenTwo = (Number(tx.data.toTokenAmount)/decimals).toFixed(2)
-      console.log(tokenTwo);
-      setTxDetails(tx.data.tx)
+    };
+  
+    const allowanceResponse = await axios.get(
+      `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenObject.address}&walletAddress=${address}`,
+      axiosHeaders
+    );
+    const allowance = allowanceResponse.data;
+  
+    if (allowance.allowance === "0") {
+      const approveResponse = await axios.get(
+        `https://api.1inch.dev/swap/v5.2/1/approve/transaction?tokenAddress=${tokenObject.address}&amount=${tokenSellAmount()}`,
+        axiosHeaders
+      );
+      setTxDetails(approveResponse.data);
+      console.log("Not Approved");
+      return;
     }
+  
+    const txResponse = await axios.get(
+      `https://api.1inch.dev/swap/v5.2/1/swap?src=${tokenObject.address}&dst=${ethAddress}&amount=${tokenSellAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+      axiosHeaders
+    );
+  
+    let decimals = Number(`1E${tokenObject.decimals}`);
+    let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
+    console.log(tokenTwo);
+    return setTxDetails(txResponse.data.tx);
+  }
+  
 
   useEffect(() => {
-    if(txDetails.to && address){
+    if (txDetails.to && address && !txDetailsSent) { // Add a check for txDetailsSent
       sendTransaction();
+      setTxDetailsSent(true); // Set txDetailsSent to true to avoid repeated calls
     }
-  },[txDetails, address, sendTransaction])
+  }, [txDetails.to, address, sendTransaction, txDetailsSent]);
 
   useEffect(() => {
     messageApi.destroy();
