@@ -9,15 +9,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get("/*", function (req, res) {
-  res.sendFile(req.pathpath.join(_dirname, "../dex/build/index.html"),
-  function(err){
-    if(err){
-      res.status(500).send(err);
-    }
-  })
-})
-
 // Connection URL and Database Name
 const url = process.env.REACT_APP_MONGODB_URI;
 const dbName = 'gridlockDb'; // Replace this with your desired database name
