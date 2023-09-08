@@ -27,11 +27,11 @@ function Account(props) {
 
   const apiKey = process.env.REACT_APP_ALCHEMY_API;
 
-  const url =`https://eth-mainnet.g.alchemy.com/v2/` + apiKey;
+  const url =`https://eth-mainnet.g.alchemy.com/v2/${apiKey}` ;
 
 const addToWatchlist = async (uuid) => {
   try {
-    const response = await fetch(process.env.REACT_APP_BACKEND+'/api/addToWatchlist', {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/addToWatchlist`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ const addToWatchlist = async (uuid) => {
 
 const removeFromWatchlist = async (uuid) => {
   try {
-    const response = await fetch(process.env.REACT_APP_BACKEND+'/api/removeFromWatchlist', {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/removeFromWatchlist`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -174,8 +174,9 @@ useEffect(() => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(process.env.REACT_APP_BACKEND+`/api/data?user=${address}`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/data?user=${address}`);
         const data = await response.json();
+        console.log(data);
         const watchlistUuids = data.map((item) => item.uuid);
           setWatchlist(watchlistUuids[0]);
       } catch (error) {

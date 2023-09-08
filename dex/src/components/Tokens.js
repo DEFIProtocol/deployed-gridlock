@@ -20,7 +20,7 @@ function Tokens(props) {
 
 const addToWatchlist = async (uuid) => {
   try {
-    const response = await fetch('http://localhost:3005/api/addToWatchlist', {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/addToWatchlist`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const addToWatchlist = async (uuid) => {
 
 const removeFromWatchlist = async (uuid) => {
   try {
-    const response = await fetch('http://localhost:3005/api/removeFromWatchlist', {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/removeFromWatchlist`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -63,8 +63,9 @@ const removeFromWatchlist = async (uuid) => {
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:3005/api/data?user=${address}`);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/data?user=${address}`);
       const data = await response.json();
+      console.log(data)
       const watchlistUuids = data.map((item) => item.uuid);
         setWatchlist(watchlistUuids[0]);
     } catch (error) {
