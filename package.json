@@ -7,8 +7,8 @@
     "install-server": "cd dexBack && npm install",
     "start-server": "cd dexBack && node mongodb.js",
     "install-client": "cd dex && npm install",
-    "build": "cd dex && npm run build",
-    "start": "cd dex && npm run start"
+    "build-client": "cd dex && npm run build",
+    "start-client": "cd dex && npm run start"
   },
   "repository": {
     "type": "git",
