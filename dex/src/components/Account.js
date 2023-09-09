@@ -82,10 +82,10 @@ const getUUID = async (e) => {
 };
 
 const calculateTotalValue = useCallback((e) => {
-  let totalValue = 0;
+  let totalValue = 0; 
   if (cryptos && uuid) {
     cryptos
-      .filter((token) => uuid.includes(token.uuid))
+      .filter((token) => uuid.includes(token.uuid) && token.uuid !== "Mtfb0obXVh59u")
       .forEach((token, index) => {
         const amount = parseFloat(e?.amount[index]);
         const price = parseFloat(token.price);
@@ -133,7 +133,7 @@ useMemo(() => {
         return balance.toFixed(4);
       });
       const holdingsAmount = await Promise.all(holdingsAmountPromises);
-      const newHoldings = { tokenAddress: holdingsAddresses, amount: holdingsAmount.reverse() };
+      const newHoldings = { tokenAddress: holdingsAddresses, amount: holdingsAmount };
       setHoldings(newHoldings);
       getUUID(newHoldings).then((data) => {
         setUuid(data);
@@ -205,7 +205,7 @@ if (isFetching || !uuid) return <Loader />;
       {!cryptos || !uuid
         ? null
         : cryptos
-            .filter((token) => uuid.includes(token.uuid))
+            .filter((token) => uuid.includes(token.uuid) && token.uuid !== "Mtfb0obXVh59u")
             .map((token, index) => (
               <div key={index}>
                   <Card className="daoCard">
