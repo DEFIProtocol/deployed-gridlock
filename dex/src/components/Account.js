@@ -187,10 +187,9 @@ useEffect(() => {
     fetchData();
   }, [address]);
 
-if (isFetching || !uuid) return <Loader />;
 
-  return (
-    <div className="ETHDEX">
+return (
+  <div className="ETHDEX">
     <h1 className="heading">Total Holdings: ${totalHoldingsValue}</h1>
     <h1 className="heading">Buying Power: {balance}</h1>
     <h1 className="heading">Holdings</h1>
@@ -202,45 +201,50 @@ if (isFetching || !uuid) return <Loader />;
       <span className="column-title-heading"></span>
     </div>
     <div>
-      {!cryptos || !uuid
-        ? null
-        : cryptos
-            .filter((token) => uuid.includes(token.uuid) && token.uuid !== "Mtfb0obXVh59u")
-            .map((token, index) => (
-              <div key={index}>
-                  <Card className="daoCard">
-                    <div className="cardContainer" >
-                      <Link to={`/${token?.name}/${token?.uuid}`} className="tokenDao">
-                          <img className="logo" src={token.iconUrl} alt="noLogo" />
-                          <div style={{float: "right"}}>
-                          <h4 className="name">{token.name}</h4>
-                          <span className="symbol">{token.symbol}</span>
-                          </div>
-                      </Link>
-                      <Link to={`/${token?.name}/${token?.uuid}`} className="type">
-                          {token.marketCap == null ? "--" : millify(token.marketCap)}
-                      </Link>
-                      <Link to={`/${token?.name}/${token?.uuid}`} className="lastPrice">
-                          ${token.price == null ? "--" : millify(token.price)}
-                      </Link>
-                      <Link to={`/${token?.name}/${token?.uuid}`} className="amount">
-                          {holdings?.amount[index]} {token.symbol}
-                      </Link>
-                      {watchlist && watchlist.includes(token?.uuid) ? (
-                        <StarFilled
-                          style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
-                          onClick={() => removeFromWatchlist(token?.uuid)}
-                        />
-                      ) : (
-                        <StarOutlined
-                          style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
-                          onClick={() => addToWatchlist(token?.uuid)}
-                        />
-                      )}
+      {(cryptos && uuid && uuid.length > 0) ? (
+        cryptos
+          .filter((token) => uuid.includes(token.uuid) && token.uuid !== "Mtfb0obXVh59u")
+          .map((token, index) => (
+            <div key={index}>
+              <Card className="daoCard">
+                <div className="cardContainer">
+                  <Link to={`/${token?.name}/${token?.uuid}`} className="tokenDao">
+                    <img className="logo" src={token.iconUrl} alt="noLogo" />
+                    <div style={{ float: "right" }}>
+                      <h4 className="name">{token.name}</h4>
+                      <span className="symbol">{token.symbol}</span>
                     </div>
-                </Card>
-              </div>
-            ))}
+                  </Link>
+                  <Link to={`/${token?.name}/${token?.uuid}`} className="type">
+                    {token.marketCap == null ? "--" : millify(token.marketCap)}
+                  </Link>
+                  <Link to={`/${token?.name}/${token?.uuid}`} className="lastPrice">
+                    ${token.price == null ? "--" : millify(token.price)}
+                  </Link>
+                  <Link to={`/${token?.name}/${token?.uuid}`} className="amount">
+                    {holdings?.amount[index]} {token.symbol}
+                  </Link>
+                  {watchlist && watchlist.includes(token?.uuid) ? (
+                    <StarFilled
+                      style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
+                      onClick={() => removeFromWatchlist(token?.uuid)}
+                    />
+                  ) : (
+                    <StarOutlined
+                      style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
+                      onClick={() => addToWatchlist(token?.uuid)}
+                    />
+                  )}
+                </div>
+              </Card>
+            </div>
+          ))
+      ) : (
+        <div>
+        <p>No token holdings!</p>
+        {isFetching || !uuid ? <Loader /> : null}
+        </div>
+      )}
     </div>
     <h1 className="heading">Watchlist</h1>
     <div className="column-title">
@@ -250,45 +254,50 @@ if (isFetching || !uuid) return <Loader />;
       <span className="column-title-heading"></span>
     </div>
     <div>
-      {!cryptos || !watchlist
-        ? null
-        : cryptos
-            .filter((token) => watchlist.includes(token.uuid))
-            .map((token, index) => (
-              <div key={index}>
-                  <Card className="daoCard">
-                    <div className="cardContainer" >
-                      <Link to={`/${token?.name}/${token?.uuid}`} className="tokenDao">
-                        <img className="logo" src={token.iconUrl} alt="noLogo" />
-                        <div style={{float: "right"}}>
-                        <h4 className="name">{token.name}</h4>
-                        <span className="symbol">{token.symbol}</span>
-                        </div>
-                      </Link>
-                      <Link to={`/${token?.name}/${token?.uuid}`} className="type">
-                          {token.marketCap == null ? "--" : millify(token.marketCap)}
-                      </Link>
-                      <Link to={`/${token?.name}/${token?.uuid}`} className="lastPrice">
-                          ${token.price == null ? "--" : millify(token.price)}
-                      </Link>
-                      {watchlist && watchlist.includes(token?.uuid) ? (
-                        <StarFilled
-                          style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
-                          onClick={() => removeFromWatchlist(token?.uuid)}
-                        />
-                      ) : (
-                        <StarOutlined
-                          style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
-                          onClick={() => addToWatchlist(token?.uuid)}
-                        />
-                      )}
+      {(cryptos && watchlist && watchlist.length > 0) ? (
+        cryptos
+          .filter((token) => watchlist.includes(token.uuid))
+          .map((token, index) => (
+            <div key={index}>
+              <Card className="daoCard">
+                <div className="cardContainer">
+                  <Link to={`/${token?.name}/${token?.uuid}`} className="tokenDao">
+                    <img className="logo" src={token.iconUrl} alt="noLogo" />
+                    <div style={{ float: "right" }}>
+                      <h4 className="name">{token.name}</h4>
+                      <span className="symbol">{token.symbol}</span>
                     </div>
-                </Card>
-              </div>
-            ))}
+                  </Link>
+                  <Link to={`/${token?.name}/${token?.uuid}`} className="type">
+                    {token.marketCap == null ? "--" : millify(token.marketCap)}
+                  </Link>
+                  <Link to={`/${token?.name}/${token?.uuid}`} className="lastPrice">
+                    ${token.price == null ? "--" : millify(token.price)}
+                  </Link>
+                  {watchlist && watchlist.includes(token?.uuid) ? (
+                    <StarFilled
+                      style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
+                      onClick={() => removeFromWatchlist(token?.uuid)}
+                    />
+                  ) : (
+                    <StarOutlined
+                      style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
+                      onClick={() => addToWatchlist(token?.uuid)}
+                    />
+                  )}
+                </div>
+              </Card>
+            </div>
+          ))
+      ) : (
+        <div>
+        <p>You are not watching any tokens!</p>
+        {isFetching || !uuid ? <Loader /> : null}
+        </div>
+      )}
     </div>
   </div>
-  )
+);
 }
 
 export default Account
