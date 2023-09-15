@@ -150,7 +150,7 @@ function MarketOrder(props) {
       // Show a confirmation modal
       Modal.confirm({
         title: 'Confirm Sell',
-        content: `Are you sure you want to sell ${tokenAmount()} ${tokenObject.symbol}?`, // Customize the confirmation message
+        content: `Are you sure you want to sell ${tokenSellAmount()} ${tokenObject.symbol}?`, // Customize the confirmation message
         onOk: async () => {
           // If confirmed, proceed with the swap
           const txResponse = await axios.get(
