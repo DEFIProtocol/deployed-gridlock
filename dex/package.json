@@ -2,6 +2,7 @@
   "name": "dex",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://dexmongoback.onrender.com",
   "dependencies": {
     "@ant-design/icons": "^5.0.0",
     "@reduxjs/toolkit": "^1.9.3",

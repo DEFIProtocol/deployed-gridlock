@@ -59,31 +59,36 @@ function MarketOrder(props) {
       }
     };
   
-    const allowanceResponse = await axios.get(
-      `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`,
-      axiosHeaders
-    );
-    const allowance = allowanceResponse.data;
-  
-    if (allowance.allowance === "0") {
-      const approveResponse = await axios.get(
-        `https://api.1inch.dev/swap/v5.2/1/approve/transaction?tokenAddress=${ethAddress}&amount=${tokenAmount()}`,
+    try {
+      const allowanceResponse = await axios.get(
+        `/api/1inch/swap/v5.2/1/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`,
         axiosHeaders
       );
-      setTxDetails(approveResponse.data);
-      console.log("Not Approved");
-      return;
+      const allowance = allowanceResponse.data;
+  
+      if (allowance.allowance === "0") {
+        const approveResponse = await axios.get(
+          `/api/1inch/swap/v5.2/1/approve/transaction?tokenAddress=${ethAddress}&amount=${tokenAmount()}`,
+          axiosHeaders
+        );
+        setTxDetails(approveResponse.data);
+        console.log("Not Approved");
+        return;
+      }
+  
+      const txResponse = await axios.get(
+        `/api/1inch/swap/v5.2/1/swap?src=${ethAddress}&dst=${tokenObject.address}&amount=${tokenAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+        axiosHeaders
+      );
+  
+      let decimals = Number(`1E${tokenObject.decimals}`);
+      let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
+      console.log(tokenTwo);
+      return setTxDetails(txResponse.data.tx);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      // Handle the error appropriately
     }
-  
-    const txResponse = await axios.get(
-      `https://api.1inch.dev/swap/v5.2/1/swap?src=${ethAddress}&dst=${tokenObject.address}&amount=${tokenAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
-      axiosHeaders
-    );
-  
-    let decimals = Number(`1E${tokenObject.decimals}`);
-    let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
-    console.log(tokenTwo);
-    return setTxDetails(txResponse.data.tx);
   }
   
   async function fetchDexSell() {
@@ -97,32 +102,38 @@ function MarketOrder(props) {
       }
     };
   
-    const allowanceResponse = await axios.get(
-      `https://api.1inch.dev/swap/v5.2/1/approve/allowance?tokenAddress=${tokenObject.address}&walletAddress=${address}`,
-      axiosHeaders
-    );
-    const allowance = allowanceResponse.data;
-  
-    if (allowance.allowance === "0") {
-      const approveResponse = await axios.get(
-        `https://api.1inch.dev/swap/v5.2/1/approve/transaction?tokenAddress=${tokenObject.address}&amount=${tokenSellAmount()}`,
+    try {
+      const allowanceResponse = await axios.get(
+        `/api/1inch/swap/v5.2/1/approve/allowance?tokenAddress=${tokenObject.address}&walletAddress=${address}`,
         axiosHeaders
       );
-      setTxDetails(approveResponse.data);
-      console.log("Not Approved");
-      return;
+      const allowance = allowanceResponse.data;
+  
+      if (allowance.allowance === "0") {
+        const approveResponse = await axios.get(
+          `/api/1inch/swap/v5.2/1/approve/transaction?tokenAddress=${tokenObject.address}&amount=${tokenSellAmount()}`,
+          axiosHeaders
+        );
+        setTxDetails(approveResponse.data);
+        console.log("Not Approved");
+        return;
+      }
+  
+      const txResponse = await axios.get(
+        `/api/1inch/swap/v5.2/1/swap?src=${tokenObject.address}&dst=${ethAddress}&amount=${tokenSellAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+        axiosHeaders
+      );
+  
+      let decimals = Number(`1E${tokenObject.decimals}`);
+      let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
+      console.log(tokenTwo);
+      return setTxDetails(txResponse.data.tx);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      // Handle the error appropriately
     }
-  
-    const txResponse = await axios.get(
-      `https://api.1inch.dev/swap/v5.2/1/swap?src=${tokenObject.address}&dst=${ethAddress}&amount=${tokenSellAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
-      axiosHeaders
-    );
-  
-    let decimals = Number(`1E${tokenObject.decimals}`);
-    let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
-    console.log(tokenTwo);
-    return setTxDetails(txResponse.data.tx);
   }
+  
   
 
   useEffect(() => {

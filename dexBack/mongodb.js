@@ -2,6 +2,7 @@ import { MongoClient } from 'mongodb';
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from "cors";
+import { createProxyMiddleware } from 'http-proxy-middleware';
 
 dotenv.config();
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
@@ -87,6 +88,37 @@ app.get('/api/data', async (req, res) => {
     res.status(500).json({ error: 'Failed to get data from MongoDB' });
   }
 });
+
+//Proxy Server for market buy and sell
+
+app.use(express.json());
+
+app.get('/api/1inch/*', async (req, res) => {
+  try {
+    const response = await axios.get(`https://api.1inch.dev${req.url}`);
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error proxying request:', error);
+    res.status(500).json({ error: 'Proxying request failed' });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Proxy server listening on port ${PORT}`);
+});
+
+// Define API endpoints
+app.use(
+  '/api/1inch',
+  createProxyMiddleware({
+    target: 'https://api.1inch.dev',
+    changeOrigin: true,
+    pathRewrite: {
+      '^/api/1inch': '',  // Remove the '/api/1inch' from the path
+    },
+  })
+);
+
 
 // Start the server on a specified port (e.g., 3000)
 const PORT = process.env.port || 3005;
