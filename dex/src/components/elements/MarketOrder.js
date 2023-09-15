@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./order.css";
 import tokenList from '../../tokenList';
-import { Popover, Radio, message } from "antd";
+import { Popover, Radio, message, Modal } from "antd";
 import { SettingOutlined, } from "@ant-design/icons";
 import axios from 'axios';
 import { useSendTransaction, useWaitForTransaction } from "wagmi";
@@ -60,6 +60,7 @@ function MarketOrder(props) {
     };
   
     try {
+      // Check allowance and fetch quote
       const allowanceResponse = await axios.get(
         `/api/1inch/swap/v5.2/1/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`,
         axiosHeaders
@@ -76,20 +77,38 @@ function MarketOrder(props) {
         return;
       }
   
-      const txResponse = await axios.get(
-        `/api/1inch/swap/v5.2/1/swap?src=${ethAddress}&dst=${tokenObject.address}&amount=${tokenAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+      // Fetch quote for buy
+      const quoteResponse = await axios.get(
+        `/api/1inch/swap/v5.2/1/quote?src=${ethAddress}&dst=${tokenObject.address}&amount=${tokenAmount()}&fee=1.25&includeTokensInfo=true&includeGas=true`,
         axiosHeaders
       );
   
-      let decimals = Number(`1E${tokenObject.decimals}`);
-      let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
-      console.log(tokenTwo);
-      return setTxDetails(txResponse.data.tx);
+      // Show a confirmation modal
+      Modal.confirm({
+        title: 'Confirm Buy',
+        content: `Are you sure you want to buy ${tokenAmount()} ${tokenObject.symbol}?`, // Customize the confirmation message
+        onOk: async () => {
+          // If confirmed, proceed with the swap
+          const txResponse = await axios.get(
+            `/api/1inch/swap/v5.2/1/swap?src=${ethAddress}&dst=${tokenObject.address}&amount=${tokenAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+            axiosHeaders
+          );
+  
+          let decimals = Number(`1E${tokenObject.decimals}`);
+          let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
+          console.log(tokenTwo);
+          return setTxDetails(txResponse.data.tx);
+        },
+        onCancel: () => {
+          console.log("Buy Cancelled"); // Handle cancel action
+        },
+      });
     } catch (error) {
       console.error('Error fetching data:', error);
       // Handle the error appropriately
     }
   }
+  
   
   async function fetchDexSell() {
     const tokenSellAmount = () => {
@@ -103,6 +122,7 @@ function MarketOrder(props) {
     };
   
     try {
+      // Check allowance and fetch quote
       const allowanceResponse = await axios.get(
         `/api/1inch/swap/v5.2/1/approve/allowance?tokenAddress=${tokenObject.address}&walletAddress=${address}`,
         axiosHeaders
@@ -119,15 +139,34 @@ function MarketOrder(props) {
         return;
       }
   
-      const txResponse = await axios.get(
-        `/api/1inch/swap/v5.2/1/swap?src=${tokenObject.address}&dst=${ethAddress}&amount=${tokenSellAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+      // Fetch quote for sell
+      const quoteResponse = await axios.get(
+        `/api/1inch/swap/v5.2/1/quote?src=${tokenObject.address}&dst=${ethAddress}&amount=${tokenSellAmount()}&fee=1.25&includeTokensInfo=true&includeGas=true`,
         axiosHeaders
       );
+      
+      console.log(quoteResponse);
   
-      let decimals = Number(`1E${tokenObject.decimals}`);
-      let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
-      console.log(tokenTwo);
-      return setTxDetails(txResponse.data.tx);
+      // Show a confirmation modal
+      Modal.confirm({
+        title: 'Confirm Sell',
+        content: `Are you sure you want to sell ${tokenAmount()} ${tokenObject.symbol}?`, // Customize the confirmation message
+        onOk: async () => {
+          // If confirmed, proceed with the swap
+          const txResponse = await axios.get(
+            `/api/1inch/swap/v5.2/1/swap?src=${tokenObject.address}&dst=${ethAddress}&amount=${tokenSellAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+            axiosHeaders
+          );
+  
+          let decimals = Number(`1E${tokenObject.decimals}`);
+          let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
+          console.log(tokenTwo);
+          return setTxDetails(txResponse.data.tx);
+        },
+        onCancel: () => {
+          console.log("Sell Cancelled"); // Handle cancel action
+        },
+      });
     } catch (error) {
       console.error('Error fetching data:', error);
       // Handle the error appropriately
