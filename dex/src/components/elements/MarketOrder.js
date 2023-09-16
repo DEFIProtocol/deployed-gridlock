@@ -62,14 +62,14 @@ function MarketOrder(props) {
     try {
       // Check allowance and fetch quote
       const allowanceResponse = await axios.get(
-        `/api/1inch/swap/v5.2/1/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`,
         axiosHeaders
       );
       const allowance = allowanceResponse.data;
   
       if (allowance.allowance === "0") {
         const approveResponse = await axios.get(
-          `/api/1inch/swap/v5.2/1/approve/transaction?tokenAddress=${ethAddress}&amount=${tokenAmount()}`,
+          `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/approve/transaction?tokenAddress=${ethAddress}&amount=${tokenAmount()}`,
           axiosHeaders
         );
         setTxDetails(approveResponse.data);
@@ -79,7 +79,7 @@ function MarketOrder(props) {
   
       // Fetch quote for buy
       const quoteResponse = await axios.get(
-        `/api/1inch/swap/v5.2/1/quote?src=${ethAddress}&dst=${tokenObject.address}&amount=${tokenAmount()}&fee=1.25&includeTokensInfo=true&includeGas=true`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/quote?src=${ethAddress}&dst=${tokenObject.address}&amount=${tokenAmount()}&fee=1.25&includeTokensInfo=true&includeGas=true`,
         axiosHeaders
       );
   
@@ -90,7 +90,7 @@ function MarketOrder(props) {
         onOk: async () => {
           // If confirmed, proceed with the swap
           const txResponse = await axios.get(
-            `/api/1inch/swap/v5.2/1/swap?src=${ethAddress}&dst=${tokenObject.address}&amount=${tokenAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+            `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/swap?src=${ethAddress}&dst=${tokenObject.address}&amount=${tokenAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
             axiosHeaders
           );
   
@@ -124,14 +124,14 @@ function MarketOrder(props) {
     try {
       // Check allowance and fetch quote
       const allowanceResponse = await axios.get(
-        `/api/1inch/swap/v5.2/1/approve/allowance?tokenAddress=${tokenObject.address}&walletAddress=${address}`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/approve/allowance?tokenAddress=${tokenObject.address}&walletAddress=${address}`,
         axiosHeaders
       );
       const allowance = allowanceResponse.data;
   
       if (allowance.allowance === "0") {
         const approveResponse = await axios.get(
-          `/api/1inch/swap/v5.2/1/approve/transaction?tokenAddress=${tokenObject.address}&amount=${tokenSellAmount()}`,
+          `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/approve/transaction?tokenAddress=${tokenObject.address}&amount=${tokenSellAmount()}`,
           axiosHeaders
         );
         setTxDetails(approveResponse.data);
@@ -141,7 +141,7 @@ function MarketOrder(props) {
   
       // Fetch quote for sell
       const quoteResponse = await axios.get(
-        `/api/1inch/swap/v5.2/1/quote?src=${tokenObject.address}&dst=${ethAddress}&amount=${tokenSellAmount()}&fee=1.25&includeTokensInfo=true&includeGas=true`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/quote?src=${tokenObject.address}&dst=${ethAddress}&amount=${tokenSellAmount()}&fee=1.25&includeTokensInfo=true&includeGas=true`,
         axiosHeaders
       );
       
@@ -154,7 +154,7 @@ function MarketOrder(props) {
         onOk: async () => {
           // If confirmed, proceed with the swap
           const txResponse = await axios.get(
-            `/api/1inch/swap/v5.2/1/swap?src=${tokenObject.address}&dst=${ethAddress}&amount=${tokenSellAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+            `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/swap?src=${tokenObject.address}&dst=${ethAddress}&amount=${tokenSellAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
             axiosHeaders
           );
   

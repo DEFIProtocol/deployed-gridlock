@@ -102,6 +102,7 @@ app.get('/api/1inch/*', async (req, res) => {
     res.status(500).json({ error: 'Proxying request failed' });
   }
 });
+const PORT = process.env.port || 3005;
 
 app.listen(PORT, () => {
   console.log(`Proxy server listening on port ${PORT}`);
@@ -121,7 +122,6 @@ app.use(
 
 
 // Start the server on a specified port (e.g., 3000)
-const PORT = process.env.port || 3005;
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
