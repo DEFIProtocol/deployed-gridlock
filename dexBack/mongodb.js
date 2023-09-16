@@ -104,9 +104,6 @@ app.get('/api/1inch/*', async (req, res) => {
 });
 const PORT = process.env.port || 3005;
 
-app.listen(PORT, () => {
-  console.log(`Proxy server listening on port ${PORT}`);
-});
 
 // Define API endpoints
 app.use(
