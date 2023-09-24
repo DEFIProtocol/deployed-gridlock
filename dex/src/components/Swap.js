@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import axios from "axios";
 import { Input, Popover, Radio, Modal, message } from "antd";
 import { ArrowDownOutlined, DownOutlined, SettingOutlined, } from "@ant-design/icons";
 import tokenList from "../tokenList.json";
 import { useSendTransaction, useWaitForTransaction } from "wagmi";
+import { useGetCryptosQuery } from './services/cryptoApi';
+import { Loader } from "./elements";
 
 function Swap(props) {
   const {address, isConnect } = props;
@@ -11,11 +13,18 @@ function Swap(props) {
   const [slippage, setSlippage] = useState(2.5);
   const [tokenOneAmount, setTokenOneAmount] = useState(null);
   const [tokenTwoAmount, setTokenTwoAmount] = useState(null);
+  const {data: tokenData, isFetching } = useGetCryptosQuery(1200);
   const [tokenOne, setTokenOne] = useState(tokenList[0]);
   const [tokenTwo, setTokenTwo] = useState(tokenList[1]);
   const [isOpen, setIsOpen] = useState(false);
   const [changeToken, setChangeToken]= useState(1);
   const [prices, setPrices] = useState();
+  const axiosHeaders = {
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${process.env.REACT_APP_1INCH_API_KEY}`
+    }
+  };
   const [txDetails, setTxDetails] = useState({
     to: null,
     data: null,
@@ -40,12 +49,11 @@ function Swap(props) {
   function changeAmount(e){
     setTokenOneAmount(e.target.value)
     if(e.target.value && prices){
-      setTokenTwoAmount((e.target.value * prices.ratio).toFixed(2))
+      setTokenTwoAmount((e.target.value * prices).toFixed(2))
     } else {
       setTokenTwoAmount(null)
     }
   }
-  console.log(isConnect);
 
   function switchTokens(){
     setPrices(null);
@@ -68,10 +76,10 @@ function Swap(props) {
     setTokenTwoAmount(null);
     if(changeToken ===1){
       setTokenOne(tokenList[i])
-      fetchPrices(tokenList[i].address, tokenTwo.address)
+      fetchPrices(tokenList[i].uuid, tokenTwo.uuid)
     } else {
       setTokenTwo(tokenList[i])
-      fetchPrices(tokenOne.address, tokenList[i].address)
+      fetchPrices(tokenOne.uuid, tokenList[i].uuid)
     }
     setIsOpen(false);
   }
@@ -89,36 +97,50 @@ function Swap(props) {
     </>
   )
 
-  async function fetchPrices(one, two) {
-    const res = await axios.get(`http://localhost:3001/tokenPrice`, { 
-      params: {addressOne: one, addressTwo: two}
-    })
-    console.log(res.data);
-    setPrices(res.data);
-  }
-  console.log(tokenOne)
-  async function fetchDexSwap(){
-    const baseLine = "1"
-    var tokenAmount = Math.trunc(tokenOneAmount * (baseLine.padEnd(tokenOne.decimals, '0')))
-    console.log(tokenAmount);
-    const allowance = await axios.get(`https://api.1inch.io/v5.0/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`)
-    if(allowance.data.allowance === "0"){
-      const approve = await axios.get(`https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${tokenOne.address}`)
-      setTxDetails(approve.data)
-      console.log("Not Approved")
-      return 
+const fetchPrices = useCallback(async (one, two) => {
+    const firstToken = await tokenData.data.coins.find((token) => token.uuid === one);
+    const secondToken = await tokenData.data.coins.find((token) => token.uuid === two);
+    if (firstToken && secondToken) {
+      const priceRatio = firstToken.price / secondToken.price;
+      setPrices(priceRatio);
+      console.log(priceRatio);
+    } else {
+      console.log('Token not found');
     }
-    const tx = await axios.get(
-      `https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenAmount}&fromAddress=${address}&slippage=${slippage}`
-    )
-    let decimals = Number(`1E${tokenTwo.decimals}`)
-    setTokenTwoAmount((Number(tx.data.toTokenAmount)/decimals).toFixed(2))
-    setTxDetails(tx.data.tx)
-  }
+}, [tokenData, setPrices]);
 
+  async function fetchDexSwap() {
+    const baseLine = "1";
+    const tokenAmount = Math.trunc(tokenOneAmount * (baseLine.padEnd(tokenOne.decimals, '0')))
+    try {
+      const allowanceResponse = await axios.get(
+        `https://api.1inch.io/v5.0/approve/allowance?tokenAddress=${tokenOne.address}&walletAddress=${address}`,
+        axiosHeaders  // Include the headers for authorization
+      );
+      if (allowanceResponse.data.allowance === "0") {
+        const approveResponse = await axios.get(
+          `https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${tokenOne.address}`,
+          axiosHeaders  // Include the headers for authorization
+        );
+        setTxDetails(approveResponse.data);
+        console.log("Not Approved");
+        return;
+      }
+      const txResponse = await axios.get(
+        `https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${tokenOne.address}&toTokenAddress=${tokenTwo.address}&amount=${tokenAmount}&fromAddress=${address}&slippage=${slippage}`,
+        axiosHeaders  // Include the headers for authorization
+      );
+      const decimals = Number(`1E${tokenTwo.decimals}`);
+      setTokenTwoAmount((Number(txResponse.data.toTokenAmount) / decimals).toFixed(2));
+      setTxDetails(txResponse.data.tx);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+  
   useEffect(() => {
-    fetchPrices(tokenList[0].address, tokenList[2].address)
-  },[])
+    fetchPrices(tokenList[0].uuid, tokenList[1].uuid)
+  },[fetchPrices])
 
   useEffect(() => {
     if(txDetails.to && address){
@@ -154,7 +176,8 @@ function Swap(props) {
     }
   },[isSuccess, messageApi, txDetails.to])
 
-  console.log(txDetails);
+  if(isFetching) return <Loader />
+
   return (
     <>
     {contextHolder}
@@ -195,7 +218,7 @@ function Swap(props) {
         </Popover>
       </div>
       <div className="inputs">
-        <Input placeholder="0" value={tokenOneAmount} onChange={changeAmount} disabled={!prices} />
+        <Input placeholder="0" value={tokenOneAmount} onChange={changeAmount}  />
         <Input placeholder="0" value={tokenTwoAmount} disabled={true} />
         <div className="switchButton" onClick={switchTokens}>
           <ArrowDownOutlined className="switchArrow" />
