@@ -25,6 +25,7 @@ function Swap(props) {
       Authorization: `Bearer ${process.env.REACT_APP_1INCH_API_KEY}`
     }
   };
+  console.log(tokenList.length);
   const [txDetails, setTxDetails] = useState({
     to: null,
     data: null,

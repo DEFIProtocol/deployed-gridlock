@@ -6,7 +6,7 @@
         "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
         "uuid": "aKzUVe4Hh_CON",
         "decimals": 6,
-        "type": "currency"
+        "type": "currency", "secRegistration": false
     },
     {
         "ticker": "LINK",
@@ -15,7 +15,7 @@
         "address": "0x514910771af9ca656af840dff83e8264ecf986ca",
         "uuid": "VLqpJwogdhHNb",
         "decimals": 18,
-        "type": "company"
+        "type": "company", "secRegistration": false
     },
     {
         "ticker": "USDT",
@@ -24,7 +24,7 @@
         "address": "0xdac17f958d2ee523a2206206994597c13d831ec7",
         "uuid": "HIVsRcGKkPFtW",
         "decimals": 6,
-        "type": "currency"
+        "type": "currency", "secRegistration": false
     },
     {
         "ticker": "GUSD",
@@ -33,7 +33,7 @@
         "address": "0x056Fd409E1d7A124BD7017459dFEa2F387b6d5Cd",
         "uuid": "T93ksC96YL_Gc",
         "decimals": 2,
-        "type": "currency"
+        "type": "currency", "secRegistration": false
     },
     {
         "ticker": "DAI",
@@ -42,7 +42,7 @@
         "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
         "uuid": "MoTuySvg7",
         "decimals": 18,
-        "type": "currency"
+        "type": "currency", "secRegistration": false
     },
     {
         "ticker": "WETH",
@@ -60,7 +60,7 @@
         "address": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
         "uuid": "_H5FVG9iW",
         "decimals": 18,
-        "type": "company"
+        "type": "company", "secRegistration": false
     },
     {
         "ticker": "CRV",
@@ -69,7 +69,7 @@
         "address": "0xd533a949740bb3306d119cc777fa900ba034cd52",
         "uuid": "QGbUTVMjG",
         "decimals": 18,
-        "type": "company"
+        "type": "company", "secRegistration": false
     },
     {
         "ticker": "MKR",
@@ -78,7 +78,7 @@
         "address": "0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2",
         "uuid": "qFakph2rpuMOL",
         "decimals": 18,
-        "type": "company"
+        "type": "company", "secRegistration": false
     },
     {
         "ticker": "AAVE",
@@ -87,7 +87,7 @@
         "address": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
         "uuid": "ixgUfzmLR",
         "decimals": 18,
-        "type": "company"
+        "type": "company", "secRegistration": false
     },
       {
         "ticker": "UMA",
@@ -99,7 +99,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "MATH",
@@ -111,7 +111,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "STAKE",
@@ -136,7 +136,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
     {
         "ticker": "YFI",
@@ -148,7 +148,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
     {
         "ticker": "wNXM",
@@ -173,7 +173,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
      {
         "ticker": "ABYSS",
@@ -209,7 +209,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
     {
         "ticker": "NMR",
@@ -221,7 +221,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "EWTB",
@@ -233,7 +233,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "BNT",
@@ -245,7 +245,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "REPv2",
@@ -257,7 +257,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
      {
         "ticker": "WBTC",
@@ -282,7 +282,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "YFL",
@@ -294,7 +294,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "HEX",
@@ -306,7 +306,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "CREAM",
@@ -318,7 +318,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "VIB",
@@ -330,7 +330,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "VEE",
@@ -342,7 +342,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "REN",
@@ -354,7 +354,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
      {
         "ticker": "XOR",
@@ -366,7 +366,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "FUN",
@@ -390,7 +390,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
      {
         "ticker": "VIDT",
@@ -402,7 +402,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "FOAM",
@@ -414,7 +414,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "QNT",
@@ -426,7 +426,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
      {
         "ticker": "MCB",
@@ -438,7 +438,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "BUSD",
@@ -451,7 +451,7 @@
           "tokens",
           "PEG:USD"
         ],
-        "type": "currency"
+        "type": "currency", "secRegistration": false
       },
       {
         "ticker": "GEN",
@@ -463,7 +463,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "BLZ",
@@ -475,7 +475,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        
     {
@@ -488,7 +488,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        
        {
@@ -514,7 +514,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "currency"
+        "type": "currency", "secRegistration": false
       },
        {
         "ticker": "GNO",
@@ -526,7 +526,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "HOT",
@@ -538,7 +538,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "SNT",
@@ -550,7 +550,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        
        {
@@ -563,7 +563,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "XRT",
@@ -575,7 +575,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
      
       {
@@ -588,7 +588,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        
        {
@@ -601,7 +601,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "DIA",
@@ -613,7 +613,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "PNT",
@@ -625,7 +625,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "AKRO",
@@ -637,7 +637,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "SXP",
@@ -649,7 +649,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "USDP",
@@ -662,7 +662,7 @@
           "tokens",
           "PEG:USD"
         ],
-        "type": "currency"
+        "type": "currency", "secRegistration": false
       },
      {
         "ticker": "REQ",
@@ -674,7 +674,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "ORN",
@@ -686,7 +686,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "PNK",
@@ -698,7 +698,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "ANTv1",
@@ -710,7 +710,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "OCEAN",
@@ -722,7 +722,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
     {
         "ticker": "STRONG",
@@ -734,7 +734,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "POLY",
@@ -746,7 +746,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "YFII",
@@ -758,7 +758,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "DXD",
@@ -770,7 +770,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "MTA",
@@ -782,7 +782,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
      
        {
@@ -795,7 +795,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "TKN",
@@ -807,7 +807,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "XCHF",
@@ -819,7 +819,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "currency"
+        "type": "currency", "secRegistration": false
       },
        {
         "ticker": "PERL",
@@ -831,7 +831,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        
      {
@@ -845,7 +845,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "BAND",
@@ -857,7 +857,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "LRC",
@@ -869,7 +869,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "eMTRG",
@@ -881,7 +881,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "STMX",
@@ -893,7 +893,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "ELF",
@@ -905,7 +905,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "COMP",
@@ -917,7 +917,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "SNX",
@@ -929,7 +929,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ALEPH",
@@ -942,7 +942,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "EQUAD",
@@ -954,7 +954,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
      {
         "ticker": "SWAP",
@@ -966,7 +966,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        
       {
@@ -979,7 +979,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "AMPL",
@@ -992,7 +992,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "CND",
@@ -1004,7 +1004,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       
       {
@@ -1017,7 +1017,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "EURS",
@@ -1030,7 +1030,7 @@
           "tokens",
           "PEG:EUR"
         ],
-        "type": "currency"
+        "type": "currency", "secRegistration": false
       },
       {
         "ticker": "MFT",
@@ -1054,7 +1054,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "renBTC",
@@ -1080,7 +1080,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "POWER",
@@ -1092,7 +1092,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "MTL",
@@ -1104,7 +1104,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ENJ",
@@ -1155,7 +1155,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "MATIC",
@@ -1167,7 +1167,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "SAI",
@@ -1180,7 +1180,7 @@
           "tokens",
           "PEG:USD"
         ],
-        "type": "currency"
+        "type": "currency", "secRegistration": false
       },
       {
         "ticker": "sUSD",
@@ -1194,7 +1194,7 @@
           "tokens",
           "PEG:USD"
         ],
-        "type": "currency"
+        "type": "currency", "secRegistration": false
       },
       {
         "ticker": "TUSD",
@@ -1207,7 +1207,7 @@
           "tokens",
           "PEG:USD"
         ],
-        "type": "currency"
+        "type": "currency", "secRegistration": false
       },
          {
         "ticker": "BCDT",
@@ -1218,7 +1218,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "XPR",
@@ -1230,7 +1230,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
      {
         "ticker": "HBTC",
@@ -1256,7 +1256,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "commodity"
+        "type": "commodity", "secRegistration": false
       },
      {
         "ticker": "0xMR",
@@ -1280,7 +1280,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "SALT",
@@ -1292,7 +1292,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "RARI",
@@ -1304,7 +1304,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "SRM",
@@ -1316,7 +1316,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
      {
         "ticker": "YAM",
@@ -1330,7 +1330,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ADX",
@@ -1342,7 +1342,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "RING",
@@ -1354,7 +1354,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "CTSI",
@@ -1366,7 +1366,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "LAYER",
@@ -1378,7 +1378,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "TRAC",
@@ -1390,7 +1390,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "JRT",
@@ -1403,7 +1403,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "YFV",
@@ -1415,7 +1415,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "USDN",
@@ -1428,7 +1428,7 @@
           "tokens",
           "PEG:USD"
         ],
-        "type": "currency"
+        "type": "currency", "secRegistration": false
       },
        {
         "ticker": "PRQ",
@@ -1441,7 +1441,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "CVP",
@@ -1453,7 +1453,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "SUSHI",
@@ -1465,7 +1465,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
      {
         "ticker": "DSLA",
@@ -1477,7 +1477,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "SWRV",
@@ -1489,7 +1489,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "STEP",
@@ -1501,7 +1501,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
      {
         "ticker": "DPI",
@@ -1513,7 +1513,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "GHST",
@@ -1525,7 +1525,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "PICKLE",
@@ -1537,7 +1537,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "FRONT",
@@ -1549,7 +1549,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "FARM",
@@ -1561,7 +1561,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "OUSD",
@@ -1575,7 +1575,7 @@
           "tokens",
           "PEG:USD"
         ],
-        "type": "currency"
+        "type": "currency", "secRegistration": false
       },
       {
         "ticker": "DODO",
@@ -1587,7 +1587,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "PERP",
@@ -1599,7 +1599,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "USDK",
@@ -1612,7 +1612,7 @@
           "tokens",
           "PEG:USD"
         ],
-        "type": "currency"
+        "type": "currency", "secRegistration": false
       },
       {
         "ticker": "DOUGH",
@@ -1624,7 +1624,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "cUNI",
@@ -1648,7 +1648,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "AMP",
@@ -1660,7 +1660,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "BOND",
@@ -1672,7 +1672,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "FUSE",
@@ -1684,7 +1684,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "KP3R",
@@ -1696,7 +1696,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "AUDIO",
@@ -1709,7 +1709,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ATRI",
@@ -1721,7 +1721,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "INDEX",
@@ -1733,7 +1733,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "AXS",
@@ -1745,7 +1745,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "TOMO",
@@ -1757,7 +1757,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "POLS",
@@ -1769,7 +1769,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "RFuel",
@@ -1781,7 +1781,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "UFT",
@@ -1794,7 +1794,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "LGCY",
@@ -1806,7 +1806,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "TIME",
@@ -1818,7 +1818,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "eXRD",
@@ -1830,7 +1830,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "DF",
@@ -1842,7 +1842,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "LTO",
@@ -1854,7 +1854,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "CGT",
@@ -1866,7 +1866,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "commodity"
+        "type": "commodity", "secRegistration": false
       },
        {
         "ticker": "NU",
@@ -1878,7 +1878,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
        {
         "ticker": "BTSG",
@@ -1890,7 +1890,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
         {
         "ticker": "API3",
@@ -1902,7 +1902,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "BONDLY",
@@ -1914,7 +1914,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "NEXO",
@@ -1926,7 +1926,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "UTK",
@@ -1938,7 +1938,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "BADGER",
@@ -1950,7 +1950,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "GRT",
@@ -1962,7 +1962,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "LDO",
@@ -1974,7 +1974,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "stETH",
@@ -1999,7 +1999,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "OMv2",
@@ -2011,7 +2011,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "FXS",
@@ -2023,7 +2023,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "1INCH",
@@ -2036,7 +2036,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "FOX",
@@ -2048,7 +2048,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "FET",
@@ -2060,7 +2060,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "PHA",
@@ -2072,7 +2072,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "FRAX",
@@ -2084,7 +2084,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "INJ",
@@ -2096,7 +2096,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "YLD_APP",
@@ -2108,7 +2108,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "RGT",
@@ -2120,7 +2120,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ROOK",
@@ -2132,7 +2132,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "NFTX",
@@ -2144,7 +2144,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "VGX",
@@ -2156,7 +2156,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ANKR",
@@ -2168,7 +2168,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "RUNE",
@@ -2180,7 +2180,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "BAO",
@@ -2192,7 +2192,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "REEF",
@@ -2204,7 +2204,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ORAI",
@@ -2216,7 +2216,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "BIRD",
@@ -2228,7 +2228,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "RAMP",
@@ -2240,7 +2240,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "CRO",
@@ -2252,7 +2252,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "LYXe",
@@ -2264,7 +2264,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "TVK",
@@ -2276,7 +2276,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ALPHA",
@@ -2288,7 +2288,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "CUDOS",
@@ -2300,7 +2300,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "DEXE",
@@ -2312,7 +2312,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "SAND",
@@ -2324,7 +2324,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "FRM",
@@ -2336,7 +2336,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "PBR",
@@ -2348,7 +2348,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "POOLZ",
@@ -2360,7 +2360,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ZKS",
@@ -2372,7 +2372,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ARMOR",
@@ -2384,7 +2384,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "DYP",
@@ -2396,7 +2396,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ANKRETH",
@@ -2421,7 +2421,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "PROS",
@@ -2433,7 +2433,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "BMI",
@@ -2446,7 +2446,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "LON",
@@ -2459,7 +2459,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ARCH",
@@ -2472,7 +2472,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "FIS",
@@ -2484,7 +2484,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "LINA",
@@ -2496,7 +2496,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "GNY",
@@ -2508,7 +2508,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "CWS",
@@ -2520,7 +2520,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "SHIB",
@@ -2532,7 +2532,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "MUSE",
@@ -2544,7 +2544,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "MAPS",
@@ -2556,7 +2556,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "GALA",
@@ -2568,7 +2568,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "DEXTF",
@@ -2580,7 +2580,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "LUNA",
@@ -2604,7 +2604,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "DAO",
@@ -2616,7 +2616,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "UMB",
@@ -2628,7 +2628,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "SOCKS",
@@ -2640,7 +2640,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },  
       {
         "ticker": "DEPAY",
@@ -2652,7 +2652,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ZCN",
@@ -2664,7 +2664,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "UNCX",
@@ -2676,7 +2676,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "IDLE",
@@ -2688,7 +2688,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "SRK",
@@ -2700,7 +2700,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "GLCH",
@@ -2712,7 +2712,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "DENT",
@@ -2724,7 +2724,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "VSP",
@@ -2737,7 +2737,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },    
       {
         "ticker": "RAI",
@@ -2750,7 +2750,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "REVV",
@@ -2762,7 +2762,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "WOO",
@@ -2774,7 +2774,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ANY",
@@ -2786,7 +2786,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "RLY",
@@ -2798,7 +2798,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "UOS",
@@ -2810,7 +2810,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "DDX",
@@ -2822,7 +2822,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "RFOX",
@@ -2834,7 +2834,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "SUPER",
@@ -2846,7 +2846,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "HOPR",
@@ -2858,7 +2858,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "RNDR",
@@ -2870,7 +2870,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "OVR",
@@ -2882,7 +2882,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "BFC",
@@ -2894,7 +2894,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "RAD",
@@ -2907,7 +2907,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ALCX",
@@ -2919,7 +2919,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "VRA",
@@ -2931,7 +2931,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "BDP",
@@ -2943,7 +2943,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ERN",
@@ -2955,7 +2955,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "PAINT",
@@ -2967,7 +2967,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "xFUND",
@@ -2979,7 +2979,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "CHZ",
@@ -2991,7 +2991,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "INV",
@@ -3004,7 +3004,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "BEPRO",
@@ -3016,7 +3016,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ARCX_OLD",
@@ -3028,7 +3028,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "DUSK",
@@ -3040,7 +3040,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ETH2x-FLI",
@@ -3052,7 +3052,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "FTX Token",
@@ -3064,7 +3064,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "LCX",
@@ -3076,7 +3076,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "CGG",
@@ -3088,7 +3088,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "CRU",
@@ -3100,7 +3100,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ALICE",
@@ -3112,7 +3112,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "JGN",
@@ -3124,7 +3124,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "HOGE",
@@ -3137,7 +3137,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "PKF",
@@ -3149,7 +3149,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "DERI",
@@ -3161,7 +3161,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "KINE",
@@ -3173,7 +3173,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "HAPI",
@@ -3185,7 +3185,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "DORA",
@@ -3197,7 +3197,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "SNTVT",
@@ -3209,7 +3209,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "CHAIN",
@@ -3221,7 +3221,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "LYM",
@@ -3233,7 +3233,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "DAFI",
@@ -3245,7 +3245,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "FEI",
@@ -3259,7 +3259,7 @@
           "tokens",
           "PEG:USD"
         ],
-        "type": "currency"
+        "type": "currency", "secRegistration": false
       },
       {
         "ticker": "XSGD",
@@ -3271,7 +3271,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "AIOZ",
@@ -3283,7 +3283,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "PMON",
@@ -3295,7 +3295,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "SYLO",
@@ -3307,7 +3307,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "CELL",
@@ -3319,7 +3319,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "CONV",
@@ -3331,7 +3331,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "XYO",
@@ -3343,7 +3343,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "DPR",
@@ -3355,7 +3355,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "LUSD",
@@ -3368,7 +3368,7 @@
           "tokens",
           "PEG:USD"
         ],
-        "type": "currency"
+        "type": "currency", "secRegistration": false
       },
       {
         "ticker": "MIST",
@@ -3381,7 +3381,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "CARDS",
@@ -3393,7 +3393,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "PUSH",
@@ -3406,7 +3406,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "BOSON",
@@ -3419,7 +3419,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "NKN",
@@ -3431,7 +3431,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "FORTH",
@@ -3444,7 +3444,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "KNC",
@@ -3456,7 +3456,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ORBS",
@@ -3468,7 +3468,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "WXT",
@@ -3480,7 +3480,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "OCC",
@@ -3492,7 +3492,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ILV",
@@ -3504,7 +3504,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "eRSDL",
@@ -3516,7 +3516,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ICE",
@@ -3529,7 +3529,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "MARSH",
@@ -3542,7 +3542,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "Coval",
@@ -3554,7 +3554,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "GLM",
@@ -3567,7 +3567,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "TEL",
@@ -3579,7 +3579,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "PENDLE",
@@ -3591,7 +3591,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "WAXE",
@@ -3603,7 +3603,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "STC",
@@ -3615,7 +3615,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ROUTE",
@@ -3628,7 +3628,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "NII",
@@ -3640,7 +3640,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "CTX",
@@ -3653,7 +3653,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "BANK",
@@ -3666,7 +3666,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "KISHU",
@@ -3679,7 +3679,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "FEG",
@@ -3692,7 +3692,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "O3",
@@ -3704,7 +3704,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "KIRO",
@@ -3716,7 +3716,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "CVX",
@@ -3728,7 +3728,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "8PAY",
@@ -3740,7 +3740,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "GTC",
@@ -3753,7 +3753,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "GTON",
@@ -3765,7 +3765,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ELON",
@@ -3777,7 +3777,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "LEASH",
@@ -3789,7 +3789,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "DNT",
@@ -3801,7 +3801,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },       
       {
         "ticker": "MVI",
@@ -3813,7 +3813,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "AKITA",
@@ -3825,7 +3825,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "VRX",
@@ -3837,7 +3837,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "INST",
@@ -3850,7 +3850,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "DVI",
@@ -3862,7 +3862,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "xSUSHI",
@@ -3874,7 +3874,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "Auction",
@@ -3886,7 +3886,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "AGIX",
@@ -3898,7 +3898,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "MPL",
@@ -3910,7 +3910,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "MM_2",
@@ -3922,7 +3922,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "EURT",
@@ -3935,7 +3935,7 @@
           "tokens",
           "PEG:EUR"
         ],
-        "type": "currency"
+        "type": "currency", "secRegistration": false
       },
       {
         "ticker": "STARL",
@@ -3947,7 +3947,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "COTI",
@@ -3959,7 +3959,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "DYDX",
@@ -3972,7 +3972,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "BID",
@@ -3984,7 +3984,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "MIM",
@@ -3996,7 +3996,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "SPELL",
@@ -4008,7 +4008,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "wCFG",
@@ -4048,7 +4048,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "sBTC",
@@ -4093,7 +4093,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ENS",
@@ -4106,7 +4106,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "CIV",
@@ -4118,7 +4118,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "PSP",
@@ -4131,7 +4131,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "TONCOIN",
@@ -4155,7 +4155,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "SOS",
@@ -4167,7 +4167,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "GAS",
@@ -4180,7 +4180,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "RADAR",
@@ -4192,7 +4192,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "BORING",
@@ -4204,7 +4204,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "T",
@@ -4217,7 +4217,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "FLOKI",
@@ -4229,7 +4229,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "OOKI",
@@ -4242,7 +4242,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "agEUR",
@@ -4256,7 +4256,7 @@
           "tokens",
           "PEG:EUR"
         ],
-        "type": "currency"
+        "type": "currency", "secRegistration": false
       },
       {
         "ticker": "LOOKS",
@@ -4268,7 +4268,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "ANGLE",
@@ -4281,7 +4281,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "AVINOC",
@@ -4293,7 +4293,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "Metis",
@@ -4305,7 +4305,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "SIS",
@@ -4318,7 +4318,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "UFO",
@@ -4330,7 +4330,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "IMX",
@@ -4342,7 +4342,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "TOKE",
@@ -4354,7 +4354,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "SYN",
@@ -4367,7 +4367,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "WFLOW",
@@ -4391,7 +4391,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "FODL",
@@ -4403,7 +4403,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "APE",
@@ -4415,7 +4415,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "STG",
@@ -4427,7 +4427,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "SLP",
@@ -4439,7 +4439,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "OHM",
@@ -4452,7 +4452,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "CULT",
@@ -4466,7 +4466,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "DERC",
@@ -4478,7 +4478,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "STACK",
@@ -4490,7 +4490,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "PLA",
@@ -4502,7 +4502,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
         "ticker": "DATA_1",
@@ -4516,7 +4516,7 @@
         "tags": [
           "tokens"
         ],
-        "type": "company"
+        "type": "company", "secRegistration": false
       },
       {
       "ticker": "GMEE",
@@ -4528,7 +4528,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "EFI",
@@ -4540,7 +4540,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "MYST",
@@ -4553,7 +4553,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "USDD",
@@ -4566,7 +4566,7 @@
         "tokens",
         "PEG:USD"
       ],
-      "type": "currency"
+      "type": "currency", "secRegistration": false
     },
     {
       "ticker": "XCAD",
@@ -4578,7 +4578,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "IQ",
@@ -4590,7 +4590,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "COT",
@@ -4602,7 +4602,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "ADS",
@@ -4614,7 +4614,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "IOTX",
@@ -4626,7 +4626,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "ICHI",
@@ -4639,7 +4639,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "XMON",
@@ -4651,7 +4651,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "OGV",
@@ -4664,7 +4664,7 @@
         "tokens",
         "PEG:USD"
       ],
-      "type": "currency"
+      "type": "currency", "secRegistration": false
     },
     {
       "ticker": "KROM",
@@ -4677,7 +4677,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "JASMY",
@@ -4689,7 +4689,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "PILOT",
@@ -4702,7 +4702,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "HFT",
@@ -4715,7 +4715,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "CAPS",
@@ -4727,7 +4727,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "PROM",
@@ -4739,7 +4739,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "NTVRK",
@@ -4751,7 +4751,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "XDEFI",
@@ -4764,7 +4764,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "SAITO",
@@ -4776,7 +4776,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "OCT",
@@ -4788,7 +4788,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "CAW",
@@ -4800,7 +4800,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "VEMP",
@@ -4812,7 +4812,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "SOL",
@@ -4836,7 +4836,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "CQT",
@@ -4849,7 +4849,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "SMI",
@@ -4861,7 +4861,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "VEGA",
@@ -4873,7 +4873,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "RSS3",
@@ -4885,7 +4885,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "BabyDoge",
@@ -4897,7 +4897,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "BTT",
@@ -4909,7 +4909,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "ZCX",
@@ -4921,7 +4921,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "HI",
@@ -4933,7 +4933,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "CHSB",
@@ -4945,7 +4945,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "RARE",
@@ -4958,7 +4958,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "GF",
@@ -4970,7 +4970,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "POLC",
@@ -4982,7 +4982,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "TLOS",
@@ -4994,7 +4994,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "XETA",
@@ -5006,7 +5006,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "AVG",
@@ -5018,7 +5018,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "SIPHER",
@@ -5030,7 +5030,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "BONE",
@@ -5042,7 +5042,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "SSV",
@@ -5054,7 +5054,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "GOG",
@@ -5066,7 +5066,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "HUNT",
@@ -5078,7 +5078,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "SDAO",
@@ -5090,7 +5090,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "UNIDX",
@@ -5102,7 +5102,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "CARD",
@@ -5114,7 +5114,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "WHALE",
@@ -5126,7 +5126,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "BLOCKS",
@@ -5138,7 +5138,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "BIT",
@@ -5150,7 +5150,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "ASTO",
@@ -5162,7 +5162,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "OPUL",
@@ -5174,7 +5174,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "VXV",
@@ -5186,7 +5186,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "RYOSHI",
@@ -5198,7 +5198,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "STRK",
@@ -5210,7 +5210,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "HIGH",
@@ -5222,7 +5222,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "XAUt",
@@ -5235,7 +5235,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "commodity"
+      "type": "commodity", "secRegistration": false
     },
     {
       "ticker": "CPOOL",
@@ -5247,7 +5247,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "RBN",
@@ -5259,7 +5259,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "MIX",
@@ -5271,7 +5271,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "BLUR",
@@ -5282,7 +5282,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "NATION",
@@ -5294,7 +5294,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "SIDUS",
@@ -5306,7 +5306,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "VPAD",
@@ -5318,7 +5318,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "HORD",
@@ -5330,7 +5330,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "FLX",
@@ -5342,7 +5342,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "eMAID",
@@ -5354,7 +5354,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "RSR",
@@ -5367,7 +5367,7 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     },
     {
       "ticker": "TRYB",
@@ -5379,6 +5379,6 @@
       "tags": [
         "tokens"
       ],
-      "type": "company"
+      "type": "company", "secRegistration": false
     }       
 ]
