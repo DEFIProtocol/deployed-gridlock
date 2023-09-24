@@ -189,7 +189,7 @@ useEffect(() => {
 
 
 return (
-  <div className="ETHDEX">
+  <div className="accountsPage">
     <h1 className="heading">Total Holdings: ${totalHoldingsValue}</h1>
     <h1 className="heading">Buying Power: {balance}</h1>
     <h1 className="heading">Holdings</h1>

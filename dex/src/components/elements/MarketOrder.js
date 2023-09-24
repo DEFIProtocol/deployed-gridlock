@@ -82,6 +82,8 @@ function MarketOrder(props) {
         `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/quote?src=${ethAddress}&dst=${tokenObject.address}&amount=${tokenAmount()}&fee=1.25&includeTokensInfo=true&includeGas=true`,
         axiosHeaders
       );
+
+      console.log(quoteResponse);
   
       // Show a confirmation modal
       Modal.confirm({

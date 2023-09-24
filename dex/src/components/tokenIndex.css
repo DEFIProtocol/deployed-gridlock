@@ -171,6 +171,12 @@
 
 
   /* ETHDEX */
+
+  .accountsPage {
+    width: 100% !important;
+    align-items: center !important;
+    align-self: center !important;
+  }
   
   .ETHDEX {
     width: 100% !important;
