@@ -93,16 +93,16 @@ app.get('/api/data', async (req, res) => {
 
 app.use(express.json());
 
-app.get('/api/1inch/*', async (req, res) => {
-  try {
-    const response = await axios.get(`https://api.1inch.dev${req.url}`);
-    res.json(response.data);
-  } catch (error) {
-    console.error('Error proxying request:', error);
-    res.status(500).json({ error: 'Proxying request failed' });
-  }
-});
-const PORT = process.env.port || 3005;
+//app.get('/api/1inch/*', async (req, res) => {
+//  try {
+//    const response = await axios.get(`https://api.1inch.dev${req.url}`);
+//    res.json(response.data);
+//  } catch (error) {
+//    console.error('Error proxying request:', error);
+//    res.status(500).json({ error: 'Proxying request failed' });
+//  }
+//});
+//const PORT = process.env.port || 3005;
 
 
 // Define API endpoints

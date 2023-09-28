@@ -409,3 +409,13 @@
     margin: 0% auto;
   }
 }
+
+/* Admin */
+
+.chain-buttons{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: lime;
+  border-radius: 2px black solid;
+}
