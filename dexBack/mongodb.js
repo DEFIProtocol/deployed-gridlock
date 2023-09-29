@@ -102,7 +102,7 @@ app.use(express.json());
 //    res.status(500).json({ error: 'Proxying request failed' });
 //  }
 //});
-//const PORT = process.env.port || 3005;
+const PORT = process.env.port || 3005;
 
 
 // Define API endpoints
