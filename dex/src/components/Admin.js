@@ -28,6 +28,7 @@ function Admin() {
     // Define the fetch1InchTokens function inside the useEffect callback
     async function fetch1InchTokens(chain) {
       try {
+        console.log(`${process.env.REACT_APP_BACKEND}/api/1inch/token/v1.2/${chain}?provider=1inch&country=US`)
         const response = await fetch(
           `${process.env.REACT_APP_BACKEND}/api/1inch/token/v1.2/${chain}?provider=1inch&country=US`,
           axiosHeaders
@@ -74,6 +75,8 @@ function Admin() {
       throw error;
     }
   }
+
+  console.log(fetch1InchTokens())
 
   const handleChainButtonClick = (chain) => {
     setSelectedChain(chain);
