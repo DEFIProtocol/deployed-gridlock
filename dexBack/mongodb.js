@@ -94,6 +94,7 @@ app.get('/api/data', async (req, res) => {
 app.get('/api/1inch/*', async (req, res) => {
   try {
     const response = await axios.get(`https://api.1inch.dev${req.url}`);
+    console.log(response.data)
     res.json(response.data);
   } catch (error) {
     console.error('Error proxying request:', error);
