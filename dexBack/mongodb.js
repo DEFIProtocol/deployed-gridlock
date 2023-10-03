@@ -109,7 +109,7 @@ app.use(
     onProxyReq: (proxyReq) => { // Intercept the request and set headers
       proxyReq.headers = {
         ...proxyReq.headers,
-        ...axiosHeaders.headers // Set the required headers
+        ...axiosHeaders // Set the required headers
       };
     },
   })
