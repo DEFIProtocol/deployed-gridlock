@@ -90,35 +90,33 @@ app.get('/api/data', async (req, res) => {
 });
 
 //Proxy Server for market buy and sell
-const axiosHeaders = { // Define the required headers here
-  headers: {
-    accept: "application/json",
-    Authorization: `Bearer ${process.env.YOUR_1INCH_API_KEY}`
+
+app.get('/api/1inch/*', async (req, res) => {
+  try {
+    const response = await axios.get(`https://api.1inch.dev${req.url}`);
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error proxying request:', error);
+    res.status(500).json({ error: 'Proxying request failed' });
   }
-};
+});
+const PORT = process.env.port || 3005;
+
 
 // Define API endpoints
-app.use(
-  '/api/1inch',
-  createProxyMiddleware({
-    target: 'https://api.1inch.dev',
-    changeOrigin: true,
-    pathRewrite: {
-      '^/api/1inch': '',  // Remove the '/api/1inch' from the path
-    },
-    onProxyReq: (proxyReq) => { // Intercept the request and set headers
-      proxyReq.headers = {
-        ...proxyReq.headers,
-        ...axiosHeaders // Set the required headers
-      };
-    },
-  })
-);
+//app.use(
+//  '/api/1inch',
+//  createProxyMiddleware({
+//    target: 'https://api.1inch.dev',
+//    changeOrigin: true,
+//    pathRewrite: {
+//      '^/api/1inch': '',  // Remove the '/api/1inch' from the path
+//    },
+//  })
+//);
 
-// ... Other routes ...
 
 // Start the server on a specified port (e.g., 3000)
-const PORT = process.env.PORT || 3005;
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
