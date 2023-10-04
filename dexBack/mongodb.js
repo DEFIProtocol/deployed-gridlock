@@ -2,7 +2,7 @@ import { MongoClient } from 'mongodb';
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from "cors";
-import fetch from "node-fetch";
+import axios from "axios";
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
 dotenv.config();
@@ -94,7 +94,7 @@ app.get('/api/data', async (req, res) => {
 
 app.get('/api/1inch/*', async (req, res) => {
   try {
-    const response = await fetch(`https://api.1inch.dev${req.url}`);
+    const response = await axios.get(`https://api.1inch.dev${req.url}`);
     const data = await response.json();
     console.log(data);
     res.json(data);
