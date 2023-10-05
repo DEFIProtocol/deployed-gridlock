@@ -95,10 +95,10 @@ app.get('/api/data', async (req, res) => {
 app.get('/api/1inch/*', async (req, res) => {
   try {
     const response = await axios.get(`https://api.1inch.dev${req.url}`, {
-      headers: {
-        Authorization: `Bearer ${process.env.YOUR_1INCH_API_KEY}`, // Replace with your actual API key
+        "Authorization": `Bearer ${process.env.YOUR_1INCH_API_KEY}`, 
+        "accept": "application/json" 
       },
-    });;
+    );;
     const data = await response.json();
     console.log(data);
     res.json(data);
