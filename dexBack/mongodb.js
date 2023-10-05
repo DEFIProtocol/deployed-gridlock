@@ -94,7 +94,11 @@ app.get('/api/data', async (req, res) => {
 
 app.get('/api/1inch/*', async (req, res) => {
   try {
-    const response = await axios.get(`https://api.1inch.dev${req.url}`);
+    const response = await axios.get(`https://api.1inch.dev${req.url}`, {
+      headers: {
+        Authorization: `Bearer ${process.env.YOUR_1INCH_API_KEY}`, // Replace with your actual API key
+      },
+    });;
     const data = await response.json();
     console.log(data);
     res.json(data);
@@ -103,7 +107,7 @@ app.get('/api/1inch/*', async (req, res) => {
     res.status(500).json({ error: 'Proxying request failed' });
   }
 });
-
+//https://api.1inch.dev/token/v1.2/1?provider=1inch&country=US
 const PORT = process.env.PORT || 3005;
 
 
