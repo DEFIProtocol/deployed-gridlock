@@ -39,7 +39,7 @@ function Admin() {
     }
 
     fetchDataForChains();
-  }, [chains]); // Include 'chains' as a dependency
+  }, [chains]); // Include 'chains' as a dependenc
 
   console.log(chainResponses);
 

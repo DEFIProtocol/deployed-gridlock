@@ -105,7 +105,7 @@ app.get('/api/1inch/*', async (req, res) => {
     res.json(data);
   } catch (error) {
     console.error('Error proxying request:', error);
-    res.status(500).json({ error: 'Proxying request failed' });
+    res.status(500).json({ error: 'Proxying request failed:', error });
   }
 });
 //https://api.1inch.dev/token/v1.2/1?provider=1inch&country=US
