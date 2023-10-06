@@ -18,6 +18,11 @@ function Admin() {
   const [chainResponses, setChainResponses] = useState({});
   const [selectedChain, setSelectedChain] = useState(null);
 
+  const axiosHeaders = {
+    "Authorization": `Bearer ${process.env.REACT_APP_1INCH_API_KEY}`, 
+    "accept": "application/json" 
+  }
+
   useEffect(() => {
     // Fetch data for each chain when the component mounts
     async function fetchDataForChains() {
@@ -25,8 +30,11 @@ function Admin() {
 
       for (const chain of chains) {
         try {
-          console.log(`${process.env.REACT_APP_BACKEND}/api/1inch/token/v1.2/${chain}?provider=1inch&country=US`);
-          const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/1inch/token/v1.2/${chain}?provider=1inch&country=US`);
+          console.log(`${process.env.REACT_APP_BACKEND}/api/1inch/token/v1.2/${chain}?provider=1inch&country=US`, {
+            "Authorization": `Bearer ${process.env.YOUR_1INCH_API_KEY}`, 
+            "accept": "application/json" 
+          });
+          const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/1inch/token/v1.2/${chain}?provider=1inch&country=US`, axiosHeaders);
           const data = await response.json();
           console.log(data);
           responses[chain] = data;
