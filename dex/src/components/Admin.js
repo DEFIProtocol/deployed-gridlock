@@ -30,8 +30,6 @@ useEffect(() => {
 
     for (const chain of chains) {
       try {
-        console.log(`/api/1inch/token/v1.2/${chain}?provider=1inch&country=US`,
-        {headers});
         const response = await axios.get(`/api/1inch/token/v1.2/${chain}?provider=1inch&country=US`,
         headers);
         const data = response.data;
@@ -41,7 +39,6 @@ useEffect(() => {
         console.error(`Error fetching data for chain ${chain}:`, error);
       }
     }
-
     setChainResponses(responses);
   }
 
