@@ -101,7 +101,7 @@ app.get('/api/1inch/*', async (req, res) => {
     // Use the headers from the frontend request in your Axios request to the 1inch API
     const response = await axios.get(`https://api.1inch.dev${req.url}`, {
       headers: { // Use the frontend headers here
-        "Authorization": frontendHeaders.authorization,
+        "Authorization": "tqkjw2xVn9dK1DY4cwjPE4vwJecA6B4B",
         "accept": frontendHeaders.accept,
       },
     });
