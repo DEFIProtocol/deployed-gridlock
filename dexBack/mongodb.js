@@ -94,13 +94,20 @@ app.get('/api/data', async (req, res) => {
 
 app.get('/api/1inch/*', async (req, res) => {
   try {
-    console.log("This is the request your looking for:", req.url)
+    console.log("This is the request you're looking for:", req.url);
+
+    // Extract headers from the frontend request
+    const frontendHeaders = req.headers;
+
+    // Use the headers from the frontend request in your Axios request to the 1inch API
     const response = await axios.get(`https://api.1inch.dev${req.url}`, {
-        "Authorization": `Bearer ${process.env.YOUR_1INCH_API_KEY}`, 
-        "accept": "application/json" 
+      headers: { // Use the frontend headers here
+        "Authorization": frontendHeaders.authorization,
+        "accept": frontendHeaders.accept,
       },
-    );;
-    const data = await response.json();
+    });
+
+    const data = await response.data;
     console.log(data);
     res.json(data);
   } catch (error) {
