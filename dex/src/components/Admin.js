@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useGetCryptosQuery } from './services/cryptoApi';
 import { Row, Col, Card, Button } from 'antd';
 import { Loader } from './elements';
+import axios from 'axios';
 import millify from 'millify';
 import { Link } from 'react-router-dom';
 import './tokenIndex.css';
@@ -18,36 +19,34 @@ function Admin() {
   const [chainResponses, setChainResponses] = useState({});
   const [selectedChain, setSelectedChain] = useState(null);
 
-  const axiosHeaders = {
-    "Authorization": `Bearer ${process.env.REACT_APP_1INCH_API_KEY}`, 
-    "accept": "application/json" 
-  }
+  const headers = {
+    Authorization: `Bearer ${process.env.REACT_APP_1INCH_API_KEY}`,
+    accept: 'application/json',
+  };
 
-  useEffect(() => {
-    // Fetch data for each chain when the component mounts
-    async function fetchDataForChains() {
-      const responses = {};
+useEffect(() => {
+  async function fetchDataForChains() {
+    const responses = {};
 
-      for (const chain of chains) {
-        try {
-          console.log(`${process.env.REACT_APP_BACKEND}/api/1inch/token/v1.2/${chain}?provider=1inch&country=US`, {
-            "Authorization": `Bearer ${process.env.YOUR_1INCH_API_KEY}`, 
-            "accept": "application/json" 
-          });
-          const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/1inch/token/v1.2/${chain}?provider=1inch&country=US`, axiosHeaders);
-          const data = await response.json();
-          console.log(data);
-          responses[chain] = data;
-        } catch (error) {
-          console.error(`Error fetching data for chain ${chain}:`, error);
-        }
+    for (const chain of chains) {
+      try {
+        console.log(`/api/1inch/token/v1.2/${chain}?provider=1inch&country=US`,
+        {headers});
+        const response = await axios.get(`/api/1inch/token/v1.2/${chain}?provider=1inch&country=US`,
+        headers);
+        const data = response.data;
+        console.log(data);
+        responses[chain] = data;
+      } catch (error) {
+        console.error(`Error fetching data for chain ${chain}:`, error);
       }
-
-      setChainResponses(responses);
     }
 
-    fetchDataForChains();
-  }, [chains]); // Include 'chains' as a dependenc
+    setChainResponses(responses);
+  }
+
+  fetchDataForChains();
+}, [chains]);
 
   console.log(chainResponses);
 
