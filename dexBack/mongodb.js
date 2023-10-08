@@ -98,7 +98,7 @@ app.get('/api/1inch/*', async (req, res) => {
 
     // Extract headers from the frontend request
     const frontendHeaders = req.headers;
-
+    console.log("Heres what your looking at.:", frontendHeaders)
     // Use the headers from the frontend request in your Axios request to the 1inch API
     const response = await axios.get(`https://api.1inch.dev${req.url}`, {
       headers: { // Use the frontend headers here
