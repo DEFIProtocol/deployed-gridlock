@@ -94,11 +94,10 @@ app.get('/api/data', async (req, res) => {
 
 app.get('/api/1inch/*', async (req, res) => {
   try {
-    console.log("This is the request you're looking for:", req.url);
+    console.log("This is the request you're looking for:", req, "This is the end.");
 
     // Extract headers from the frontend request
     const frontendHeaders = req.headers;
-    console.log("Heres what your looking at.:", frontendHeaders)
     // Use the headers from the frontend request in your Axios request to the 1inch API
     const response = await axios.get(`https://api.1inch.dev${req.url}`, {
       headers: { // Use the frontend headers here
@@ -108,7 +107,6 @@ app.get('/api/1inch/*', async (req, res) => {
     });
 
     const data = await response.data;
-    console.log(data);
     res.json(data);
   } catch (error) {
     console.error('Error proxying request:', error);
