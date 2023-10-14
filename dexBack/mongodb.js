@@ -106,7 +106,7 @@ app.use(api1inchProxy);
 
 // Serve your React frontend (assuming your frontend build is in the "build" directory)
 app.use(express.static('build'));
-
+const PORT = process.env.PORT || 3005;
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
