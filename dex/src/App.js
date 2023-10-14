@@ -1,5 +1,5 @@
 import "./App.css";
-import {Header, Tokens, Admin, TokenDetails, Cryptocurrencies, CryptoDetails, Home, Swap, Account } from "./components";
+import {Header, Tokens, Admin, TokenDetails, Cryptocurrencies, CryptoDetails, Home, Swap, Account, Footer } from "./components";
 import { Routes, Route } from "react-router-dom";
 import { useConnect, useAccount, useDisconnect } from "wagmi";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
@@ -26,6 +26,7 @@ function App() {
         <Route exact path="coins/:name?/:uuid?" element={<CryptoDetails address={address} />} />
       </Routes>
     </div>
+    <Footer />
   </div>;
 }
 

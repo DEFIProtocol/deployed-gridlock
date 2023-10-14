@@ -34,13 +34,19 @@ header {
 
 .gridLock{
   font-size: 1.5em;
-  background-color: lime;
-  background-image: linear-gradient(90deg, white, lime);
-  background-size: 100%;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent; 
-    -moz-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.grid, .lock{
+  display: inline-block; /* Display the divs inside the container inline */
+  background: linear-gradient(90deg, lime, lime);
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.lock {
+  background-image: linear-gradient(90deg, white, white);
 }
 
 .rightH {
@@ -57,6 +63,7 @@ header {
   transition: 0.3s;
   display: flex;
   align-items: center;
+  color: lime;
 }
 
 .headerItem:hover {

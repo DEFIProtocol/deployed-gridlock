@@ -34,7 +34,8 @@ function Header(props) {
         }
         <Link to ="/" className="link">
           <div className="gridLock">
-            gridLock
+            <div className="grid">grid</div>
+            <div className="lock">Lock</div>
           </div>
         </Link>
         {!activeMenu && isOpen ? (
