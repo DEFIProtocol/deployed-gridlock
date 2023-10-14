@@ -92,6 +92,31 @@ app.get('/api/data', async (req, res) => {
 
 //Proxy Server for market buy and sell
 
+app.get('/api/1inch/*', async (req, res) => {
+  try {
+    console.log("This is the request you're looking for:", req, "This is the end.");
+
+    // Extract headers from the frontend request
+    const frontendHeaders = req.headers;
+    // Use the headers from the frontend request in your Axios request to the 1inch API
+    const response = await axios.get(`https://api.1inch.dev${req.url}`, {
+      headers: { // Use the frontend headers here
+        "Authorization": "tqkjw2xVn9dK1DY4cwjPE4vwJecA6B4B",
+        "accept": "application/json"
+      }
+    });
+
+    const data = await response.data;
+    res.json(data);
+  } catch (error) {
+    console.error('Error proxying request:', error);
+    res.status(500).json({ error: 'Proxying request failed:', error });
+  }
+});
+//https://api.1inch.dev/token/v1.2/1?provider=1inch&country=US
+const PORT = process.env.PORT || 3005;
+
+
 // Define a proxy middleware for /api/1inch/
 const api1inchProxy = createProxyMiddleware('/api/1inch/', {
   target: 'https://api.1inch.dev',
@@ -106,7 +131,6 @@ app.use(api1inchProxy);
 
 // Serve your React frontend (assuming your frontend build is in the "build" directory)
 app.use(express.static('build'));
-const PORT = process.env.PORT || 3005;
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
