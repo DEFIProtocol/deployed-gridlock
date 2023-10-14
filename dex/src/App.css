@@ -39,14 +39,14 @@ header {
 
 .grid, .lock{
   display: inline-block; /* Display the divs inside the container inline */
-  background: linear-gradient(90deg, lime, lime);
+  background: linear-gradient(90deg, white, white);
   background-clip: text;
   color: transparent;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .lock {
-  background-image: linear-gradient(90deg, white, white);
+  background-image: linear-gradient(90deg, lime, lime);
 }
 
 .rightH {
@@ -63,7 +63,7 @@ header {
   transition: 0.3s;
   display: flex;
   align-items: center;
-  color: lime;
+  
 }
 
 .headerItem:hover {
