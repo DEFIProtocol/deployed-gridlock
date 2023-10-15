@@ -31,9 +31,9 @@ useEffect(() => {
 
     for (const chain of chains) {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND}/api/1inch/token/v1.2/${chain}?provider=1inch&country=US`);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND}/api/1inch/v5.2/${chain}/tokens`);
+        console.log(response);
         const data = response.data;
-        console.log(data);
         responses[chain] = data;
       } catch (error) {
         console.error(`Error fetching data for chain ${chain}:`, error);

@@ -119,7 +119,7 @@ const PORT = process.env.PORT || 3005;
 
 // Define a proxy middleware for /api/1inch/
 const api1inchProxy = createProxyMiddleware('/api/1inch/', {
-  target: 'https://api.1inch.dev',
+  target: 'https://api.1inch.io',
   changeOrigin: true, // Changes the 'Host' header to the target host
   pathRewrite: {
     '^/api/1inch/': '/', // Remove the /api/1inch/ prefix
