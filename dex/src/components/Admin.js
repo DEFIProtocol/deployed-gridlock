@@ -24,14 +24,14 @@ function Admin() {
     accept: 'application/json',
   };
 
-  console.log(headers);
+  
 useEffect(() => {
   async function fetchDataForChains() {
     const responses = {};
 
     for (const chain of chains) {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND}/api/1inch/v5.2/${chain}/tokens`);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND}/api/1inch/v5.2/${chain}/tokens`, headers);
         console.log(response);
         const data = response.data;
         responses[chain] = data;
