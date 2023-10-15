@@ -19,11 +19,12 @@ function Admin() {
   const [chainResponses, setChainResponses] = useState({});
   const [selectedChain, setSelectedChain] = useState(null);
 
-  const headers = {
-    Authorization: `Bearer ${process.env.REACT_APP_1INCH_API_KEY}`,
-    accept: 'application/json',
+  const axiosHeaders = {
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${process.env.REACT_APP_1INCH_API_KEY}`
+    }
   };
-
   
 useEffect(() => {
   async function fetchDataForChains() {
@@ -31,7 +32,7 @@ useEffect(() => {
 
     for (const chain of chains) {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND}/api/1inch/v5.2/${chain}/tokens`, headers);
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND}/api/1inch/v5.2/${chain}/tokens`, axiosHeaders);
         console.log(response);
         const data = response.data;
         responses[chain] = data;
