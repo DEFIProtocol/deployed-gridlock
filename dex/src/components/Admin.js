@@ -15,37 +15,35 @@ function Admin() {
     () => ['1', '56', '137', '10', '42161', '100', '43114', '250', '8217', '1313161554'],
     []
   );
+  const [chainResponses, setChainResponses] = useState(null);
   const chainNames = ['Ethereum', 'BNB', 'Polygon', 'Optimism', 'Arbitrum', 'Gnosis', 'Avalanche', 'Fantom', 'Klaytn', 'Aurora'];
-  const [chainResponses, setChainResponses] = useState({});
   const [selectedChain, setSelectedChain] = useState(null);
 
-  const axiosHeaders = {
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${process.env.REACT_APP_1INCH_API_KEY}`
+  useEffect(() => {
+    if (selectedChain) {
+      httpCall(selectedChain);
     }
-  };
-  
-useEffect(() => {
-  async function fetchDataForChains() {
-    const responses = {};
+  }, [selectedChain]);
 
-    for (const chain of chains) {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND}/api/1inch/token/v1.2/${chain}?provider=1inch&country=US`, axiosHeaders);
-        const data = response.data;
-        console.log(data);
-        responses[chain] = data;
-      } catch (error) {
-        console.error(`Error fetching data for chain ${chain}:`, error);
-      }
+  async function httpCall(chain) {
+    const url = `/api/token/v1.2/${chain}`;
+
+    const config = {
+      headers: {
+        Authorization: 'Bearer tqkjw2xVn9dKlDY4cwjPE4vwJecA6B4B',
+      },
+      params: {},
+    };
+
+    try {
+      const response = await axios.get(url, config);
+      console.log(response.data);
+      // Update state with the response if needed
+      setChainResponses(response.data);
+    } catch (error) {
+      console.error(error);
     }
-    setChainResponses(responses);
   }
-
-  fetchDataForChains();
-}, [chains]);
-
   console.log(chainResponses);
 
   const handleChainButtonClick = (chain) => {
@@ -79,8 +77,8 @@ useEffect(() => {
                 hoverable
               >
                 <p>Price: {millify(currency.price)}</p>
-                <p>Price: {millify(currency.marketCap)}</p>
-                <p>Price: {millify(currency.change)}</p>
+                <p>Market Cap: {millify(currency.marketCap)}</p>
+                <p>Change: {millify(currency.change)}</p>
               </Card>
             </Link>
           </Col>
