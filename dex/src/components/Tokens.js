@@ -109,7 +109,7 @@ useEffect(() => {
   };
 
   fetchData();
-}, [address]);
+}, [address, chain]);
 
   if(isFetching) return <Loader />;
 
