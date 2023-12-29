@@ -7,35 +7,52 @@ import "./tokenIndex.css";
 import { useGetCryptosQuery } from './services/cryptoApi';
 import { Loader } from "./elements";
 import tokenList from "../tokenList.json"
+import polygonList from "../polygon.json"
+import BNBList from "../BNB.json"
 
 function Tokens(props) {
-  const {address} =props;
-  const [query, setQuery] = useState("");
-  const [watchlist, setWatchlist] = useState()
+  const { address } = props;
+  const [query, setQuery] = useState('');
+  const [watchlist, setWatchlist] = useState([]);
+  const [chain, setChain] = useState('eth');
   const { data, isFetching } = useGetCryptosQuery(1200);
   const cryptos = data?.data?.coins;
-  const excludedUuids = ["razxDUgYGNAdQ", "zNZHO_Sjf"];
-  const toks = tokenList
+  const excludedUuids = ['razxDUgYGNAdQ', 'zNZHO_Sjf'];
+
+  const chains = {
+    eth: tokenList,
+    bnb: BNBList,
+    poly: polygonList,
+  };
+
+  const toks = chains[chain]
     .filter((token) => !excludedUuids.includes(token.uuid))
     .map((token) => token.uuid);
-  const commodityObjectArray = tokenList.filter((token) => token.type === "commodity")
-  const companyObjectArray = tokenList.filter((token) => token.type === "company")
-  const currencyObjectArray = tokenList.filter((token) => token.type === "currency")
-  const commodityArray = commodityObjectArray 
+
+  const commodityArray = chains[chain]
+    .filter((token) => token.type === 'commodity')
     .filter((token) => !excludedUuids.includes(token.uuid))
     .map((token) => token.uuid);
-  const companyArray = companyObjectArray 
+
+  const companyArray = chains[chain]
+    .filter((token) => token.type === 'company')
     .filter((token) => !excludedUuids.includes(token.uuid))
     .map((token) => token.uuid);
-  const currencyArray = currencyObjectArray 
+
+  const currencyArray = chains[chain]
+    .filter((token) => token.type === 'currency')
     .filter((token) => !excludedUuids.includes(token.uuid))
     .map((token) => token.uuid);
+
   const [selectedArray, setSelectedArray] = useState(toks);
 
   const handleArrayChange = (newArray) => {
     setSelectedArray(newArray);
   };
 
+  const handleChain = (value) => {
+    setChain(value);
+  };
 const addToWatchlist = async (uuid) => {
   try {
     const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/addToWatchlist`, {
@@ -98,6 +115,18 @@ useEffect(() => {
 
   return (
   <div className="ETHDEX">
+    <div className="selectChain">
+      <div className={chain === "eth" ? "selectedChain" : "chain"} onClick={() => handleChain('eth')}>
+        Ethereum
+      </div>
+      <div className={chain === "bnb" ? "selectedChain" : "chain"} onClick={() => handleChain('bnb')}>
+        Binance
+      </div>
+      <div className={chain === "poly" ? "selectedChain" : "chain"} onClick={() => handleChain('poly')}>
+        Polygon
+      </div>
+    </div>
+
     <div className="selectedArrayButtons">
       <div>Filters:</div>
       <button className="selectedArray" onClick={() => handleArrayChange(toks)}>All</button>

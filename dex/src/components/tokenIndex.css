@@ -422,3 +422,18 @@
   border-radius: 2px black solid;
   margin-bottom: 5%
 }
+
+.selectChain{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.chain{
+  font-size: 1.25em;
+}
+
+.selectedChain{
+  font: bold;
+  font-size: 1.5em;
+  border-bottom: 3px solid lime;
+}
