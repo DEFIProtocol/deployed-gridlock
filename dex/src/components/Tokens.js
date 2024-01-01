@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Link } from "react-router-dom";
 import { Card } from "antd";
 import { StarOutlined, StarFilled } from '@ant-design/icons';
@@ -17,34 +17,36 @@ function Tokens(props) {
   const [chain, setChain] = useState('eth');
   const { data, isFetching } = useGetCryptosQuery(1200);
   const cryptos = data?.data?.coins;
-  const excludedUuids = ['razxDUgYGNAdQ', 'zNZHO_Sjf'];
-
-  const chains = {
+  const chains = useMemo(() => ({
     eth: tokenList,
     bnb: BNBList,
     poly: polygonList,
-  };
+  }), []);
+  const excludedUuids = useMemo(() => ['razxDUgYGNAdQ', 'zNZHO_Sjf'], []);
 
-  const toks = chains[chain]
-    .filter((token) => !excludedUuids.includes(token.uuid))
-    .map((token) => token.uuid);
+  const calculateArrays = useCallback((chain, excludedUuids) => {
+    const filteredTokens = chains[chain].filter((token) => !excludedUuids.includes(token.uuid));
 
-  const commodityArray = chains[chain]
-    .filter((token) => token.type === 'commodity')
-    .filter((token) => !excludedUuids.includes(token.uuid))
-    .map((token) => token.uuid);
+    const toks = filteredTokens.map((token) => token.uuid);
+    const commodityArray = filteredTokens.filter((token) => token.type === 'commodity').map((token) => token.uuid);
+    const companyArray = filteredTokens.filter((token) => token.type === 'company').map((token) => token.uuid);
+    const currencyArray = filteredTokens.filter((token) => token.type === 'currency').map((token) => token.uuid);
 
-  const companyArray = chains[chain]
-    .filter((token) => token.type === 'company')
-    .filter((token) => !excludedUuids.includes(token.uuid))
-    .map((token) => token.uuid);
+    return {
+      toks,
+      commodityArray,
+      companyArray,
+      currencyArray,
+    };
+  }, [chains]);
 
-  const currencyArray = chains[chain]
-    .filter((token) => token.type === 'currency')
-    .filter((token) => !excludedUuids.includes(token.uuid))
-    .map((token) => token.uuid);
-
-  const [selectedArray, setSelectedArray] = useState(toks);
+  const [selectedArray, setSelectedArray] = useState();
+  const [objectArray, setObjectArray] = useState({
+    toks: [],
+    commodityArray: [],
+    companyArray: [],
+    currencyArray: [],
+  });
 
   const handleArrayChange = (newArray) => {
     setSelectedArray(newArray);
@@ -52,7 +54,9 @@ function Tokens(props) {
 
   const handleChain = (value) => {
     setChain(value);
-  };
+    const { toks, commodityArray, companyArray, currencyArray } = calculateArrays(value, excludedUuids);
+    setObjectArray({toks, commodityArray, companyArray, currencyArray})}
+
 const addToWatchlist = async (uuid) => {
   try {
     const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/addToWatchlist`, {
@@ -109,7 +113,16 @@ useEffect(() => {
   };
 
   fetchData();
-}, [address, chain]);
+}, [address]);
+
+useEffect(() => {
+  const { toks, commodityArray, companyArray, currencyArray } = calculateArrays(chain, excludedUuids);
+  setObjectArray({ toks, commodityArray, companyArray, currencyArray });
+}, [chain, calculateArrays, excludedUuids]);
+
+useEffect(() => {
+  setSelectedArray(objectArray.toks);
+}, [objectArray]);
 
   if(isFetching) return <Loader />;
 
@@ -128,12 +141,12 @@ useEffect(() => {
     </div>
 
     <div className="selectedArrayButtons">
-      <div>Filters:</div>
-      <button className="selectedArray" onClick={() => handleArrayChange(toks)}>All</button>
-      <button className="selectedArray" onClick={() => handleArrayChange(commodityArray)}>Commodity</button>
-      <button className="selectedArray" onClick={() => handleArrayChange(companyArray)}>Company</button>
-      <button className="selectedArray" onClick={() => handleArrayChange(currencyArray)}>Forex</button>
-    </div>
+        <div>Filters:</div>
+        <button className="selectedArray" onClick={() => handleArrayChange(objectArray.toks)}>All</button>
+        <button className="selectedArray" onClick={() => handleArrayChange(objectArray.commodityArray)}>Commodity</button>
+        <button className="selectedArray" onClick={() => handleArrayChange(objectArray.companyArray)}>Company</button>
+        <button className="selectedArray" onClick={() => handleArrayChange(objectArray.currencyArray)}>Forex</button>
+      </div>
 
       <div style={{ textAlign: "center" }}>
         <input
@@ -151,22 +164,23 @@ useEffect(() => {
         <span className="column-title-heading"></span>
       </div>
       <div>
-        {!cryptos
+      {!cryptos
           ? null
           : cryptos
               .filter((val) => {
-                if (query === "") {
-                  return selectedArray.includes(val.uuid);
-                } else {
-                  return val?.name.toLowerCase().includes(query.toLowerCase()) && 
-                  selectedArray.includes(val.uuid);
-                  //  && val.Symbol.toLowerCase().includes(query.toLowerCase());
-                }
-              })
+        if (query === "") {
+          return selectedArray.includes(val.uuid);
+        } else {
+          return (
+            val?.name.toLowerCase().includes(query.toLowerCase()) &&
+            selectedArray.includes(val.uuid)
+          );
+        }
+      })
               .map((token, index) => (
                 <div key={index}>
-                    <Card className="daoCard">
-                      <div className="cardContainer" >
+                  <Card className="daoCard">
+                    <div className="cardContainer" >
                         <Link to={`/${token?.name}/${token?.uuid}`}>
                           <img className="logo" src={token.iconUrl} alt="noLogo" />
                           <div style={{ float: "right" }}>
