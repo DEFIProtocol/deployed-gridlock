@@ -91,6 +91,7 @@ header {
   margin-top: 40px;
   display: flex;
   justify-content: center;
+  margin-bottom: 5%;
 }
 .header-items-container{
   display: flex;

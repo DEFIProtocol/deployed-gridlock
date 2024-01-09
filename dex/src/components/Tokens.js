@@ -141,7 +141,7 @@ useEffect(() => {
     </div>
 
     <div className="selectedArrayButtons">
-        <div>Filters:</div>
+        <div className= "selectedArray">Filters:</div>
         <button className="selectedArray" onClick={() => handleArrayChange(objectArray.toks)}>All</button>
         <button className="selectedArray" onClick={() => handleArrayChange(objectArray.commodityArray)}>Commodity</button>
         <button className="selectedArray" onClick={() => handleArrayChange(objectArray.companyArray)}>Company</button>

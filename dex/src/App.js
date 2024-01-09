@@ -26,7 +26,7 @@ function App() {
         <Route exact path="coins/:name?/:uuid?" element={<CryptoDetails address={address} />} />
       </Routes>
     </div>
-    <Footer style={{margin: "1%"}}/>
+    <Footer className="mainWindow"/>
   </div>;
 }
 
