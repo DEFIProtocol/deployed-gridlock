@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { Row, Typography, Select, Col } from "antd";
 import HTMLReactParser from 'html-react-parser';
 import "./tokenIndex.css";
@@ -12,6 +12,8 @@ const {Option} = Select;
 
 function TokenDetails(props) {
   const { address } = props;
+  const location = useLocation();
+  const chain = new URLSearchParams(location.search).get('chain');
   const { name, uuid } = useParams();
   const [timeperiod, setTimeperiod] = useState("7d");
   const { data, isFetching } = useGetCryptoDetailsQuery(uuid)
@@ -20,7 +22,8 @@ function TokenDetails(props) {
   const cryptoDetails = data?.data?.coin
 
     if(isFetching) return <Loader />;
-    console.log(name);
+    
+    console.log("This is not what your looking for"+name)
 
     const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
     
@@ -69,7 +72,7 @@ function TokenDetails(props) {
               Market Order
             </div>
           </div>
-          {orderType === 'limit' ? <OrderUnavailable /> /*<LimitOrder uuid={uuid} />*/ : <MarketOrder uuid={uuid} address={address} usdPrice={cryptoDetails?.price} tokenName={cryptoDetails.name} />}
+          {orderType === 'limit' ? <OrderUnavailable /> /*<LimitOrder uuid={uuid} />*/ : <MarketOrder symbol ={data?.data?.coin.symbol} chain = {chain} uuid={uuid} address={address} usdPrice={cryptoDetails?.price} tokenName={cryptoDetails.name} />}
         </Row>
         <Row className="website-container">
           <Title level={2} className="website-header">

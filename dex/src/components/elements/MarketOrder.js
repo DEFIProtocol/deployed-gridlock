@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./order.css";
-import tokenList from '../../tokenList';
+import AllTokens from '../../tokenList';
 import { Popover, Radio, message, Modal } from "antd";
 import { SettingOutlined, } from "@ant-design/icons";
 import axios from 'axios';
@@ -8,8 +8,9 @@ import { useSendTransaction, useWaitForTransaction } from "wagmi";
 import { useEthereum } from ".";
 
 function MarketOrder(props) {
-  const { uuid, address, usdPrice, tokenName } = props
-  const tokenObject= tokenList.find((token) => token.uuid === uuid);
+  const { uuid, address, usdPrice, tokenName, chain, symbol } = props
+  console.log(chain, uuid);
+  const tokenObject= AllTokens.find((token) => token.symbol === symbol);
   const { cryptoDetails } = useEthereum();
   const [messageApi, contextHolder] = message.useMessage()
   const [amount, setAmount] = useState(null);

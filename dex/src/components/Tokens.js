@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { Card } from "antd";
 import { StarOutlined, StarFilled } from '@ant-design/icons';
 import millify from "millify";
@@ -13,6 +13,7 @@ import BNBList from "../BNB.json"
 function Tokens(props) {
   const { address } = props;
   const [query, setQuery] = useState('');
+  const navigate = useNavigate();
   const [watchlist, setWatchlist] = useState([]);
   const [chain, setChain] = useState('eth');
   const { data, isFetching } = useGetCryptosQuery(1200);
@@ -166,7 +167,7 @@ useEffect(() => {
       <div>
       {!cryptos
           ? null
-          : cryptos
+          : selectedArray && cryptos
               .filter((val) => {
         if (query === "") {
           return selectedArray.includes(val.uuid);
@@ -179,21 +180,21 @@ useEffect(() => {
       })
               .map((token, index) => (
                 <div key={index}>
-                  <Card className="daoCard">
+                  <Card className="daoCard">q
                     <div className="cardContainer" >
-                        <Link to={`/${token?.name}/${token?.uuid}`}>
+                        <div onClick={() => navigate(`/${token?.name}/${token?.uuid}?chain=${chain}`)}>
                           <img className="logo" src={token.iconUrl} alt="noLogo" />
                           <div style={{ float: "right" }}>
                             <h4 className="name">{token.name}</h4>
                             <span className="symbol">{token.symbol}</span>
                           </div>
-                        </Link>
-                        <Link to={`/${token?.name}/${token?.uuid}`} className="type">
+                        </div>
+                        <div onClick={() => navigate(`/${token?.name}/${token?.uuid}?chain=${chain}`)} className="type">
                             {token.marketCap == null ? "--" : millify(token.marketCap)}
-                        </Link>
-                        <Link to={`/${token?.name}/${token?.uuid}`} className="lastPrice">
+                        </div>
+                        <div onClick={() => navigate(`/${token?.name}/${token?.uuid}?chain=${chain}`)} className="lastPrice">
                             {token.price == null ? "--" : millify(token.price)}
-                        </Link>
+                        </div>
                         {watchlist && watchlist.includes(token?.uuid) ? (
                         <StarFilled
                           style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
