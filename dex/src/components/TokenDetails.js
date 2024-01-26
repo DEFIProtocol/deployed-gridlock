@@ -22,8 +22,7 @@ function TokenDetails(props) {
   const cryptoDetails = data?.data?.coin
 
     if(isFetching) return <Loader />;
-    
-    console.log("This is not what your looking for"+name)
+    console.log(name);
 
     const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
     

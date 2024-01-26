@@ -15,13 +15,13 @@ function Tokens(props) {
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
   const [watchlist, setWatchlist] = useState([]);
-  const [chain, setChain] = useState('eth');
+  const [chain, setChain] = useState('Ethereum');
   const { data, isFetching } = useGetCryptosQuery(1200);
   const cryptos = data?.data?.coins;
   const chains = useMemo(() => ({
-    eth: tokenList,
-    bnb: BNBList,
-    poly: polygonList,
+    Ethereum: tokenList,
+    Binance: BNBList,
+    Polygon: polygonList,
   }), []);
   const excludedUuids = useMemo(() => ['razxDUgYGNAdQ', 'zNZHO_Sjf'], []);
 
@@ -130,13 +130,13 @@ useEffect(() => {
   return (
   <div className="ETHDEX">
     <div className="selectChain">
-      <div className={chain === "eth" ? "selectedChain" : "chain"} onClick={() => handleChain('eth')}>
+      <div className={chain === "Ethereum" ? "selectedChain" : "chain"} onClick={() => handleChain('Ethereum')}>
         Ethereum
       </div>
-      <div className={chain === "bnb" ? "selectedChain" : "chain"} onClick={() => handleChain('bnb')}>
+      <div className={chain === "Binance" ? "selectedChain" : "chain"} onClick={() => handleChain('Binance')}>
         Binance
       </div>
-      <div className={chain === "poly" ? "selectedChain" : "chain"} onClick={() => handleChain('poly')}>
+      <div className={chain === "Polygon" ? "selectedChain" : "chain"} onClick={() => handleChain('Polygon')}>
         Polygon
       </div>
     </div>
@@ -180,7 +180,7 @@ useEffect(() => {
       })
               .map((token, index) => (
                 <div key={index}>
-                  <Card className="daoCard">q
+                  <Card className="daoCard">
                     <div className="cardContainer" >
                         <div onClick={() => navigate(`/${token?.name}/${token?.uuid}?chain=${chain}`)}>
                           <img className="logo" src={token.iconUrl} alt="noLogo" />

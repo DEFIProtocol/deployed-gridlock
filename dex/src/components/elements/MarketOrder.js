@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./order.css";
-import AllTokens from '../../tokenList';
+import AllTokens from '../../AllTokens'
 import { Popover, Radio, message, Modal } from "antd";
 import { SettingOutlined, } from "@ant-design/icons";
 import axios from 'axios';
@@ -9,13 +9,25 @@ import { useEthereum } from ".";
 
 function MarketOrder(props) {
   const { uuid, address, usdPrice, tokenName, chain, symbol } = props
-  console.log(chain, uuid);
-  const tokenObject= AllTokens.find((token) => token.symbol === symbol);
+ const tokenObject= AllTokens.find((token) => token.symbol.toLowerCase() === symbol.toLowerCase());
+ console.log(tokenObject?.chains)
+ /* 
+ "arbitrum": "",
+ "aurora": "",
+ "avalanche": "",
+ "bnb": "",
+ "eth": "",
+ "klaytn": "",
+ "Optimism": "",
+ "poly": ""
+ */
+ console.log(chain, uuid);
   const { cryptoDetails } = useEthereum();
   const [messageApi, contextHolder] = message.useMessage()
   const [amount, setAmount] = useState(null);
   const [slippage, setSlippage] = useState(2.5);
   const [txDetailsSent, setTxDetailsSent] = useState(false);
+  const [ selectedChain, setSelectedChain ] = useState(chain);
   const ethAddress = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
   const ethExRate = usdPrice / cryptoDetails?.price
   const baseLine = "1";
@@ -37,7 +49,28 @@ function MarketOrder(props) {
     hash: data?.hash
   })
 
-
+  const getChainLabel = (chain) => {
+    switch (chain) {
+      case 'Arbitrum':
+      case 'Aurora':
+      case 'Eth':
+      case 'Optimism':
+        return 'Ethereum';
+      case 'Avalanche':
+        return 'Avalanche';
+      case 'Polygon':
+        return 'Polygon';
+      case 'Fantom':
+        return 'Fantom';
+      case 'Klaytn':
+        return 'Klaytn';
+      case 'Binance':
+        return 'Binance';
+      default:
+        return '';
+    }
+  };
+  
   function handleSlippageChange(e){
     setSlippage(e.taget.value);
   }
@@ -80,7 +113,7 @@ function MarketOrder(props) {
   
       // Fetch quote for buy
       const quoteResponse = await axios.get(
-        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/quote?src=${ethAddress}&dst=${tokenObject.address}&amount=${tokenAmount()}&fee=1.25&includeTokensInfo=true&includeGas=true`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/quote?src=${ethAddress}&dst=${tokenObject.chains[selectedChain]}&amount=${tokenAmount()}&fee=1.25&includeTokensInfo=true&includeGas=true`,
         axiosHeaders
       );
 
@@ -93,7 +126,7 @@ function MarketOrder(props) {
         onOk: async () => {
           // If confirmed, proceed with the swap
           const txResponse = await axios.get(
-            `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/swap?src=${ethAddress}&dst=${tokenObject.address}&amount=${tokenAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+            `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/swap?src=${ethAddress}&dst=${tokenObject.chains[selectedChain]}&amount=${tokenAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
             axiosHeaders
           );
   
@@ -127,14 +160,14 @@ function MarketOrder(props) {
     try {
       // Check allowance and fetch quote
       const allowanceResponse = await axios.get(
-        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/approve/allowance?tokenAddress=${tokenObject.address}&walletAddress=${address}`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/approve/allowance?tokenAddress=${tokenObject.chains[selectedChain]}&walletAddress=${address}`,
         axiosHeaders
       );
       const allowance = allowanceResponse.data;
   
       if (allowance.allowance === "0") {
         const approveResponse = await axios.get(
-          `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/approve/transaction?tokenAddress=${tokenObject.address}&amount=${tokenSellAmount()}`,
+          `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/approve/transaction?tokenAddress=${tokenObject.chains[selectedChain]}&amount=${tokenSellAmount()}`,
           axiosHeaders
         );
         setTxDetails(approveResponse.data);
@@ -144,7 +177,7 @@ function MarketOrder(props) {
   
       // Fetch quote for sell
       const quoteResponse = await axios.get(
-        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/quote?src=${tokenObject.address}&dst=${ethAddress}&amount=${tokenSellAmount()}&fee=1.25&includeTokensInfo=true&includeGas=true`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/quote?src=${tokenObject.chains[selectedChain]}&dst=${ethAddress}&amount=${tokenSellAmount()}&fee=1.25&includeTokensInfo=true&includeGas=true`,
         axiosHeaders
       );
       
@@ -157,7 +190,7 @@ function MarketOrder(props) {
         onOk: async () => {
           // If confirmed, proceed with the swap
           const txResponse = await axios.get(
-            `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/swap?src=${tokenObject.address}&dst=${ethAddress}&amount=${tokenSellAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+            `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/1/swap?src=${tokenObject.chains[selectedChain]}&dst=${ethAddress}&amount=${tokenSellAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
             axiosHeaders
           );
   
@@ -233,17 +266,26 @@ function MarketOrder(props) {
     {contextHolder}
       <div className="checkboxContainer">
         <div className="checkboxes">
-        <input
-          type="checkbox"
-          name="Priced in Eth"
-          value="eth"
-          checked={checked === "eth" ? checked : !checked}
-          onChange={(e) => setChecked(e.target.value)}
+        <select onChange={(e) => setSelectedChain(e.target.value)} value={selectedChain} className="selectChainOrder">
+            {tokenObject?.chains &&
+              Object.entries(tokenObject.chains).map(([chainKey, chainValue]) => (
+                <option key={chainKey} value={chainKey} disabled={!chainValue}>
+                  {chainKey}
+                </option>
+              ))}
+          </select>
+          <input
+            type="checkbox"
+            name="Priced in Eth"
+            value="eth"
+            checked={checked === "eth" ? checked : !checked}
+            onChange={(e) => setChecked(e.target.value)}
           />
-        <label htmlFor="ethEx" style={{ color: 'DarkGray' }}>
-          {' '}
-          Order Priced in ETH
-        </label>
+          <label htmlFor="ethEx" style={{ color: 'DarkGray' }}>
+            {' '}
+            Order Priced in {getChainLabel(selectedChain)}
+          </label>
+
         <br />
         <input
           type="checkbox"

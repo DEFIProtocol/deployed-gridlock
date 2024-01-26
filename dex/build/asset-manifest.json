@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.689636d2.css",
-    "main.js": "/static/js/main.0a5ecb84.js",
+    "main.css": "/static/css/main.050c29fb.css",
+    "main.js": "/static/js/main.0ed8c796.js",
     "static/media/USdebtClock.png": "/static/media/USdebtClock.2d02d14b6efe3437c3ce.png",
     "static/media/city.jpg": "/static/media/city.c7ae7f1e90c3a7c3a4cb.jpg",
     "static/media/skyskraper.jpg": "/static/media/skyskraper.fa8519f0018af6f4e91b.jpg",
@@ -10,11 +10,11 @@
     "static/media/vote.jpg": "/static/media/vote.72443a8c6a848d2ade5b.jpg",
     "index.html": "/index.html",
     "static/media/eth.svg": "/static/media/eth.df265e367364f285053a1285ad8d418d.svg",
-    "main.689636d2.css.map": "/static/css/main.689636d2.css.map",
-    "main.0a5ecb84.js.map": "/static/js/main.0a5ecb84.js.map"
+    "main.050c29fb.css.map": "/static/css/main.050c29fb.css.map",
+    "main.0ed8c796.js.map": "/static/js/main.0ed8c796.js.map"
   },
   "entrypoints": [
-    "static/css/main.689636d2.css",
-    "static/js/main.0a5ecb84.js"
+    "static/css/main.050c29fb.css",
+    "static/js/main.0ed8c796.js"
   ]
 }
