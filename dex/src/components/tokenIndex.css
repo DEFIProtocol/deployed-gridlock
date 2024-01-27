@@ -16,7 +16,7 @@
 .chart {
   background-color: #202020!important;
   width: 100% !important;
-  height: 90%;
+  height: 80vh;
   color: lime !important;
   border-radius: .5em;
   margin: 5px;
@@ -82,6 +82,15 @@
 }
 .stat-item {
   padding: 3%;
+}
+
+.time-period-buttons{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 1.25em;
 }
 
 .coin-stats-card {

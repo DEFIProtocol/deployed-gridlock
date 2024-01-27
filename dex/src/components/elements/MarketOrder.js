@@ -9,20 +9,9 @@ import { useEthereum } from ".";
 
 function MarketOrder(props) {
   const { uuid, address, usdPrice, tokenName, chain, symbol } = props
- const tokenObject= AllTokens.find((token) => token.symbol.toLowerCase() === symbol.toLowerCase());
- console.log(tokenObject?.chains)
- /* 
- "arbitrum": "",
- "aurora": "",
- "avalanche": "",
- "bnb": "",
- "eth": "",
- "klaytn": "",
- "Optimism": "",
- "poly": ""
- */
- console.log(chain, uuid);
+  const tokenObject= AllTokens.find((token) => token.symbol.toLowerCase() === symbol.toLowerCase());
   const { cryptoDetails } = useEthereum();
+  console.log(uuid)
   const [messageApi, contextHolder] = message.useMessage()
   const [amount, setAmount] = useState(null);
   const [slippage, setSlippage] = useState(2.5);
@@ -31,7 +20,7 @@ function MarketOrder(props) {
   const ethAddress = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
   const ethExRate = usdPrice / cryptoDetails?.price
   const baseLine = "1";
-  const [checked, setChecked] = useState("eth")
+  const [checked, setChecked] = useState("usd")
   const [txDetails, setTxDetails] = useState({
     to: null,
     data: null,
@@ -266,7 +255,8 @@ function MarketOrder(props) {
     {contextHolder}
       <div className="checkboxContainer">
         <div className="checkboxes">
-        <select onChange={(e) => setSelectedChain(e.target.value)} value={selectedChain} className="selectChainOrder">
+        <label htmlFor="SelectChain" style={{color: "white"}}>Select Chain for Transaction</label>
+        <select onChange={(e) => setSelectedChain(e.target.value)} value={selectedChain} className="selectChainOrder" id="SelectChain">
             {tokenObject?.chains &&
               Object.entries(tokenObject.chains).map(([chainKey, chainValue]) => (
                 <option key={chainKey} value={chainKey} disabled={!chainValue}>
@@ -283,7 +273,7 @@ function MarketOrder(props) {
           />
           <label htmlFor="ethEx" style={{ color: 'DarkGray' }}>
             {' '}
-            Order Priced in {getChainLabel(selectedChain)}
+            Order Priced in Ethereum
           </label>
 
         <br />
@@ -320,6 +310,9 @@ function MarketOrder(props) {
         <SettingOutlined className="cog" />
       </Popover>
       </div>
+      <div style={{color: "white", margin: "0px auto"}}>
+        {!getChainLabel(selectedChain) ? "Ethereum" : getChainLabel(selectedChain)} / {tokenName}
+        </div>
       <input type="text" placeholder="Amount" className="input" onChange={(e) => setAmount(e.target.value)} />
       <div className="buttonContainer">
         <button className="buyButton" type="button" placeholder="Buy" value="buy" disabled={!amount || !address } onClick={fetchDexBuy} >

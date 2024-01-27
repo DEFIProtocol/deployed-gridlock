@@ -60,7 +60,7 @@ export const LineChart = ({ coinHistory, currentPrice, coinName }) => {
   };
   return (
     <>
-      <Line data={data} options={options} style={{ width: "65%", padding: "3%"}}/>
+      <Line data={data} options={options} style={{ width: "65%", padding: "2%"}}/>
     </>
   );
 };

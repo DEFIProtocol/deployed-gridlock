@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useLocation } from "react-router-dom";
-import { Row, Typography, Select, Col } from "antd";
+import { Row, Typography, Col } from "antd";
 import HTMLReactParser from 'html-react-parser';
 import "./tokenIndex.css";
 import { MarketOrder, LineChart, Loader, OrderUnavailable } from "./elements";
@@ -8,7 +8,6 @@ import millify from "millify";
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from './services/cryptoApi';
 
 const {Title} = Typography;
-const {Option} = Select;
 
 function TokenDetails(props) {
   const { address } = props;
@@ -24,8 +23,12 @@ function TokenDetails(props) {
     if(isFetching) return <Loader />;
     console.log(name);
 
-    const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
+    const time = ['7d', '30d', '3m', '1y', '3y', '5y'];
     
+    const handleTimePeriodClick = (value) => {
+      setTimeperiod(value);
+    };
+
   return (
     <div className="tokenPage">
       <Row className="coin-stats-card">
@@ -42,10 +45,18 @@ function TokenDetails(props) {
       <Col className="chart-order">
         <Col className="left-column">
           <Row className="chart">
-          <Select defaultValue="7d" className="select-timeperiod" placeholder="Select Timeperiod" onChange={(value) => setTimeperiod(value)}>
-            {time.map((date) => <Option key={date}>{date}</Option>)}
-          </Select>
           <LineChart coinHistory={coinHistory} currentPrice={millify(cryptoDetails.price)} coinName={cryptoDetails.name}/>
+          <div className="time-period-buttons">
+              {time.map((date) => (
+                <div
+                  key={date}
+                  className={timeperiod === date ? "selected" : ""}
+                  onClick={() => handleTimePeriodClick(date)}
+                >
+                  {date}
+                </div>
+              ))}
+            </div>
           </Row>
           <Row className="stats-card">
             <Title level={2} style={{color: "lime", margin: "0px auto", marginTop: "2%"}}>
