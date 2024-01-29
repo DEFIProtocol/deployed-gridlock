@@ -112,7 +112,33 @@ function MarketOrder(props) {
       // Show a confirmation modal
       Modal.confirm({
         title: 'Confirm Buy',
-        content: `Are you sure you want to buy ${tokenAmount()} ${tokenObject.symbol}?`, // Customize the confirmation message
+        content: (<div>
+          <p>
+            Are you sure you want to sell {tokenAmount()} {tokenObject.symbol}?
+          </p>
+          <div>
+            <img
+              src={quoteResponse.data.fromToken.tokenInfo.logoURI}
+              alt={quoteResponse.data.fromToken.tokenInfo.name}
+            />
+            <span>
+              {quoteResponse.data.fromToken.tokenInfo.name} ({quoteResponse.data.fromToken.tokenInfo.symbol})
+            </span>
+            <div>Exchange from: {tokenAmount()}</div>
+          </div>
+          <div>
+            <img
+              src={quoteResponse.data.toToken.tokenInfo.logoURI}
+              alt={quoteResponse.data.toToken.tokenInfo.name}
+            />
+            <span>
+              {quoteResponse.data.toToken.tokenInfo.name} ({quoteResponse.data.toToken.tokenInfo.symbol})
+            </span>
+            <div>Exchange to: {quoteResponse.data.toToken.toAmount}</div>
+          </div>
+          <div>Gas Fee: {quoteResponse.data.estimatedGas}</div>
+        </div>
+      ), // Customize the confirmation message
         onOk: async () => {
           // If confirmed, proceed with the swap
           const txResponse = await axios.get(
@@ -176,7 +202,33 @@ function MarketOrder(props) {
       // Show a confirmation modal
       Modal.confirm({
         title: 'Confirm Sell',
-        content: `Are you sure you want to sell ${tokenSellAmount()} ${tokenObject.symbol}?`, // Customize the confirmation message
+        content: (<div>
+          <p>
+            Are you sure you want to sell {tokenSellAmount()} {tokenObject.symbol}?
+          </p>
+          <div>
+            <img
+              src={quoteResponse.data.fromToken.tokenInfo.logoURI}
+              alt={quoteResponse.data.fromToken.tokenInfo.name}
+            />
+            <span>
+              {quoteResponse.data.fromToken.tokenInfo.name} ({quoteResponse.data.fromToken.tokenInfo.symbol})
+            </span>
+            <div>Exchange from: {tokenSellAmount()}</div>
+          </div>
+          <div>
+            <img
+              src={quoteResponse.data.toToken.tokenInfo.logoURI}
+              alt={quoteResponse.data.toToken.tokenInfo.name}
+            />
+            <span>
+              {quoteResponse.data.toToken.tokenInfo.name} ({quoteResponse.data.toToken.tokenInfo.symbol})
+            </span>
+            <div>Exchange to: {quoteResponse.data.toToken.toAmount}</div>
+          </div>
+          <div>Gas Fee: {quoteResponse.data.estimatedGas}</div>
+        </div>
+      ),// Customize the confirmation message
         onOk: async () => {
           // If confirmed, proceed with the swap
           const txResponse = await axios.get(
@@ -225,7 +277,7 @@ function MarketOrder(props) {
       setChainId("42161")
       break;
     case 'Aurora':
-      setChainId("")
+      setChainId("1313161554")
       break;
     case 'Ethereum':
       setChainId("1")
