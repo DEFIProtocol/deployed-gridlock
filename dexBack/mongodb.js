@@ -115,6 +115,20 @@ app.use(
   })
 );
 
+app.use(
+  '/api/1inch/swap/v5.2/',
+  createProxyMiddleware({
+    target: 'https://api.1inch.dev',
+    changeOrigin: true,
+    onProxyReq: (proxyReq) => {
+      proxyReq.headers = {
+        ...proxyReq.headers,
+        ...axiosHeaders.headers
+      };
+    },
+  })
+);
+
 // ... Other routes ...
 
 // Start the server on a specified port (e.g., 3000)
