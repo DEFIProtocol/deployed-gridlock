@@ -97,14 +97,13 @@ const axiosHeaders = { // Define the required headers here
   }
 };
 
-// Define API endpoints
 app.use(
-  '/api/token/v1.2',
+  '/api/1inch/swap/v5.2',
   createProxyMiddleware({
     target: 'https://api.1inch.dev',
     changeOrigin: true,
     pathRewrite: {
-      '^/api/token/v1.2': '/token/v1.2',  // Rewrite the path
+      '^/api/1inch/swap/v5.2': '/swap/v5.2',  // Rewrite the path
     },
     onProxyReq: (proxyReq) => { // Intercept the request and set headers
       proxyReq.headers = {
@@ -114,6 +113,7 @@ app.use(
     },
   })
 );
+
 
 // ... Other routes ...
 

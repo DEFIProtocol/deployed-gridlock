@@ -69,6 +69,9 @@ function MarketOrder(props) {
     headers: {
       accept: "application/json",
       Authorization: `Bearer ${process.env.REACT_APP_1INCH_API_KEY}`
+    },
+    params: {
+
     }
   };
   
@@ -85,31 +88,49 @@ function MarketOrder(props) {
   
     try {
       // Check allowance and fetch quote
+      axiosHeaders.params = {
+        "tokenAddress": ethAddress,
+        "walletAddress": address
+      };
+  
       const allowanceResponse = await axios.get(
-        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/allowance`,
         axiosHeaders
       );
       const allowance = allowanceResponse.data;
   
       if (allowance.allowance === "0") {
+        axiosHeaders.params = {
+          "tokenAddress": ethAddress,
+          "amount": tokenAmount()
+        };
+  
         const approveResponse = await axios.get(
-          `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/transaction?tokenAddress=${ethAddress}&amount=${tokenAmount()}`,
+          `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/transaction`,
           axiosHeaders
         );
+  
         setTxDetails(approveResponse.data);
         console.log("Not Approved");
         return;
       }
   
       // Fetch quote for buy
+      axiosHeaders.params = {
+        "src": ethAddress,
+        "dst": tokenObject.chains[selectedChain],
+        "amount": tokenAmount(),
+        "fee": "1",
+        "includeTokensInfo": true,
+        "includeGas": true
+      };
+  
       const quoteResponse = await axios.get(
-        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/quote?src=${ethAddress}&dst=${tokenObject.chains[selectedChain]}&amount=${tokenAmount()}&fee=1.25&includeTokensInfo=true&includeGas=true`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/quote`,
         axiosHeaders
       );
-
-      console.log(quoteResponse);
   
-      // Show a confirmation modal
+      console.log(quoteResponse);
       Modal.confirm({
         title: 'Confirm Buy',
         content: (<div>
@@ -139,28 +160,39 @@ function MarketOrder(props) {
           <div>Gas Fee: {quoteResponse.data.estimatedGas}</div>
         </div>
       ), // Customize the confirmation message
-        onOk: async () => {
-          // If confirmed, proceed with the swap
-          const txResponse = await axios.get(
-            `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/swap?src=${ethAddress}&dst=${tokenObject.chains[selectedChain]}&amount=${tokenAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
-            axiosHeaders
-          );
-  
-          let decimals = Number(`1E${tokenObject.decimals}`);
-          let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
-          console.log(tokenTwo);
-          return setTxDetails(txResponse.data.tx);
-        },
-        onCancel: () => {
-          console.log("Buy Cancelled"); // Handle cancel action
-        },
-      });
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      // Handle the error appropriately
-    }
+      onOk: async () => {
+        // If confirmed, proceed with the swap
+        axiosHeaders.params = {
+          "src": ethAddress,
+          "dst": tokenObject.chains[selectedChain],
+          "amount": tokenAmount(),
+          "from": address,
+          "slippage": slippage,
+          "fee": "1",
+          "referrer": process.env.REACT_APP_ADMIN_ADDRESS,
+          "receiver": address
+        };
+
+        const txResponse = await axios.get(
+          `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/swap`,
+          axiosHeaders
+        );
+
+        let decimals = Number(`1E${tokenObject.decimals}`);
+        let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
+        console.log(tokenTwo);
+        return setTxDetails(txResponse.data.tx);
+      },
+      onCancel: () => {
+        console.log("Buy Cancelled"); // Handle cancel action
+      },
+    });
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    // Handle the error appropriately
   }
-  
+}
+
   
   async function fetchDexSell() {
     const tokenSellAmount = () => {
@@ -175,28 +207,48 @@ function MarketOrder(props) {
   
     try {
       // Check allowance and fetch quote
+      axiosHeaders.params = {
+        "tokenAddress": tokenObject.chains[selectedChain],
+        "walletAddress": address
+      };
+  
       const allowanceResponse = await axios.get(
-        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/allowance?tokenAddress=${tokenObject.chains[selectedChain]}&walletAddress=${address}`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/allowance`,
         axiosHeaders
       );
       const allowance = allowanceResponse.data;
   
       if (allowance.allowance === "0") {
+        axiosHeaders.params = {
+          "tokenAddress": tokenObject.chains[selectedChain],
+          "amount": tokenSellAmount()
+        };
+  
         const approveResponse = await axios.get(
-          `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/transaction?tokenAddress=${tokenObject.chains[selectedChain]}&amount=${tokenSellAmount()}`,
+          `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/transaction`,
           axiosHeaders
         );
+  
         setTxDetails(approveResponse.data);
         console.log("Not Approved");
         return;
       }
   
       // Fetch quote for sell
+      axiosHeaders.params = {
+        "src": tokenObject.chains[selectedChain],
+        "dst": ethAddress,
+        "amount": tokenSellAmount(),
+        "fee": "1",
+        "includeTokensInfo": true,
+        "includeGas": true
+      };
+  
       const quoteResponse = await axios.get(
-        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/quote?src=${tokenObject.chains[selectedChain]}&dst=${ethAddress}&amount=${tokenSellAmount()}&fee=1.25&includeTokensInfo=true&includeGas=true`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/quote`,
         axiosHeaders
       );
-      
+  
       console.log(quoteResponse);
   
       // Show a confirmation modal
@@ -229,29 +281,38 @@ function MarketOrder(props) {
           <div>Gas Fee: {quoteResponse.data.estimatedGas}</div>
         </div>
       ),// Customize the confirmation message
-        onOk: async () => {
-          // If confirmed, proceed with the swap
-          const txResponse = await axios.get(
-            `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/swap?src=${tokenObject.chains[selectedChain]}&dst=${ethAddress}&amount=${tokenSellAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
-            axiosHeaders
-          );
-  
-          let decimals = Number(`1E${tokenObject.decimals}`);
-          let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
-          console.log(tokenTwo);
-          return setTxDetails(txResponse.data.tx);
-        },
-        onCancel: () => {
-          console.log("Sell Cancelled"); // Handle cancel action
-        },
-      });
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      // Handle the error appropriately
-    }
+      onOk: async () => {
+        // If confirmed, proceed with the swap
+        axiosHeaders.params = {
+          "src": tokenObject.chains[selectedChain],
+          "dst": ethAddress,
+          "amount": tokenSellAmount(),
+          "from": address,
+          "slippage": slippage,
+          "fee": "1",
+          "referrer": process.env.REACT_APP_ADMIN_ADDRESS,
+          "receiver": address
+        };
+
+        const txResponse = await axios.get(
+          `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/swap`,
+          axiosHeaders
+        );
+
+        let decimals = Number(`1E${tokenObject.decimals}`);
+        let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
+        console.log(tokenTwo);
+        return setTxDetails(txResponse.data.tx);
+      },
+      onCancel: () => {
+        console.log("Sell Cancelled"); // Handle cancel action
+      },
+    });
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    // Handle the error appropriately
   }
-  
-  
+}
 
   useEffect(() => {
     if (txDetails.to && address && !txDetailsSent) { // Add a check for txDetailsSent
