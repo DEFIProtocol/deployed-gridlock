@@ -116,11 +116,15 @@ app.use(
 );
 
 app.use(
-  '/api/1inch/swap/v5.2/',
+  '/api/1inch/swap/v5.2',
   createProxyMiddleware({
     target: 'https://api.1inch.dev',
+    pathRewrite: {
+      '^/api/1inch/swap/v5.2': '/swap/v5.2',  // Rewrite the path
+    },
     changeOrigin: true,
     onProxyReq: (proxyReq) => {
+      console.log(axiosHeaders);
       proxyReq.headers = {
         ...proxyReq.headers,
         ...axiosHeaders.headers
