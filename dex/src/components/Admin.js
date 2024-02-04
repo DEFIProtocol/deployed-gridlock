@@ -30,7 +30,7 @@ function Admin() {
 
     const config = {
       headers: {
-        Authorization: 'Bearer tqkjw2xVn9dKlDY4cwjPE4vwJecA6B4B',
+        Authorization: `Bearer ${process.env.REACT_APP_1INCH_API_KEY}`,
       },
       params: {},
     };
