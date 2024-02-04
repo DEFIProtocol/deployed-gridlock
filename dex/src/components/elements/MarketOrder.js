@@ -91,7 +91,7 @@ function MarketOrder(props) {
       };
   
       const allowanceResponse = await axios.get(
-        `/api/1inch/swap/v5.2/${chainId}/approve/allowance`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/allowance`,
         axiosHeaders
       );
       const allowance = allowanceResponse.data;
@@ -103,7 +103,7 @@ function MarketOrder(props) {
         };
   
         const approveResponse = await axios.get(
-          `/api/1inch/swap/v5.2/${chainId}/approve/transaction`,
+          `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/transaction`,
           axiosHeaders
         );
   
@@ -123,7 +123,7 @@ function MarketOrder(props) {
       };
   
       const quoteResponse = await axios.get(
-        `/api/1inch/swap/v5.2/${chainId}/quote`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/quote`,
         axiosHeaders
       );
   
@@ -171,7 +171,7 @@ function MarketOrder(props) {
         };
 
         const txResponse = await axios.get(
-          `/api/1inch/swap/v5.2/${chainId}/swap`,
+          `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/swap`,
           axiosHeaders
         );
 
@@ -210,7 +210,7 @@ function MarketOrder(props) {
       };
   
       const allowanceResponse = await axios.get(
-        `/api/1inch/swap/v5.2/${chainId}/approve/allowance`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/allowance`,
         axiosHeaders
       );
       const allowance = allowanceResponse.data;
@@ -222,7 +222,7 @@ function MarketOrder(props) {
         };
   
         const approveResponse = await axios.get(
-          `/api/1inch/swap/v5.2/${chainId}/approve/transaction`,
+          `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/transaction`,
           axiosHeaders
         );
   
@@ -242,7 +242,7 @@ function MarketOrder(props) {
       };
   
       const quoteResponse = await axios.get(
-        `/api/1inch/swap/v5.2/${chainId}/quote`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/quote`,
         axiosHeaders
       );
   
@@ -292,7 +292,7 @@ function MarketOrder(props) {
         };
 
         const txResponse = await axios.get(
-          `/api/1inch/swap/v5.2/${chainId}/swap`,
+          `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/swap`,
           axiosHeaders
         );
 
@@ -495,14 +495,14 @@ export default MarketOrder;
     try {
       // Check allowance and fetch quote
       const allowanceResponse = await axios.get(
-        `/api/1inch/swap/v5.2/${chainId}/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`,
         axiosHeaders
       );
       const allowance = allowanceResponse.data;
   
       if (allowance.allowance === "0") {
         const approveResponse = await axios.get(
-          `/api/1inch/swap/v5.2/${chainId}/approve/transaction?tokenAddress=${ethAddress}&amount=${tokenAmount()}`,
+          `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/transaction?tokenAddress=${ethAddress}&amount=${tokenAmount()}`,
           axiosHeaders
         );
         setTxDetails(approveResponse.data);
@@ -512,7 +512,7 @@ export default MarketOrder;
   
       // Fetch quote for buy
       const quoteResponse = await axios.get(
-        `/api/1inch/swap/v5.2/${chainId}/quote?src=${ethAddress}&dst=${tokenObject.chains[selectedChain]}&amount=${tokenAmount()}&fee=1.25&includeTokensInfo=true&includeGas=true`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/quote?src=${ethAddress}&dst=${tokenObject.chains[selectedChain]}&amount=${tokenAmount()}&fee=1.25&includeTokensInfo=true&includeGas=true`,
         axiosHeaders
       );
 
@@ -551,7 +551,7 @@ export default MarketOrder;
         onOk: async () => {
           // If confirmed, proceed with the swap
           const txResponse = await axios.get(
-            `/api/1inch/swap/v5.2/${chainId}/swap?src=${ethAddress}&dst=${tokenObject.chains[selectedChain]}&amount=${tokenAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+            `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/swap?src=${ethAddress}&dst=${tokenObject.chains[selectedChain]}&amount=${tokenAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
             axiosHeaders
           );
   
@@ -585,14 +585,14 @@ export default MarketOrder;
     try {
       // Check allowance and fetch quote
       const allowanceResponse = await axios.get(
-        `/api/1inch/swap/v5.2/${chainId}/approve/allowance?tokenAddress=${tokenObject.chains[selectedChain]}&walletAddress=${address}`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/allowance?tokenAddress=${tokenObject.chains[selectedChain]}&walletAddress=${address}`,
         axiosHeaders
       );
       const allowance = allowanceResponse.data;
   
       if (allowance.allowance === "0") {
         const approveResponse = await axios.get(
-          `/api/1inch/swap/v5.2/${chainId}/approve/transaction?tokenAddress=${tokenObject.chains[selectedChain]}&amount=${tokenSellAmount()}`,
+          `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/transaction?tokenAddress=${tokenObject.chains[selectedChain]}&amount=${tokenSellAmount()}`,
           axiosHeaders
         );
         setTxDetails(approveResponse.data);
@@ -602,7 +602,7 @@ export default MarketOrder;
   
       // Fetch quote for sell
       const quoteResponse = await axios.get(
-        `/api/1inch/swap/v5.2/${chainId}/quote?src=${tokenObject.chains[selectedChain]}&dst=${ethAddress}&amount=${tokenSellAmount()}&fee=1.25&includeTokensInfo=true&includeGas=true`,
+        `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/quote?src=${tokenObject.chains[selectedChain]}&dst=${ethAddress}&amount=${tokenSellAmount()}&fee=1.25&includeTokensInfo=true&includeGas=true`,
         axiosHeaders
       );
       
@@ -641,7 +641,7 @@ export default MarketOrder;
         onOk: async () => {
           // If confirmed, proceed with the swap
           const txResponse = await axios.get(
-            `/api/1inch/swap/v5.2/${chainId}/swap?src=${tokenObject.chains[selectedChain]}&dst=${ethAddress}&amount=${tokenSellAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+            `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/swap?src=${tokenObject.chains[selectedChain]}&dst=${ethAddress}&amount=${tokenSellAmount()}&from=${address}&slippage=${slippage}&fee=1.25&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
             axiosHeaders
           );
   

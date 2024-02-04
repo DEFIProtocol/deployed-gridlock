@@ -107,10 +107,7 @@ app.use(
       '^/api/token/v1.2': '/token/v1.2',  // Rewrite the path
     },
     onProxyReq: (proxyReq) => { // Intercept the request and set headers
-      proxyReq.headers = {
-        ...proxyReq.headers,
-        ...axiosHeaders.headers // Set the required headers
-      };
+      proxyReq.setHeader('Authorization', `Bearer ${process.env.REACT_APP_1INCH_API_KEY}`);
     },
   })
 );
@@ -123,12 +120,8 @@ app.use(
       '^/api/1inch/swap/v5.2': '/swap/v5.2',  // Rewrite the path
     },
     changeOrigin: true,
-    onProxyReq: (proxyReq) => {
-      console.log(axiosHeaders);
-      proxyReq.headers = {
-        ...proxyReq.headers,
-        ...axiosHeaders.headers
-      };
+    onProxyReq: (proxyReq) => { // Intercept the request and set headers
+      proxyReq.setHeader('Authorization', `Bearer ${process.env.REACT_APP_1INCH_API_KEY}`);
     },
   })
 );
