@@ -142,11 +142,11 @@ useEffect(() => {
     </div>
 
     <div className="selectedArrayButtons">
-        <div className= "selectedArray">Filters:</div>
-        <button className="selectedArray" onClick={() => handleArrayChange(objectArray.toks)}>All</button>
-        <button className="selectedArray" onClick={() => handleArrayChange(objectArray.commodityArray)}>Commodity</button>
-        <button className="selectedArray" onClick={() => handleArrayChange(objectArray.companyArray)}>Company</button>
-        <button className="selectedArray" onClick={() => handleArrayChange(objectArray.currencyArray)}>Forex</button>
+        <div className= "filters">Filters:</div>
+        <button className={`selectedArray ${selectedArray === objectArray.toks ? 'underline' : ''}`} onClick={() => handleArrayChange(objectArray.toks)}>All</button>
+        <button className={`selectedArray ${selectedArray === objectArray.commodityArray ? 'underline' : ''}`} onClick={() => handleArrayChange(objectArray.commodityArray)}>Commodity</button>
+        <button className={`selectedArray ${selectedArray === objectArray.companyArray ? 'underline' : ''}`} onClick={() => handleArrayChange(objectArray.companyArray)}>Company</button>
+        <button className={`selectedArray ${selectedArray === objectArray.currencyArray ? 'underline' : ''}`} onClick={() => handleArrayChange(objectArray.currencyArray)}>Forex</button>
       </div>
 
       <div style={{ textAlign: "center" }}>

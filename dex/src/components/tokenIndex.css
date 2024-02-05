@@ -447,3 +447,24 @@
   font-size: 1.5em;
   border-bottom: 3px solid lime;
 }
+.chain:hover{
+  cursor: pointer;
+  color: green;
+}
+
+.selectedChain:hover{
+  cursor: pointer;
+  color: green;
+  border-bottom: 3px solid green;
+}
+.selectedArray:hover{
+  color: #707070;
+  cursor: pointer;
+}
+.filters{
+  color: white;
+}
+.selectedArray.underline {
+  text-decoration: underline;
+  font-size: 1.1em
+}
