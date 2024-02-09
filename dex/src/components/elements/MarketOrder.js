@@ -73,184 +73,127 @@ function MarketOrder(props) {
   };
   
   async function fetchDexBuy() {
-    const tokenAmount = () => {
-      if (checked === "eth") {
-        return String(amount * (baseLine.padEnd(18 + baseLine.length, '0')));
-      } else if (checked === "usd") {
-        return String((amount / cryptoDetails.price) * (baseLine.padEnd(18 + baseLine.length, '0')));
-      } else {
-        return String((amount * ethExRate) * (baseLine.padEnd(18 + baseLine.length, "0")));
-      }
-    };
+    const tokenAmount = calculateTokenAmount();
   
     try {
-      // Check allowance and fetch quote
-      const allowanceResponse = await axios.get(
-        `/api/1inch/swap/v5.2/${chainId}/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`,
-        axiosHeaders
-      );
-      const allowance = allowanceResponse.data;
-      console.log(allowance)
-      console.log(allowanceResponse)
-  
-      if (allowance.allowance === "0") {
-        const approveResponse = await axios.get(
-          `/api/1inch/swap/v5.2/${chainId}/approve/transaction?tokenAddress=${ethAddress}&amount=${tokenAmount()}`,
-          axiosHeaders
-        );
-        console.log(approveResponse)
-        setTxDetails(approveResponse.data);
-        console.log("Not Approved");
-        return;
-      }
-  
-      // Fetch quote for buy
-      const quoteResponse = await axios.get(
-        `/api/1inch/swap/v5.2/${chainId}/quote?src=${ethAddress}&dst=${tokenObject.chains[selectedChain]}&amount=${tokenAmount()}&fee=1&includeTokensInfo=true&includeGas=true`,
-        axiosHeaders
-      );
-
-      console.log(quoteResponse);
-  
-      // Show a confirmation modal
-      Modal.confirm({
-        title: 'Confirm Buy',
-        content: (<div>
-          <p>
-            Are you sure you want to sell {tokenAmount()} {tokenObject.symbol}?
-          </p>
-          <div>
-            <img
-              src={quoteResponse.data.fromToken.tokenInfo.logoURI}
-              alt={quoteResponse.data.fromToken.tokenInfo.name}
-            />
-            <span>
-              {quoteResponse.data.fromToken.tokenInfo.name} ({quoteResponse.data.fromToken.tokenInfo.symbol})
-            </span>
-            <div>Exchange from: {tokenAmount()}</div>
-          </div>
-          <div>
-            <img
-              src={quoteResponse.data.toToken.tokenInfo.logoURI}
-              alt={quoteResponse.data.toToken.tokenInfo.name}
-            />
-            <span>
-              {quoteResponse.data.toToken.tokenInfo.name} ({quoteResponse.data.toToken.tokenInfo.symbol})
-            </span>
-            <div>Exchange to: {quoteResponse.data.toToken.toAmount}</div>
-          </div>
-          <div>Gas Fee: {quoteResponse.data.estimatedGas}</div>
-        </div>
-      ), // Customize the confirmation message
-        onOk: async () => {
-          // If confirmed, proceed with the swap
-          const txResponse = await axios.get(
-            `/api/1inch/swap/v5.2/${chainId}/swap?src=${ethAddress}&dst=${tokenObject.chains[selectedChain]}&amount=${tokenAmount()}&from=${address}&slippage=${slippage}&fee=1&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
-            axiosHeaders
-          );
-  
-          let decimals = Number(`1E${tokenObject.decimals}`);
-          let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
-          console.log(tokenTwo);
-          return setTxDetails(txResponse.data.tx);
-        },
-        onCancel: () => {
-          console.log("Buy Cancelled"); // Handle cancel action
-        },
-      });
+      const quoteResponse = await fetchQuote(ethAddress, tokenObject.chains[selectedChain], tokenAmount);
+      showConfirmationModal(quoteResponse, tokenAmount, true);
     } catch (error) {
       console.error('Error fetching data:', error);
       // Handle the error appropriately
     }
   }
   
-  
   async function fetchDexSell() {
-    const tokenSellAmount = () => {
-      if (checked === "eth") {
-        return String(Math.trunc(amount / ethExRate * (baseLine.padEnd(tokenObject.decimals + baseLine.length, '0'))));
-      } else if (checked === "usd") {
-        return String(Math.trunc((amount / usdPrice) * (baseLine.padEnd(tokenObject.decimals + baseLine.length, '0'))));
-      } else {
-        return String(amount * (baseLine.padEnd(tokenObject.decimals + baseLine.length, "0")));
-      }
-    };
+    const tokenSellAmount = calculateTokenSellAmount();
   
     try {
-      // Check allowance and fetch quote
-      const allowanceResponse = await axios.get(
-        `/api/1inch/swap/v5.2/${chainId}/approve/allowance?tokenAddress=${tokenObject.chains[selectedChain]}&walletAddress=${address}`,
-        axiosHeaders
-      );
-      const allowance = allowanceResponse.data;
-  
-      if (allowance.allowance === "0") {
-        const approveResponse = await axios.get(
-          `/api/1inch/swap/v5.2/${chainId}/approve/transaction?tokenAddress=${tokenObject.chains[selectedChain]}&amount=${tokenSellAmount()}`,
-          axiosHeaders
-        );
-        setTxDetails(approveResponse.data);
-        console.log("Not Approved");
-        return;
-      }
-  
-      // Fetch quote for sell
-      const quoteResponse = await axios.get(
-        `/api/1inch/swap/v5.2/${chainId}/quote?src=${tokenObject.chains[selectedChain]}&dst=${ethAddress}&amount=${tokenSellAmount()}&fee=1&includeTokensInfo=true&includeGas=true`,
-        axiosHeaders
-      );
-      
-      console.log(quoteResponse);
-  
-      // Show a confirmation modal
-      Modal.confirm({
-        title: 'Confirm Sell',
-        content: (<div>
-          <p>
-            Are you sure you want to sell {tokenSellAmount()} {tokenObject.symbol}?
-          </p>
-          <div>
-            <img
-              src={quoteResponse.data.fromToken.tokenInfo.logoURI}
-              alt={quoteResponse.data.fromToken.tokenInfo.name}
-            />
-            <span>
-              {quoteResponse.data.fromToken.tokenInfo.name} ({quoteResponse.data.fromToken.tokenInfo.symbol})
-            </span>
-            <div>Exchange from: {tokenSellAmount()}</div>
-          </div>
-          <div>
-            <img
-              src={quoteResponse.data.toToken.tokenInfo.logoURI}
-              alt={quoteResponse.data.toToken.tokenInfo.name}
-            />
-            <span>
-              {quoteResponse.data.toToken.tokenInfo.name} ({quoteResponse.data.toToken.tokenInfo.symbol})
-            </span>
-            <div>Exchange to: {quoteResponse.data.toToken.toAmount}</div>
-          </div>
-          <div>Gas Fee: {quoteResponse.data.estimatedGas}</div>
-        </div>
-      ),// Customize the confirmation message
-        onOk: async () => {
-          // If confirmed, proceed with the swap
-          const txResponse = await axios.get(
-            `/api/1inch/swap/v5.2/${chainId}/swap?src=${tokenObject.chains[selectedChain]}&dst=${ethAddress}&amount=${tokenSellAmount()}&from=${address}&slippage=${slippage}&fee=1&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
-            axiosHeaders
-          );
-  
-          let decimals = Number(`1E${tokenObject.decimals}`);
-          let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
-          console.log(tokenTwo);
-          return setTxDetails(txResponse.data.tx);
-        },
-        onCancel: () => {
-          console.log("Sell Cancelled"); // Handle cancel action
-        },
-      });
+      const quoteResponse = await fetchQuote(tokenObject.chains[selectedChain], ethAddress, tokenSellAmount);
+      showConfirmationModal(quoteResponse, tokenSellAmount, false);
     } catch (error) {
       console.error('Error fetching data:', error);
       // Handle the error appropriately
+    }
+  }
+  
+  async function fetchQuote(src, dst, amount) {
+    console.log(`/api/1inch/swap/v5.2/${chainId}/quote?src=${src}&dst=${dst}&amount=${parseInt(amount)}&fee=1&includeTokensInfo=true&includeGas=true`)
+    const quoteResponse = await axios.get(
+      `/api/1inch/swap/v5.2/${chainId}/quote?src=${src}&dst=${dst}&amount=${parseInt(amount)}&fee=1&includeTokensInfo=true&includeGas=true`,
+      axiosHeaders
+    );
+    console.log(quoteResponse.data);
+    return quoteResponse.data;
+  }
+  
+  function showConfirmationModal(quoteResponse, amount, isBuy) {
+    Modal.confirm({
+      title: isBuy ? (<div style={{color: "white"}}>Confirm Buy</div>) : (<div style={{color: "white"}}>Confirm Sell</div>),
+      content: (
+        <div style={{color: "white"}}>
+          <p>
+            Are you sure you want to {isBuy ? 'buy' : 'sell'} {parseInt(amount)/ 1e+18} in USD {((parseInt(amount) / 1e+18) * cryptoDetails.price).toFixed(2)} {tokenObject.symbol}?
+          </p>
+          <div style={{margin: "10%"}}>
+            <img className= "logo" src={quoteResponse.fromToken.logoURI} alt={quoteResponse.fromToken.name} />
+            <span>
+              {quoteResponse.fromToken.name} ({quoteResponse.fromToken.symbol})
+            </span>
+            <div>Exchange from: {parseInt(amount)/ 1e+18}</div>
+            <div style={{marginLeft: "32px"}}>USD Value: {((parseInt(amount) / 1e+18) * cryptoDetails.price).toFixed(2)}</div>
+          </div>
+          <div style={{margin: "10%"}}>
+            <img className= "logo" src={quoteResponse.toToken.logoURI} alt={quoteResponse.toToken.name} />
+            <span>
+              {quoteResponse.toToken.name} ({quoteResponse.toToken.symbol})
+            </span>
+            <div>Exchange to: {quoteResponse.toAmount/ 1e+18}</div>
+            <div style={{marginLeft: "32px"}}>USD value: {((parseInt(quoteResponse.toAmount) / 1e+18)* usdPrice).toFixed(2)}</div>
+          </div>
+          <div>Gas Fee:    {quoteResponse.gas}</div>
+        </div>
+      ),
+      onOk: async () => {
+        const amount = isBuy ? calculateTokenAmount() : calculateTokenSellAmount();
+        const allowanceResponse = await axios.get(
+          `/api/1inch/swap/v5.2/${chainId}/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`,
+          axiosHeaders
+        );
+        const allowance = allowanceResponse.data;
+        console.log(allowance)
+        console.log(allowanceResponse)
+    
+        if (allowance.allowance === "0") {
+          const approveResponse = await axios.get(
+            `/api/1inch/swap/v5.2/${chainId}/approve/transaction?tokenAddress=${ethAddress}&amount=${amount}`,
+            axiosHeaders
+          );
+          console.log(approveResponse)
+          setTxDetails(approveResponse.data);
+          console.log("Not Approved");
+          return;
+        }
+    
+        const txResponse = await executeTransaction(quoteResponse, isBuy);
+        let decimals = Number(`1E${tokenObject.decimals}`);
+        let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
+        console.log(tokenTwo);
+        return setTxDetails(txResponse.data.tx);
+      },
+      onCancel: () => {
+        console.log(isBuy ? 'Buy Cancelled' : 'Sell Cancelled');
+      },
+    });
+  }
+  
+  async function executeTransaction(quoteResponse, isBuy) {
+    const src = isBuy ? ethAddress : tokenObject.chains[selectedChain];
+    const dst = isBuy ? tokenObject.chains[selectedChain] : ethAddress;
+    const amount = isBuy ? calculateTokenAmount() : calculateTokenSellAmount();
+    const txResponse = await axios.get(
+      `/api/1inch/swap/v5.2/${chainId}/swap?src=${src}&dst=${dst}&amount=${parseInt(amount)}&from=${address}&slippage=${slippage}&fee=1&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+      axiosHeaders
+    );
+    return txResponse;
+  }
+  
+  function calculateTokenAmount() {
+    if (checked === "eth") {
+      return String(amount * (baseLine.padEnd(18 + baseLine.length, '0')));
+    } else if (checked === "usd") {
+      return String((amount / cryptoDetails.price) * (baseLine.padEnd(18 + baseLine.length, '0')));
+    } else {
+      return String((amount * ethExRate) * (baseLine.padEnd(18 + baseLine.length, "0")));
+    }
+  }
+  
+  function calculateTokenSellAmount() {
+    if (checked === "eth") {
+      return String(Math.trunc(amount / ethExRate * (baseLine.padEnd(tokenObject.decimals + baseLine.length, '0'))));
+    } else if (checked === "usd") {
+      return String(Math.trunc((amount / usdPrice) * (baseLine.padEnd(tokenObject.decimals + baseLine.length, '0'))));
+    } else {
+      return String(amount * (baseLine.padEnd(tokenObject.decimals + baseLine.length, "0")));
     }
   }
 
@@ -417,3 +360,123 @@ function MarketOrder(props) {
 }
 
 export default MarketOrder;
+/*  async function fetchDexBuy() {
+  const tokenAmount = calculateTokenAmount();
+
+  try {
+    const quoteResponse = await fetchQuote(ethAddress, tokenObject.chains[selectedChain], tokenAmount);
+    showConfirmationModal(quoteResponse, tokenAmount, true);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    // Handle the error appropriately
+  }
+}
+
+async function fetchDexSell() {
+  const tokenSellAmount = calculateTokenSellAmount();
+
+  try {
+    const quoteResponse = await fetchQuote(tokenObject.chains[selectedChain], ethAddress, tokenSellAmount);
+    showConfirmationModal(quoteResponse, tokenSellAmount, false);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    // Handle the error appropriately
+  }
+}
+
+async function fetchQuote(src, dst, amount) {
+  const quoteResponse = await axios.get(
+    `/api/1inch/swap/v5.2/${chainId}/quote?src=${src}&dst=${dst}&amount=${amount}&fee=1&includeTokensInfo=true&includeGas=true`,
+    axiosHeaders
+  );
+  console.log(quoteResponse);
+  return quoteResponse;
+}
+
+function showConfirmationModal(quoteResponse, amount, isBuy) {
+  Modal.confirm({
+    title: isBuy ? 'Confirm Buy' : 'Confirm Sell',
+    content: (
+      <div>
+        <p>
+          Are you sure you want to {isBuy ? 'buy' : 'sell'} {amount} {tokenObject.symbol}?
+        </p>
+        <div>
+          <img src={quoteResponse.data.fromToken..logoURI} alt={quoteResponse.data.fromToken..name} />
+          <span>
+            {quoteResponse.data.fromToken..name} ({quoteResponse.data.fromToken..symbol})
+          </span>
+          <div>Exchange from: {amount}</div>
+        </div>
+        <div>
+          <img src={quoteResponse.data.toToken..logoURI} alt={quoteResponse.data.toToken..name} />
+          <span>
+            {quoteResponse.data.toToken..name} ({quoteResponse.data.toToken..symbol})
+          </span>
+          <div>Exchange to: {quoteResponse.data.toToken.toAmount}</div>
+        </div>
+        <div>Gas Fee: {quoteResponse.data.estimatedGas}</div>
+      </div>
+    ),
+    onOk: async () => {
+      const allowanceResponse = await axios.get(
+        `/api/1inch/swap/v5.2/${chainId}/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`,
+        axiosHeaders
+      );
+      const allowance = allowanceResponse.data;
+      console.log(allowance)
+      console.log(allowanceResponse)
+  
+      if (allowance.allowance === "0") {
+        const approveResponse = await axios.get(
+          `/api/1inch/swap/v5.2/${chainId}/approve/transaction?tokenAddress=${ethAddress}&amount=${tokenAmount()}`,
+          axiosHeaders
+        );
+        console.log(approveResponse)
+        setTxDetails(approveResponse.data);
+        console.log("Not Approved");
+        return;
+      }
+  
+      const txResponse = await executeTransaction(quoteResponse, isBuy);
+      let decimals = Number(`1E${tokenObject.decimals}`);
+      let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
+      console.log(tokenTwo);
+      return setTxDetails(txResponse.data.tx);
+    },
+    onCancel: () => {
+      console.log(isBuy ? 'Buy Cancelled' : 'Sell Cancelled');
+    },
+  });
+}
+
+async function executeTransaction(quoteResponse, isBuy) {
+  const src = isBuy ? ethAddress : tokenObject.chains[selectedChain];
+  const dst = isBuy ? tokenObject.chains[selectedChain] : ethAddress;
+  const amount = isBuy ? calculateTokenAmount() : calculateTokenSellAmount();
+  const txResponse = await axios.get(
+    `/api/1inch/swap/v5.2/${chainId}/swap?src=${src}&dst=${dst}&amount=${amount}&from=${address}&slippage=${slippage}&fee=1&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+    axiosHeaders
+  );
+  return txResponse;
+}
+
+function calculateTokenAmount() {
+  if (checked === "eth") {
+    return String(amount * (baseLine.padEnd(18 + baseLine.length, '0')));
+  } else if (checked === "usd") {
+    return String((amount / cryptoDetails.price) * (baseLine.padEnd(18 + baseLine.length, '0')));
+  } else {
+    return String((amount * ethExRate) * (baseLine.padEnd(18 + baseLine.length, "0")));
+  }
+}
+
+function calculateTokenSellAmount() {
+  if (checked === "eth") {
+    return String(Math.trunc(amount / ethExRate * (baseLine.padEnd(tokenObject.decimals + baseLine.length, '0'))));
+  } else if (checked === "usd") {
+    return String(Math.trunc((amount / usdPrice) * (baseLine.padEnd(tokenObject.decimals + baseLine.length, '0'))));
+  } else {
+    return String(amount * (baseLine.padEnd(tokenObject.decimals + baseLine.length, "0")));
+  }
+} */
