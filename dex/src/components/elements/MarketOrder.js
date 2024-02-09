@@ -7,11 +7,31 @@ import axios from 'axios';
 import { useSendTransaction, useWaitForTransaction } from "wagmi";
 import { useEthereum } from ".";
 
+const getChainLabel = (chain) => {
+  switch (chain) {
+    case 'Arbitrum':
+    case 'Aurora':
+    case 'Ethereum':
+    case 'Optimism':
+      return 'Ethereum';
+    case 'Avalanche':
+      return 'Avalanche';
+    case 'Polygon':
+      return 'Polygon';
+    case 'Fantom':
+      return 'Fantom';
+    case 'Klaytn':
+      return 'Klaytn';
+    case 'Binance':
+      return 'Binance';
+    default:
+      return '';
+  }
+};
+
 function MarketOrder(props) {
-  const { uuid, address, usdPrice, tokenName, chain, symbol } = props
+  const { address, usdPrice, tokenName, chain, symbol } = props
   const tokenObject= AllTokens.find((token) => token.symbol.toLowerCase() === symbol.toLowerCase());
-  const { cryptoDetails } = useEthereum();
-  console.log(uuid)
   const [messageApi, contextHolder] = message.useMessage()
   const [amount, setAmount] = useState(null);
   const [slippage, setSlippage] = useState(2.5);
@@ -19,6 +39,7 @@ function MarketOrder(props) {
   const [chainId, setChainId]= useState();
   const [ selectedChain, setSelectedChain ] = useState(chain);
   const ethAddress = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
+  const { cryptoDetails } = useEthereum(getChainLabel(selectedChain));
   const ethExRate = usdPrice / cryptoDetails?.price
   const baseLine = "1";
   const [checked, setChecked] = useState("usd")
@@ -39,28 +60,6 @@ function MarketOrder(props) {
     hash: data?.hash
   })
 
-  const getChainLabel = (chain) => {
-    switch (chain) {
-      case 'Arbitrum':
-      case 'Aurora':
-      case 'Ethereum':
-      case 'Optimism':
-        return 'Ethereum';
-      case 'Avalanche':
-        return 'Avalanche';
-      case 'Polygon':
-        return 'Polygon';
-      case 'Fantom':
-        return 'Fantom';
-      case 'Klaytn':
-        return 'Klaytn';
-      case 'Binance':
-        return 'Binance';
-      default:
-        return '';
-    }
-  };
-  
   function handleSlippageChange(e){
     setSlippage(e.taget.value);
   }
@@ -112,7 +111,7 @@ function MarketOrder(props) {
       content: (
         <div style={{color: "white"}}>
           <p>
-            Are you sure you want to {isBuy ? 'buy' : 'sell'} {parseInt(amount)/ 1e+18} in USD {((parseInt(amount) / 1e+18) * cryptoDetails.price).toFixed(2)} {tokenObject.symbol}?
+            Are you sure you want to {isBuy ? 'buy' : 'sell'} {parseInt(amount)/ 1e+18} {getChainLabel(selectedChain)}  (${((parseInt(amount) / 1e+18) * cryptoDetails.price).toFixed(2)}) {tokenObject.symbol}?
           </p>
           <div style={{margin: "10%"}}>
             <img className= "logo" src={quoteResponse.fromToken.logoURI} alt={quoteResponse.fromToken.name} />
@@ -130,35 +129,41 @@ function MarketOrder(props) {
             <div>Exchange to: {quoteResponse.toAmount/ 1e+18}</div>
             <div style={{marginLeft: "32px"}}>USD value: {((parseInt(quoteResponse.toAmount) / 1e+18)* usdPrice).toFixed(2)}</div>
           </div>
-          <div>Gas Fee:    {quoteResponse.gas}</div>
+          <div>Gas Fee:    {quoteResponse.gas} (${((quoteResponse.gas / 1e+18) * cryptoDetails.price).toFixed(2)})</div>
+          <div>Transacion Fee: {((parseInt(amount) / 1e+18)* ".01").toFixed(6)} (${(((parseInt(amount) / 1e+18)* ".01")* cryptoDetails.price).toFixed(2)})</div>
+          <div>Transacion Total: {((parseInt(amount) / 1e+18)* ".01") + (quoteResponse.gas / 1e+18) + (parseInt(amount)/ 1e+18)} (${((((parseInt(amount) / 1e+18)* ".01")* cryptoDetails.price) + ((quoteResponse.gas / 1e+18) * cryptoDetails.price) + ((parseInt(amount) / 1e+18) * cryptoDetails.price)).toFixed(2)})</div>
         </div>
       ),
       onOk: async () => {
-        const amount = isBuy ? calculateTokenAmount() : calculateTokenSellAmount();
-        const allowanceResponse = await axios.get(
-          `/api/1inch/swap/v5.2/${chainId}/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`,
-          axiosHeaders
-        );
-        const allowance = allowanceResponse.data;
-        console.log(allowance)
-        console.log(allowanceResponse)
-    
-        if (allowance.allowance === "0") {
-          const approveResponse = await axios.get(
-            `/api/1inch/swap/v5.2/${chainId}/approve/transaction?tokenAddress=${ethAddress}&amount=${amount}`,
+        try {
+          const amount = isBuy ? calculateTokenAmount() : calculateTokenSellAmount();
+          const allowanceResponse = await axios.get(
+            `/api/1inch/swap/v5.2/${chainId}/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`,
             axiosHeaders
           );
-          console.log(approveResponse)
-          setTxDetails(approveResponse.data);
-          console.log("Not Approved");
-          return;
+          const allowance = allowanceResponse.data;
+          console.log(allowance);
+          console.log(allowanceResponse);
+  
+          if (allowance.allowance === "0") {
+            const approveResponse = await axios.get(
+              `/api/1inch/swap/v5.2/${chainId}/approve/transaction?tokenAddress=${ethAddress}&amount=${amount}`,
+              axiosHeaders
+            );
+            console.log(approveResponse);
+            setTxDetails(approveResponse.data);
+            console.log("Not Approved");
+            return;
+          }
+  
+          const txResponse = await executeTransaction(quoteResponse, isBuy);
+          let decimals = Number(`1E${tokenObject.decimals}`);
+          let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
+          console.log(tokenTwo);
+          return setTxDetails(txResponse.data.tx);
+        } catch (error) {
+          alert("Sorry something went wrong! " + error);
         }
-    
-        const txResponse = await executeTransaction(quoteResponse, isBuy);
-        let decimals = Number(`1E${tokenObject.decimals}`);
-        let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
-        console.log(tokenTwo);
-        return setTxDetails(txResponse.data.tx);
       },
       onCancel: () => {
         console.log(isBuy ? 'Buy Cancelled' : 'Sell Cancelled');
@@ -360,123 +365,3 @@ function MarketOrder(props) {
 }
 
 export default MarketOrder;
-/*  async function fetchDexBuy() {
-  const tokenAmount = calculateTokenAmount();
-
-  try {
-    const quoteResponse = await fetchQuote(ethAddress, tokenObject.chains[selectedChain], tokenAmount);
-    showConfirmationModal(quoteResponse, tokenAmount, true);
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    // Handle the error appropriately
-  }
-}
-
-async function fetchDexSell() {
-  const tokenSellAmount = calculateTokenSellAmount();
-
-  try {
-    const quoteResponse = await fetchQuote(tokenObject.chains[selectedChain], ethAddress, tokenSellAmount);
-    showConfirmationModal(quoteResponse, tokenSellAmount, false);
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    // Handle the error appropriately
-  }
-}
-
-async function fetchQuote(src, dst, amount) {
-  const quoteResponse = await axios.get(
-    `/api/1inch/swap/v5.2/${chainId}/quote?src=${src}&dst=${dst}&amount=${amount}&fee=1&includeTokensInfo=true&includeGas=true`,
-    axiosHeaders
-  );
-  console.log(quoteResponse);
-  return quoteResponse;
-}
-
-function showConfirmationModal(quoteResponse, amount, isBuy) {
-  Modal.confirm({
-    title: isBuy ? 'Confirm Buy' : 'Confirm Sell',
-    content: (
-      <div>
-        <p>
-          Are you sure you want to {isBuy ? 'buy' : 'sell'} {amount} {tokenObject.symbol}?
-        </p>
-        <div>
-          <img src={quoteResponse.data.fromToken..logoURI} alt={quoteResponse.data.fromToken..name} />
-          <span>
-            {quoteResponse.data.fromToken..name} ({quoteResponse.data.fromToken..symbol})
-          </span>
-          <div>Exchange from: {amount}</div>
-        </div>
-        <div>
-          <img src={quoteResponse.data.toToken..logoURI} alt={quoteResponse.data.toToken..name} />
-          <span>
-            {quoteResponse.data.toToken..name} ({quoteResponse.data.toToken..symbol})
-          </span>
-          <div>Exchange to: {quoteResponse.data.toToken.toAmount}</div>
-        </div>
-        <div>Gas Fee: {quoteResponse.data.estimatedGas}</div>
-      </div>
-    ),
-    onOk: async () => {
-      const allowanceResponse = await axios.get(
-        `/api/1inch/swap/v5.2/${chainId}/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`,
-        axiosHeaders
-      );
-      const allowance = allowanceResponse.data;
-      console.log(allowance)
-      console.log(allowanceResponse)
-  
-      if (allowance.allowance === "0") {
-        const approveResponse = await axios.get(
-          `/api/1inch/swap/v5.2/${chainId}/approve/transaction?tokenAddress=${ethAddress}&amount=${tokenAmount()}`,
-          axiosHeaders
-        );
-        console.log(approveResponse)
-        setTxDetails(approveResponse.data);
-        console.log("Not Approved");
-        return;
-      }
-  
-      const txResponse = await executeTransaction(quoteResponse, isBuy);
-      let decimals = Number(`1E${tokenObject.decimals}`);
-      let tokenTwo = (Number(txResponse.data.toTokenAmount) / decimals).toFixed(2);
-      console.log(tokenTwo);
-      return setTxDetails(txResponse.data.tx);
-    },
-    onCancel: () => {
-      console.log(isBuy ? 'Buy Cancelled' : 'Sell Cancelled');
-    },
-  });
-}
-
-async function executeTransaction(quoteResponse, isBuy) {
-  const src = isBuy ? ethAddress : tokenObject.chains[selectedChain];
-  const dst = isBuy ? tokenObject.chains[selectedChain] : ethAddress;
-  const amount = isBuy ? calculateTokenAmount() : calculateTokenSellAmount();
-  const txResponse = await axios.get(
-    `/api/1inch/swap/v5.2/${chainId}/swap?src=${src}&dst=${dst}&amount=${amount}&from=${address}&slippage=${slippage}&fee=1&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
-    axiosHeaders
-  );
-  return txResponse;
-}
-
-function calculateTokenAmount() {
-  if (checked === "eth") {
-    return String(amount * (baseLine.padEnd(18 + baseLine.length, '0')));
-  } else if (checked === "usd") {
-    return String((amount / cryptoDetails.price) * (baseLine.padEnd(18 + baseLine.length, '0')));
-  } else {
-    return String((amount * ethExRate) * (baseLine.padEnd(18 + baseLine.length, "0")));
-  }
-}
-
-function calculateTokenSellAmount() {
-  if (checked === "eth") {
-    return String(Math.trunc(amount / ethExRate * (baseLine.padEnd(tokenObject.decimals + baseLine.length, '0'))));
-  } else if (checked === "usd") {
-    return String(Math.trunc((amount / usdPrice) * (baseLine.padEnd(tokenObject.decimals + baseLine.length, '0'))));
-  } else {
-    return String(amount * (baseLine.padEnd(tokenObject.decimals + baseLine.length, "0")));
-  }
-} */
