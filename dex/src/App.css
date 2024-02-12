@@ -122,18 +122,18 @@ header {
   color: white;
 }
 
+
 .tradeBox {
   width: 400px;
   background-color: #0E111B;
   border: 2px solid #21273a;
   min-height: 300px;
   border-radius: 15px;
-  display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: flex-start;
   padding-left: 30px;
   padding-right: 30px;
+  margin-top: 5vh;
 }
 
 
@@ -271,6 +271,21 @@ header {
 .tokenLogo {
   height: 40px;
   width: 40px;
+}
+.selectChain{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%
+}
+
+.chain{
+  font-size: 1.25em;
+}
+
+.selectedChain{
+  font: bold;
+  font-size: 1.5em;
+  border-bottom: 3px solid lime;
 }
 
 .modalContent {
