@@ -303,7 +303,7 @@ function MarketOrder(props) {
             type="checkbox"
             name="Priced in Eth"
             value="eth"
-            checked={checked === "eth" ? checked : !checked}
+            checked={checked === "eth" ? checked : null }
             onChange={(e) => setChecked(e.target.value)}
           />
           <label htmlFor="ethEx" style={{ color: 'DarkGray' }}>
@@ -316,7 +316,7 @@ function MarketOrder(props) {
           type="checkbox"
           name="Priced in USD"
           value="usd"
-          checked={checked === "usd" ? checked : null}
+          checked={checked === "usd" ? checked : !checked}
           onChange={(e) => setChecked(e.target.value)}
           />
         <label htmlFor="usdEx" style={{ color: 'DarkGray' }}>
