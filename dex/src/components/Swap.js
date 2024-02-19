@@ -139,7 +139,7 @@ const fetchPrices = useCallback(async (one, two) => {
 
   async function fetchQuote(src, dst, amount) {
     const quoteResponse = await axios.get(
-      `/api/1inch/swap/v5.2/${chainId}/quote?src=${src.chains[chain]}&dst=${dst.chains[chain]}&amount=${amount}&fee=1&includeTokensInfo=true&includeGas=true`,
+      `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/quote?src=${src.chains[chain]}&dst=${dst.chains[chain]}&amount=${amount}&fee=1&includeTokensInfo=true&includeGas=true`,
       axiosHeaders
     );
     console.log(quoteResponse.data);
@@ -178,14 +178,14 @@ const fetchPrices = useCallback(async (one, two) => {
       onOk: async () => {
         try {
           const allowanceResponse = await axios.get(
-            `/api/1inch/swap/v5.2/${chainId}/approve/allowance?tokenAddress=${src.chains[chain]}&walletAddress=${address}`,
+            `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/allowance?tokenAddress=${src.chains[chain]}&walletAddress=${address}`,
             axiosHeaders  // Include the headers for authorization
           );
           const allowance = allowanceResponse.data;
     
           if (allowance.allowance === "0") {
             const approveResponse = await axios.get(
-              `/api/1inch/swap/v5.2/${chainId}/approve/transaction?tokenAddress=${src.chains[chain]}&amount=${amount}`,
+              `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/transaction?tokenAddress=${src.chains[chain]}&amount=${amount}`,
               axiosHeaders
             );
             console.log(approveResponse);
@@ -210,7 +210,7 @@ const fetchPrices = useCallback(async (one, two) => {
 
   async function executeTransaction(src, dst, quoteResponse, amount) {
     const txResponse = await axios.get(
-      `/api/1inch/swap/v5.2/${chainId}/swap?src=${src.chains[chain]}&dst=${dst.chains[chain]}&amount=${amount}&from=${address}&slippage=${slippage}&fee=1&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+      `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/swap?src=${src.chains[chain]}&dst=${dst.chains[chain]}&amount=${amount}&from=${address}&slippage=${slippage}&fee=1&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
       axiosHeaders
     );
     return txResponse;

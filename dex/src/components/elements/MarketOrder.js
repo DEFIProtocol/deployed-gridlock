@@ -96,9 +96,9 @@ function MarketOrder(props) {
   }
   
   async function fetchQuote(src, dst, amount) {
-    console.log(`/api/1inch/swap/v5.2/${chainId}/quote?src=${src}&dst=${dst}&amount=${parseInt(amount)}&fee=1&includeTokensInfo=true&includeGas=true`)
+    console.log(`${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/quote?src=${src}&dst=${dst}&amount=${parseInt(amount)}&fee=1&includeTokensInfo=true&includeGas=true`)
     const quoteResponse = await axios.get(
-      `/api/1inch/swap/v5.2/${chainId}/quote?src=${src}&dst=${dst}&amount=${parseInt(amount)}&fee=1&includeTokensInfo=true&includeGas=true`,
+      `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/quote?src=${src}&dst=${dst}&amount=${parseInt(amount)}&fee=1&includeTokensInfo=true&includeGas=true`,
       axiosHeaders
     );
     console.log(quoteResponse.data);
@@ -138,7 +138,7 @@ function MarketOrder(props) {
         try {
           const amount = isBuy ? calculateTokenAmount() : calculateTokenSellAmount();
           const allowanceResponse = await axios.get(
-            `/api/1inch/swap/v5.2/${chainId}/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`,
+            `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/allowance?tokenAddress=${ethAddress}&walletAddress=${address}`,
             axiosHeaders
           );
           const allowance = allowanceResponse.data;
@@ -147,7 +147,7 @@ function MarketOrder(props) {
   
           if (allowance.allowance === "0") {
             const approveResponse = await axios.get(
-              `/api/1inch/swap/v5.2/${chainId}/approve/transaction?tokenAddress=${ethAddress}&amount=${amount}`,
+              `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/approve/transaction?tokenAddress=${ethAddress}&amount=${amount}`,
               axiosHeaders
             );
             console.log(approveResponse);
@@ -176,7 +176,7 @@ function MarketOrder(props) {
     const dst = isBuy ? tokenObject.chains[selectedChain] : ethAddress;
     const amount = isBuy ? calculateTokenAmount() : calculateTokenSellAmount();
     const txResponse = await axios.get(
-      `/api/1inch/swap/v5.2/${chainId}/swap?src=${src}&dst=${dst}&amount=${parseInt(amount)}&from=${address}&slippage=${slippage}&fee=1&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
+      `${process.env.REACT_APP_BACKEND}/api/1inch/swap/v5.2/${chainId}/swap?src=${src}&dst=${dst}&amount=${parseInt(amount)}&from=${address}&slippage=${slippage}&fee=1&referrer=${process.env.REACT_APP_ADMIN_ADDRESS}&receiver=${address}`,
       axiosHeaders
     );
     return txResponse;
