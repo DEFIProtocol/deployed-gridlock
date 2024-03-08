@@ -62,7 +62,7 @@ function Swap(props) {
   function changeAmount(e){
     setTokenOneAmount(e.target.value)
     if(e.target.value && prices){
-      setTokenTwoAmount((e.target.value * prices).toFixed(2))
+      setTokenTwoAmount((e.target.value * prices.priceRatio).toFixed(2))
     } else {
       setTokenTwoAmount(null)
     }
@@ -115,18 +115,20 @@ const fetchPrices = useCallback(async (one, two) => {
     const secondToken = await tokenData.data.coins.find((token) => token.uuid === two);
     if (firstToken && secondToken) {
       const priceRatio = firstToken.price / secondToken.price;
-      setPrices(priceRatio);
-      console.log(priceRatio);
+      setPrices({
+        priceRatio: priceRatio,
+        firstTokenPrice: firstToken.price,
+        secondTokenPrice: secondToken.price});
     } else {
       console.log('Token not found');
     }
 }, [tokenData, setPrices]);
 
+
   async function fetchDexSwap() {
     const addressOne = !tokenOne.ticker ? AllTokens.find((token) => token.symbol === tokenOne.symbol) : AllTokens.find((token) => token.symbol === tokenOne.ticker)
     const addressTwo = !tokenTwo.ticker ? AllTokens.find((token) => token.symbol === tokenTwo.symbol) : AllTokens.find((token) => token.symbol === tokenTwo.ticker)
-    const baseLine = "1";
-    const tokenAmount = Math.trunc(tokenOneAmount * (baseLine.padEnd(tokenOne.decimals, '0')))
+    const tokenAmount = tokenOneAmount * 1e+18;
     try {
       const quoteResponse = await fetchQuote(addressOne, addressTwo, tokenAmount);
       console.log(quoteResponse)
@@ -152,27 +154,27 @@ const fetchPrices = useCallback(async (one, two) => {
       content: (
         <div style={{color: "white"}}>
           <p>
-            Are you sure you want to swap {amount} {chain}  (${((amount) * cryptoDetails.price).toFixed(2)}) {quoteResponse.fromToken.symbol}?
+            Are you sure you want to swap {amount / 1e+18 } (${((amount / 1e+18) * prices.firstTokenPrice).toFixed(2)}) {quoteResponse.fromToken.symbol}?
           </p>
           <div style={{margin: "10%"}}>
             <img className= "logo" src={quoteResponse.fromToken.logoURI} alt={quoteResponse.fromToken.name} />
             <span>
               {quoteResponse.fromToken.name} ({quoteResponse.fromToken.symbol})
             </span>
-            <div>Exchange from: {amount}</div>
-            <div style={{marginLeft: "32px"}}>USD Value: {((amount) * cryptoDetails.price).toFixed(2)}</div>
+            <div>Exchange from: {amount / 1e+18}</div>
+            <div style={{marginLeft: "32px"}}>USD Value: ${((amount / 1e+18) * prices.firstTokenPrice).toFixed(2)}</div>
           </div>
           <div style={{margin: "10%"}}>
             <img className= "logo" src={quoteResponse.toToken.logoURI} alt={quoteResponse.toToken.name} />
             <span>
               {quoteResponse.toToken.name} ({quoteResponse.toToken.symbol})
             </span>
-            <div>Exchange to: {quoteResponse.toAmount / 1e+18}</div>
-            <div style={{marginLeft: "32px"}}>USD value: {(parseInt(quoteResponse.toAmount) / 1e+18)}</div>
+            <div>Exchange to: {(quoteResponse.toAmount / 1e+18).toFixed(5)}</div>
+            <div style={{marginLeft: "32px"}}>USD value: ${((parseInt(quoteResponse.toAmount) / 1e+18) * prices.secondTokenPrice).toFixed(2)}</div>
           </div>
-          <div>Gas Fee:    {quoteResponse.gas} (${((quoteResponse.gas) * cryptoDetails.price).toFixed(2)})</div>
-          <div>Transacion Fee: {(amount* ".01").toFixed(6)} (${(((amount / 1e+18)* ".01")* cryptoDetails.price).toFixed(2)})</div>
-          <div>Transacion Total: {(amount * ".01") + (quoteResponse.gas) + (amount)} (${(((amount* ".01")* cryptoDetails.price) + (quoteResponse.gas * cryptoDetails.price) + (amount * cryptoDetails.price)).toFixed(2)})</div>
+          <div>Gas Fee:    {quoteResponse.gas} {chain} (${((quoteResponse.gas / 1e+18) * cryptoDetails.price).toFixed(2)})</div>
+          <div>Transacion Fee: {((((amount / 1e+18) * prices.firstTokenPrice) * .01) / cryptoDetails.price).toFixed(6)} {chain} (${(((amount / 1e+18) * prices.firstTokenPrice) * .01).toFixed(2)})</div>
+          <div>Transacion Total: {((amount / 1e+18) + ((amount / 1e+18)* .01) + ((quoteResponse.gas / 1e+18) * (cryptoDetails.price/prices.firstTokenPrice))).toFixed(6)} (${((prices.firstTokenPrice * (amount / 1e+18) + ((amount / 1e+18)* .01) + ((quoteResponse.gas / 1e+18) * (cryptoDetails.price/prices.firstTokenPrice)))).toFixed(2)})</div>
         </div>
       ),
       onOk: async () => {

@@ -111,23 +111,23 @@ function MarketOrder(props) {
       content: (
         <div style={{color: "white"}}>
           <p>
-            Are you sure you want to {isBuy ? 'buy' : 'sell'} {parseInt(amount)/ 1e+18} {getChainLabel(selectedChain)}  (${((parseInt(amount) / 1e+18) * cryptoDetails.price).toFixed(2)}) {tokenObject.symbol}?
+            Are you sure you want to {isBuy ? 'buy' : 'sell'} {parseInt(amount)/ (10**quoteResponse.fromToken.decimals) } {getChainLabel(selectedChain)}  (${((parseInt(amount) / 10**quoteResponse.fromToken.decimals) * cryptoDetails.price).toFixed(2)}) {tokenObject.symbol}?
           </p>
           <div style={{margin: "10%"}}>
             <img className= "logo" src={quoteResponse.fromToken.logoURI} alt={quoteResponse.fromToken.name} />
             <span>
               {quoteResponse.fromToken.name} ({quoteResponse.fromToken.symbol})
             </span>
-            <div>Exchange from: {parseInt(amount)/ 1e+18}</div>
-            <div style={{marginLeft: "32px"}}>USD Value: {((parseInt(amount) / 1e+18) * cryptoDetails.price).toFixed(2)}</div>
+            <div>Exchange from: {parseInt(amount)/ 10**quoteResponse.fromToken.decimals}</div>
+            <div style={{marginLeft: "32px"}}>USD Value: {((parseInt(amount) / 10**quoteResponse.fromToken.decimals) * cryptoDetails.price).toFixed(2)}</div>
           </div>
           <div style={{margin: "10%"}}>
             <img className= "logo" src={quoteResponse.toToken.logoURI} alt={quoteResponse.toToken.name} />
             <span>
               {quoteResponse.toToken.name} ({quoteResponse.toToken.symbol})
             </span>
-            <div>Exchange to: {quoteResponse.toAmount/ 1e+18}</div>
-            <div style={{marginLeft: "32px"}}>USD value: {((parseInt(quoteResponse.toAmount) / 1e+18)* usdPrice).toFixed(2)}</div>
+            <div>Exchange to: {quoteResponse.toAmount/ 10**quoteResponse.toToken.decimals}</div>
+            <div style={{marginLeft: "32px"}}>USD value: {((parseInt(quoteResponse.toAmount) / 10**quoteResponse.toToken.decimals)* usdPrice).toFixed(2)}</div>
           </div>
           <div>Gas Fee:    {quoteResponse.gas} (${((quoteResponse.gas / 1e+18) * cryptoDetails.price).toFixed(2)})</div>
           <div>Transacion Fee: {((parseInt(amount) / 1e+18)* ".01").toFixed(6)} (${(((parseInt(amount) / 1e+18)* ".01")* cryptoDetails.price).toFixed(2)})</div>
