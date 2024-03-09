@@ -3,7 +3,7 @@ import { useParams, useLocation } from "react-router-dom";
 import { Row, Typography, Col } from "antd";
 import HTMLReactParser from 'html-react-parser';
 import "./tokenIndex.css";
-import { MarketOrder, LineChart, Loader, OrderUnavailable } from "./elements";
+import { MarketOrder, LineChart, Loader, OrderUnavailable, Transactions } from "./elements";
 import millify from "millify";
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from './services/cryptoApi';
 
@@ -102,6 +102,9 @@ function TokenDetails(props) {
         </Row>
         </Col>
       </Col>
+      <Row className = "transactions">
+        <Transactions chain={chain} symbol ={data?.data?.coin.symbol}/>
+      </Row>
     </div>
   )
 }

@@ -468,3 +468,8 @@
   text-decoration: underline;
   font-size: 1.1em
 }
+
+.transactions{
+  position: flex;
+  justify-content: center;
+}

@@ -65,3 +65,81 @@
     cursor: pointer;
   }
   
+  .table {
+    border-collapse: collapse;
+    width: 80%;
+    float: left;
+    font-size: .93m;
+    box-shadow: 0 0 20px rgba(0,0,0, 0.15);
+  }
+  .table thead tr {
+    background-color: black;
+    color: lime;
+    text-align: left;
+    border-bottom: 3px solid lime;
+}
+.table th,
+.table td {
+    border-right: 1px solid #606060;
+    border-left: 1px solid #606060;
+}
+
+
+.table tbody tr {
+  border-bottom: 1px solid black;
+  color: #F9F6EE;
+  background-color: #202020;
+}
+
+.table tbody tr:nth-of-type(even) {
+  background-color: #101010;
+}
+
+.table tbody tr:last-of-type {
+  border-bottom: 2px solid black;
+}
+.table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+.table tbody tr:hover {
+  background-color: black;
+  color: #F9F6EE; /* Adjust text color as needed */
+}
+.transactionPageButtons{
+  margin: 0px auto;
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1vh;
+}
+.pageNumbers{
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+}
+.pageNumber:hover{
+  cursor: pointer;
+}
+
+.pageInput{
+  width: 20%;
+  text-align: center;
+  background-color: #202020;
+  color: #F9F6EE;
+}
+.pageInput[type="number"]::-webkit-inner-spin-button,
+.pageInput[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.pageInput[type="number"] {
+  -moz-appearance: textfield;
+}
+.pageButtons{
+  background-color: lime;
+  color: black;
+  border: 3px solid black;
+  border-radius: .5em;
+}
+
