@@ -95,7 +95,6 @@ function Transactions(props) {
         try {
             const response = await axios.get(url);
             setCreatorsAddress(response.data.result[0].from)
-            console.log(response.data.result)
             const reversedTransactions = response.data.result.reverse(); // Reverse the array
             setTransactions(reversedTransactions);
             setLoading(false);
@@ -115,7 +114,6 @@ function Transactions(props) {
     const date = new Date(timestamp * 1000);
     return date.toLocaleString();
   };
-  console.log(creatorsAddress)
 
   if(loading) return <Loader />
   return (
@@ -186,6 +184,8 @@ function Transactions(props) {
         )}
       </span>
     ))}
+    <span className="pageNumber">...</span>
+    <span className="pageNumber" onClick={() => setCurrentPage(totalPages)}>{totalPages}</span>
   </span>
   <button
     onClick={() => setCurrentPage(currentPage + 1)}

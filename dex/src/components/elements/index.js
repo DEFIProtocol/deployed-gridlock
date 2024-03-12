@@ -5,3 +5,4 @@ export { default as Loader } from './Loader';
 export { default as useEthereum } from "./useEthereum";
 export { default as OrderUnavailable } from "./OrderUnavailable";
 export { default as Transactions } from "./Transactions";
+export { default as UpdateTokenDescription } from './UpdateTokenDescription';
