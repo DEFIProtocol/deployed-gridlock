@@ -6,43 +6,62 @@ import AllTokens from "../../AllTokens.json";
 function UpdateTokenDescription(props) {
     const { address, chain, symbol } = props;
     const [creatorAddress, setCreatorAddress] = useState();
-    const [ loading, setLoading ] = useState(false);
-    const isAdminAddress = process.env.REACT_APP_ADMIN_ADDRESS !== address
-    const isCreatorAddress = creatorAddress !== address
+    const [ hasAccess, setHasAccess ] = useState(false);
+    const isAdminAddress = process.env.REACT_APP_ADMIN_ADDRESS === address
+    const isCreatorAddress = creatorAddress === address
     const tokenObject= AllTokens.find((token) => token.symbol.toLowerCase() === symbol.toLowerCase());
  // Etherscan API endpoint
  const url = `https://api.etherscan.io/api?module=contract&action=getcontractcreation&contractaddresses=${tokenObject.chains[chain]}&apikey=${process.env.REACT_APP_ETHERSCAN_API_KEY}`;
-  console.log(isAdminAddress)
-  console.log(isCreatorAddress)
-  console.log(loading)
-
+    
  useEffect(() => {
    const fetchData = async () => {
      try {
-        try {
-            const response = await axios.get(url);
-            const responseDeconstruct = response.data.result.pop();
-            setCreatorAddress(responseDeconstruct.contractCreator);
-            setLoading(true);
-          } catch (error) {
-            console.error('Error fetching transactions:', error);
-          }
-     } catch (error) {
-       // Handle any errors
-       console.error('Error fetching transactions:', error);
-     }
-   };
-
-   fetchData();
- }, [url]);
-
- if (!loading && (isAdminAddress !== address || isCreatorAddress !== address)) {
-  console.log()
-  return null;
-}
+       try {
+         const response = await axios.get(url);
+         const responseDeconstruct = response.data.result.pop();
+         setCreatorAddress(responseDeconstruct.contractCreator);
+        } catch (error) {
+          console.error('Error fetching transactions:', error);
+        }
+      } catch (error) {
+        // Handle any errors
+        console.error('Error fetching transactions:', error);
+      }
+    };
+    
+    fetchData();
+    setHasAccess(isAdminAddress === true || isCreatorAddress === true)
+  }, [url, isAdminAddress, isCreatorAddress]);
+ 
+ if (hasAccess) {
   return (
-    <div>UpdateTokenDescription</div>
-  )
+    <div
+    style={{
+      position: 'sticky',
+      top: '10vh',
+      marginLeft: "57vw",
+      background: 'transparent', // Transparent background for the div
+      zIndex: 100,
+    }}
+  >
+    <button
+      style={{
+        background: 'lime', // Button background color
+        fontSize: '2em',
+        borderRadius: '.5em',
+        border: '3px solid black',
+        marginBottom: '3vh',
+      }}
+    >
+      UpdateTokenDescription
+    </button>
+  </div>
+  
+  );
 }
+
+return null;
+}
+
 
 export default UpdateTokenDescription
