@@ -20,8 +20,9 @@ function TokenDetails(props) {
   const [orderType, setOrderType] =useState("market");
   const cryptoDetails = data?.data?.coin
 
+  console.log(name)
     if(isFetching) return <Loader />;
-    console.log(name);
+    
 
     const time = ['7d', '30d', '3m', '1y', '3y', '5y'];
     
@@ -31,7 +32,7 @@ function TokenDetails(props) {
 
   return (
     <div className="tokenPage">
-      <UpdateTokenDescription symbol={data?.data?.coin.symbol} address={address} chain={chain} />
+      <UpdateTokenDescription cryptoDetails={cryptoDetails} address={address} chain={chain} />
       <Row className="coin-stats-card">
       <Title level={2} className="header-item">
         <img src={data?.data?.coin?.iconUrl} className="logo" alt="no logo" />

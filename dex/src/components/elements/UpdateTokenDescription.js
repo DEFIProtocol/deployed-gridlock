@@ -1,18 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import AllTokens from "../../AllTokens.json";
+import { TokenBlockChainDesc } from "./";
     //https://api.etherscan.io/api?module=contract&action=getcontractcreation&contractaddresses=0x495f947276749Ce646f68AC8c248420045cb7b5e&apikey=YourApiKeyToken
 
 function UpdateTokenDescription(props) {
-    const { address, chain, symbol } = props;
+    const { address, chain, cryptoDetails } = props;
+    const [showModal, setShowModal] = useState(false);
     const [creatorAddress, setCreatorAddress] = useState();
     const [ hasAccess, setHasAccess ] = useState(false);
     const isAdminAddress = process.env.REACT_APP_ADMIN_ADDRESS === address
     const isCreatorAddress = creatorAddress === address
-    const tokenObject= AllTokens.find((token) => token.symbol.toLowerCase() === symbol.toLowerCase());
+    const tokenObject= AllTokens.find((token) => token.symbol.toLowerCase() === cryptoDetails.symbol.toLowerCase());
  // Etherscan API endpoint
  const url = `https://api.etherscan.io/api?module=contract&action=getcontractcreation&contractaddresses=${tokenObject.chains[chain]}&apikey=${process.env.REACT_APP_ETHERSCAN_API_KEY}`;
-    
+    console.log(tokenObject)
  useEffect(() => {
    const fetchData = async () => {
      try {
@@ -32,6 +34,14 @@ function UpdateTokenDescription(props) {
     fetchData();
     setHasAccess(isAdminAddress === true || isCreatorAddress === true)
   }, [url, isAdminAddress, isCreatorAddress]);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+  
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
  
  if (hasAccess) {
   return (
@@ -52,9 +62,18 @@ function UpdateTokenDescription(props) {
         border: '3px solid black',
         marginBottom: '3vh',
       }}
+      onClick={handleOpenModal}
     >
       UpdateTokenDescription
     </button>
+    {showModal && (
+        <TokenBlockChainDesc
+          cryptoDetails={cryptoDetails} 
+          tokenObject={tokenObject}
+          onClose={handleCloseModal}
+          creatorsAddress = {creatorAddress}
+        />
+      )}
   </div>
   
   );
