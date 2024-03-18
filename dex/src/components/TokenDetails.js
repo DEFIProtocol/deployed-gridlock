@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from "react-router-dom";
 import { Row, Typography, Col } from "antd";
 import HTMLReactParser from 'html-react-parser';
@@ -6,6 +6,7 @@ import "./tokenIndex.css";
 import { MarketOrder, LineChart, Loader, OrderUnavailable, Transactions, UpdateTokenDescription } from "./elements";
 import millify from "millify";
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from './services/cryptoApi';
+import axios from 'axios';
 
 const {Title} = Typography;
 
@@ -15,21 +16,36 @@ function TokenDetails(props) {
   const chain = new URLSearchParams(location.search).get('chain');
   const { name, uuid } = useParams();
   const [timeperiod, setTimeperiod] = useState("7d");
+  const [tokenData, setTokenData]= useState();
   const { data, isFetching } = useGetCryptoDetailsQuery(uuid)
   const { data: coinHistory } = useGetCryptoHistoryQuery({coinId: uuid, timePeriod: timeperiod});
   const [orderType, setOrderType] =useState("market");
   const cryptoDetails = data?.data?.coin
 
   console.log(name)
-    if(isFetching) return <Loader />;
-    
+  console.log(tokenData)
+  
 
     const time = ['7d', '30d', '3m', '1y', '3y', '5y'];
     
     const handleTimePeriodClick = (value) => {
       setTimeperiod(value);
     };
-
+    
+    useEffect(()=> {
+      const fetchTokenData = async () => {
+        try {
+          if (!cryptoDetails) return; // Exit early if cryptoDetails is undefined
+          const response = await axios.get(`${process.env.REACT_APP_BACKEND}/api/tokens/${cryptoDetails.uuid}`);
+          setTokenData(response.data);
+        } catch (error) {
+          console.error('Error fetching token data:', error);
+        }
+      };
+      fetchTokenData()
+    },[cryptoDetails]);
+    
+    if(isFetching) return <Loader />;
   return (
     <div className="tokenPage">
       <UpdateTokenDescription cryptoDetails={cryptoDetails} address={address} chain={chain} />

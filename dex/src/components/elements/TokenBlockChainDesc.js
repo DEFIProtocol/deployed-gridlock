@@ -24,13 +24,13 @@ const save = async () => {
       Announcements: cryptoInfo.Announcements,
       adminAddresses: cryptoInfo.adminAddress,
       description: cryptoInfo.description,
-      maxSupply: cryptoInfo.maxSupply,
-      circulatingSupply: cryptoInfo.circulatingSupply,
+      maxSupply: cryptoInfo.supply.max,
+      circulatingSupply: cryptoInfo.supply.circulating,
       website: cryptoInfo.website,
       name: cryptoInfo.name,
       symbol: cryptoInfo.symbol,
       iconUrl: cryptoInfo.iconUrl,
-      type: cryptoInfo.type,
+      type: cryptoInfo.tokenType,
       secRegistered: cryptoInfo.secRegistered,
       votingEnabled: cryptoInfo.votingEnabled
     }, {
@@ -40,9 +40,9 @@ const save = async () => {
     });
   } catch (error) {
     console.error('Error adding/updating token:', error);
-  }
+  };
 };
-
+console.log(cryptoInfo)
   // Render your modal content here (e.g., token details)
   return (
     <div className="modalExpandContainer">
@@ -52,7 +52,7 @@ const save = async () => {
         <input
           className="inputBox"
           placeholder={!cryptoInfo.tokenType ? "Commodity, Company, Utility... etc." : ""}
-          value={cryptoInfo.tokenType}
+          value={!cryptoInfo.tokenType ? null : cryptoInfo.tokenTyp}
           onChange={(e) => setCryptoInfo({ ...cryptoInfo, tokenType: e.target.value })}
         />
       </label>
@@ -113,7 +113,7 @@ const save = async () => {
   <div className="supply-container">
     <label>
       Max Supply: <input
-        value={cryptoInfo.supply.max}
+        value={!cryptoInfo.supply.max ? "No Max Supply" : cryptoInfo.supply.max}
         onChange={(e) => {
           const updatedCryptoInfo = { ...cryptoInfo };
           updatedCryptoInfo.supply.max = e.target.value;
@@ -133,6 +133,40 @@ const save = async () => {
         className="inputBox"
         />
     </label>
+    <div class="cl-toggle-switch">
+</div>
+  </div>  
+    <div className="supply-container">
+  <label>
+      Website: <input className="inputBox" value={cryptoInfo.websiteUrl} onChange={(e) => {
+          const updatedCryptoInfo = { ...cryptoInfo };
+          updatedCryptoInfo.supply.circulating = e.target.value;
+          setCryptoInfo(updatedCryptoInfo);
+        }} />
+  </label>
+  <label>
+  SEC Registration:
+  <select
+    value={cryptoInfo.secRegistered || "No"}
+    className="inputBox"
+    onChange={(e) => setCryptoInfo({ ...cryptoInfo, secRegistered: e.target.value })}
+  >
+    <option value="No">No</option>
+    <option value="Pending">Pending</option>
+    <option value="Approved">Approved</option>
+  </select>
+</label>
+
+<label className="cl-switch">
+  Enable Voting:
+  <input
+    type="checkbox"
+    checked={cryptoInfo.votingEnabled}
+    onChange={(e) => setCryptoInfo({ ...cryptoInfo, votingEnabled: e.target.checked })}
+  />
+  <span></span>
+</label>
+
   </div>
   <div className="textarea-container">
     <textarea
@@ -144,7 +178,7 @@ const save = async () => {
       />
   </div>
   <div className="button-container">
-    <button className="button" onClick={() => save()}>Save to gridLock server</button>
+    <button className="button" onClick={() => save().then(onClose)}>Save to gridLock server</button>
     <button className="button" onClick={() => alert("Smart Contract not setup yet!")}>Save to Blockchain</button>
     <button className="button" onClick={onClose}>Close</button>
   </div>
