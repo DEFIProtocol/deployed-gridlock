@@ -14,7 +14,7 @@
   margin-top: 2%;
 }
 .chart {
-  background-color: #202020!important;
+  background-color: #101010!important;
   width: 100% !important;
   height: 80vh;
   color: lime !important;
@@ -25,7 +25,7 @@
   width: 27%;
 }
 .card-order{
-  background-color: #202020 !important;
+  background-color: #101010 !important;
   width: 100% !important;
   color: lime !important;
   border-radius: .5em;
@@ -45,7 +45,7 @@
   color: white !important;
 }
 .website-container {
-  background-color: #202020 !important;
+  background-color: #101010 !important;
   width: 100% !important;
   color: lime !important;
   border-radius: .5em;
@@ -68,7 +68,7 @@
   padding: 0px 5% 5% 0%;
 }
 .stats-card{
-  background-color: #202020 !important;
+  background-color: #101010 !important;
   width: 100% !important;
   border-radius: .5em;
   margin: 5px;

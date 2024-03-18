@@ -1,75 +1,156 @@
 import React, { useState } from 'react';
-const style ={
-    blah: {
-        whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis"
-    },
-}
+import "./order.css";
+import axios from 'axios';
 
 const TokenDetailsModal = ({ onClose, tokenObject, creatorsAddress, cryptoDetails }) => {
-    const ethereumAddress = tokenObject?.chains?.Ethereum;
-const avalancheAddress = tokenObject?.chains?.Avalanche;
-const fantomAddress = tokenObject?.chains?.Fantom;
-const polygonAddress = tokenObject?.chains?.Polygon;
-const klaytnAddress = tokenObject?.chains?.Klaytn;
-const binanceAddress = tokenObject?.chains?.Binance;
-const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [ cryptoInfo, setCryptoInfo ] = useState(cryptoDetails);
+  const ethereumAddress = tokenObject?.chains?.Ethereum;
+  const avalancheAddress = tokenObject?.chains?.Avalanche;
+  const fantomAddress = tokenObject?.chains?.Fantom;
+  const polygonAddress = tokenObject?.chains?.Polygon;
+  const klaytnAddress = tokenObject?.chains?.Klaytn;
+  const binanceAddress = tokenObject?.chains?.Binance;
 
 const handleEditClick = () => {
   setIsEditing(!isEditing);
 };
-console.log(cryptoDetails)
+const save = async () => {
+  try {
+    await axios.post(`${process.env.REACT_APP_BACKEND}/api/tokens`, {
+      uuid: cryptoInfo.uuid,
+      chains: cryptoInfo.chains,
+      creatorAddress: cryptoInfo.creatorAddress,
+      Announcements: cryptoInfo.Announcements,
+      adminAddresses: cryptoInfo.adminAddress,
+      description: cryptoInfo.description,
+      maxSupply: cryptoInfo.maxSupply,
+      circulatingSupply: cryptoInfo.circulatingSupply,
+      website: cryptoInfo.website,
+      name: cryptoInfo.name,
+      symbol: cryptoInfo.symbol,
+      iconUrl: cryptoInfo.iconUrl,
+      type: cryptoInfo.type,
+      secRegistered: cryptoInfo.secRegistered,
+      votingEnabled: cryptoInfo.votingEnabled
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  } catch (error) {
+    console.error('Error adding/updating token:', error);
+  }
+};
+
   // Render your modal content here (e.g., token details)
   return (
-    <div
-      style={{
-        position: 'fixed',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        background: '#101010', // Set your desired background color
-        padding: '20px',
-        borderRadius: '8px',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-      }}
-    >
-    <div>
-        <input placeholder={cryptoDetails.name} readOnly={!isEditing} />
-        <input placeholder={cryptoDetails.symbol} />
-        <input placeholder={cryptoDetails.iconUrl} />
-        <span>{cryptoDetails.uuid}</span>
+    <div className="modalExpandContainer">
+    <div className="modal-container">
+      <label>
+        Token Type:
+        <input
+          className="inputBox"
+          placeholder={!cryptoInfo.tokenType ? "Commodity, Company, Utility... etc." : ""}
+          value={cryptoInfo.tokenType}
+          onChange={(e) => setCryptoInfo({ ...cryptoInfo, tokenType: e.target.value })}
+        />
+      </label>
+  <div className="modal-header">
+    <label>
+      Name:
+      <input
+        value={cryptoInfo.name}
+        onChange={(e) =>
+          setCryptoInfo({ ...cryptoInfo, name: e.target.value })
+        }
+        readOnly={!isEditing}
+        className="inputBox"
+      />
+    </label>
+    <label>
+      Symbol:
+      <input
+        value={cryptoInfo.symbol}
+        onChange={(e) =>
+          setCryptoInfo({ ...cryptoInfo, symbol: e.target.value })
+        }
+        readOnly={!isEditing}
+        className="inputBox"
+      />
+    </label>
+    <label>
+      Icon URL:
+      <input
+        value={cryptoInfo.iconUrl}
+        onChange={(e) =>
+          setCryptoInfo({ ...cryptoInfo, iconUrl: e.target.value })
+        }
+        readOnly={!isEditing}
+        className="inputBox"
+      />
+    </label>
+    <label className="uuid">UUID:<span>{cryptoInfo.uuid}</span></label>
+    <button onClick={handleEditClick} className="button">Edit</button>
+  </div>
+  <div className="modal-body">
+    <div className="address-container">
+      {ethereumAddress && <p className="contractAddresses">Ethereum address: {ethereumAddress}</p>}
+      {avalancheAddress && <p className="contractAddresses">Avalanche address: {avalancheAddress}</p>}
+      {fantomAddress && <p className="contractAddresses">Fantom address: {fantomAddress}</p>}
+      {polygonAddress && <p className="contractAddresses">Polygon address: {polygonAddress}</p>}
+      {klaytnAddress && <p className="contractAddresses">Klaytn address: {klaytnAddress}</p>}
+      {binanceAddress && <p className="contractAddresses">Binance address: {binanceAddress}</p>}
     </div>
-    <button onClick={handleEditClick}>Edit</button>
-      <div style={{display: "flex", alignItems: "center"}}>
-        <div style={{borderRadius: ".5em", border: "1px solid #F9F6EE", padding: "2vw", marginRight: '1rem',
-      display: 'flex', // Add flex display to align items horizontally
-      flexDirection: 'column'}}>
-          {ethereumAddress && <p style={style.blah}>Ethereum address: {ethereumAddress}</p>}
-          {avalancheAddress && <p style={style.blah}>Avalanche address: {avalancheAddress}</p>}
-          {fantomAddress && <p style={style.blah}>Fantom address: {fantomAddress}</p>}
-          {polygonAddress && <p style={style.blah}>Polygon address: {polygonAddress}</p>}
-          {klaytnAddress && <p style={style.blah}>Klaytn address: {klaytnAddress}</p>}
-          {binanceAddress && <p style={style.blah}>Binance address: {binanceAddress}</p>}
-        </div>
-        <div style={{padding: "2vw"}}>
-        <p style={style.blah}>Creators Address: {creatorsAddress}</p>
-            <div>
-            <input placeholder="New Admin Address" type="text" />
-            <button style={{color: "black", backgroundColor: "lime", border: "2px solid black", borderRadius: ".5em"}}>Add Admin</button>
-            </div>
-        </div>
-      </div>
+    <div className="admin-container">
+      <p className="contractAddresses">Creators Address: {creatorsAddress}</p>
       <div>
-        <span>Max Supply: {cryptoDetails.supply.max}</span>
-        <span>Circulating Supply: {cryptoDetails.supply.circulating}</span>
+        <input placeholder="New Admin Address" type="text" className="inputBox"/>
+        <button className="button">Add Admin</button>
       </div>
-      <div>
-        <span>Website: {cryptoDetails.websiteUrl}</span>
-      </div>
-      <div>
-        <textarea style={{width: "80%", height: "15vh", resize: "vertical"}} placeholder={cryptoDetails.description} />
-      </div>
-    <button onClick={onClose}>Close</button>
     </div>
+  </div>
+  <div className="supply-container">
+    <label>
+      Max Supply: <input
+        value={cryptoInfo.supply.max}
+        onChange={(e) => {
+          const updatedCryptoInfo = { ...cryptoInfo };
+          updatedCryptoInfo.supply.max = e.target.value;
+          setCryptoInfo(updatedCryptoInfo);
+        }}
+        className="inputBox"
+        />
+    </label>
+    <label>
+      Circulating Supply: <input
+        value={cryptoInfo.supply.circulating}
+        onChange={(e) => {
+          const updatedCryptoInfo = { ...cryptoInfo };
+          updatedCryptoInfo.supply.circulating = e.target.value;
+          setCryptoInfo(updatedCryptoInfo);
+        }}
+        className="inputBox"
+        />
+    </label>
+  </div>
+  <div className="textarea-container">
+    <textarea
+      className="textArea"
+      value={cryptoInfo.description}
+      onChange={(e) =>
+        setCryptoInfo({ ...cryptoInfo, description: e.target.value })
+      }
+      />
+  </div>
+  <div className="button-container">
+    <button className="button" onClick={() => save()}>Save to gridLock server</button>
+    <button className="button" onClick={() => alert("Smart Contract not setup yet!")}>Save to Blockchain</button>
+    <button className="button" onClick={onClose}>Close</button>
+  </div>
+</div>
+</div>
+
   );
 };
 

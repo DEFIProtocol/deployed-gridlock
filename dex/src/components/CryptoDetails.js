@@ -31,7 +31,7 @@ function CryptoDetails(props) {
         {data?.data?.coin.name} ({data?.data?.coin.symbol})
       </Title>
         <div className="header-item">USD Price <br />${(cryptoDetails?.price) && millify(cryptoDetails?.price)}</div>
-        <div className="header-item">Max Supply <br />{cryptoDetails?.supply?.total && millify(cryptoDetails?.supply?.total)} {data?.data?.coin.symbol} </div>
+        {!cryptoDetails.supply.max ? null : <div className="header-item">Max Supply <br />{cryptoDetails?.supply?.max && millify(cryptoDetails?.supply?.total)} {data?.data?.coin.symbol} </div>}
         <div className ="header-item">Circulating Supply <br />{cryptoDetails?.supply?.circulating && millify(cryptoDetails?.supply?.circulating)} {data?.data?.coin.symbol} </div>
         <div className="header-item">Market Cap <br />{cryptoDetails?.marketCap && millify(cryptoDetails?.marketCap)}</div>
       </Row>

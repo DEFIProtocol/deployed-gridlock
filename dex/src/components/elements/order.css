@@ -142,4 +142,104 @@
   border: 3px solid black;
   border-radius: .5em;
 }
+/* TokenBlockChainDesc */
+.modalExpandContainer{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+}
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #101010;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #f9f6ee;
+  max-height: 80vh; 
+  overflow-y: auto;
+  z-index: 1001;
+}
 
+.modal-header {
+  display: flex;
+  justify-content: space-evenly;
+  border-top: 2px solid lime;
+  border-bottom: 2px dashed lime;
+}
+
+.modal-body {
+  display: flex;
+  align-items: center;
+}
+
+.address-container {
+  border-radius: .5em;
+  border: 1px solid #F9F6EE;
+  padding: 2vw;
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  color: lime;
+}
+
+.admin-container {
+  padding: 2vw;
+}
+
+.admin-container input {
+  margin-bottom: 0.5em;
+}
+
+.supply-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1vw;
+  border-bottom: 2px solid lime;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1vw;
+}
+
+.textarea-container {
+  padding: 2vw;
+}
+
+.textArea{
+  width: 80%;
+  height: 15vh;
+  resize: vertical;
+  background-color: #303030;
+  color: #F9F6EE;
+}
+.contractAddresses{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: lime;
+}
+.button{
+  border-radius: .5em;
+  background-color: lime;
+  border: 3px solid black;
+  font: bold;
+  font-size: 1.1em;
+}
+.inputBox{
+  background-color: #303030;
+  color:#F9F6EE;
+  margin: 1vw;
+}
+.uuid{
+  color:#F9F6EE;
+  margin: 1vw;
+}

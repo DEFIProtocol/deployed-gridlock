@@ -88,7 +88,50 @@ app.get('/api/data', async (req, res) => {
     res.status(500).json({ error: 'Failed to get data from MongoDB' });
   }
 });
+// For TokenDetails
+app.post('/api/tokens', async (req, res) => {
+  try {
+    const { uuid, chains, creatorAddress, Announcements, adminAddresses, description, maxSupply, circulatingSupply, website, name, symbol, iconUrl, type, secRegistered, votingEnabled } = req.body;
+    const db = client.db(dbName);
+    const existingToken = await db.collection('tokens').findOne({ creatorAddress });
 
+    if (existingToken) {
+      await db.collection('tokens').updateOne({ creatorAddress }, {
+        $set: {
+          uuid, chains, creatorAddress, Announcements, adminAddresses, description, maxSupply, circulatingSupply, website, name, symbol, iconUrl, type, secRegistered, votingEnabled
+        }
+      });
+    } else {
+      await db.collection('tokens').insertOne({
+        uuid, chains, creatorAddress, Announcements, adminAddresses, description, maxSupply, circulatingSupply, website, name, symbol, iconUrl, type, secRegistered, votingEnabled
+      });
+    }
+
+    res.status(200).json({ message: 'Token added/updated successfully' });
+  } catch (error) {
+    console.error('Error adding/updating token:', error);
+    res.status(500).json({ error: 'An error occurred while adding/updating the token.' });
+  }
+});
+
+// API route to get a token from the tokens collection by contractAddress
+app.get('/api/tokens/:contractAddress', async (req, res) => {
+  try {
+    const contractAddress = req.params.contractAddress;
+    const db = client.db(dbName);
+    const token = await db.collection('tokens').findOne({ contractAddress });
+
+    if (!token) {
+      res.status(404).json({ error: 'Token not found' });
+      return;
+    }
+
+    res.status(200).json(token);
+  } catch (error) {
+    console.error('Error getting token:', error);
+    res.status(500).json({ error: 'An error occurred while getting the token.' });
+  }
+});
 //Proxy Server for market buy and sell
 const axiosHeaders = { // Define the required headers here
   headers: {
