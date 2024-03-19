@@ -24,8 +24,8 @@ const save = async () => {
       Announcements: cryptoInfo.Announcements,
       adminAddresses: cryptoInfo.adminAddress,
       description: cryptoInfo.description,
-      maxSupply: cryptoInfo.supply.max,
-      circulatingSupply: cryptoInfo.supply.circulating,
+      maxSupply: cryptoInfo.maxSupply,
+      circulatingSupply: cryptoInfo.circulatingSupply,
       website: cryptoInfo.website,
       name: cryptoInfo.name,
       symbol: cryptoInfo.symbol,
@@ -52,7 +52,7 @@ console.log(cryptoInfo)
         <input
           className="inputBox"
           placeholder={!cryptoInfo.tokenType ? "Commodity, Company, Utility... etc." : ""}
-          value={!cryptoInfo.tokenType ? null : cryptoInfo.tokenTyp}
+          value={!cryptoInfo.tokenType ? "" : cryptoInfo.tokenTyp}
           onChange={(e) => setCryptoInfo({ ...cryptoInfo, tokenType: e.target.value })}
         />
       </label>
@@ -113,22 +113,18 @@ console.log(cryptoInfo)
   <div className="supply-container">
     <label>
       Max Supply: <input
-        value={!cryptoInfo.supply.max ? "No Max Supply" : cryptoInfo.supply.max}
+        value={!cryptoInfo.maxSupply ? "No Max Supply" : cryptoInfo.maxSupply}
         onChange={(e) => {
-          const updatedCryptoInfo = { ...cryptoInfo };
-          updatedCryptoInfo.supply.max = e.target.value;
-          setCryptoInfo(updatedCryptoInfo);
+          setCryptoInfo({...cryptoInfo, maxSupply: e.target.checked});
         }}
         className="inputBox"
         />
     </label>
     <label>
       Circulating Supply: <input
-        value={cryptoInfo.supply.circulating}
+        value={cryptoInfo.circulatingSupply}
         onChange={(e) => {
-          const updatedCryptoInfo = { ...cryptoInfo };
-          updatedCryptoInfo.supply.circulating = e.target.value;
-          setCryptoInfo(updatedCryptoInfo);
+          setCryptoInfo({...cryptoInfo, circulatingSupply: e.target.checked});
         }}
         className="inputBox"
         />
@@ -139,9 +135,7 @@ console.log(cryptoInfo)
     <div className="supply-container">
   <label>
       Website: <input className="inputBox" value={cryptoInfo.websiteUrl} onChange={(e) => {
-          const updatedCryptoInfo = { ...cryptoInfo };
-          updatedCryptoInfo.supply.circulating = e.target.value;
-          setCryptoInfo(updatedCryptoInfo);
+          setCryptoInfo({...cryptoInfo, website: e.target.checked});
         }} />
   </label>
   <label>

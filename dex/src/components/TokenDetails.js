@@ -16,7 +16,7 @@ function TokenDetails(props) {
   const chain = new URLSearchParams(location.search).get('chain');
   const { name, uuid } = useParams();
   const [timeperiod, setTimeperiod] = useState("7d");
-  const [tokenData, setTokenData]= useState();
+  const [tokenData, setTokenData]= useState(null);
   const { data, isFetching } = useGetCryptoDetailsQuery(uuid)
   const { data: coinHistory } = useGetCryptoHistoryQuery({coinId: uuid, timePeriod: timeperiod});
   const [orderType, setOrderType] =useState("market");
@@ -35,35 +35,68 @@ function TokenDetails(props) {
     useEffect(()=> {
       const fetchTokenData = async () => {
         try {
-          if (!cryptoDetails) return; // Exit early if cryptoDetails is undefined
+          if (!cryptoDetails) return;
           const response = await axios.get(`${process.env.REACT_APP_BACKEND}/api/tokens/${cryptoDetails.uuid}`);
-          setTokenData(response.data);
+          if (!response) {
+            setTokenData({
+              uuid: uuid,
+              chains: null,
+              creatorAddress: null,
+              Announcements: null,
+              adminAddresses: null,
+              description: cryptoDetails.description,
+              maxSupply: cryptoDetails.supply.max,
+              circulatingSupply: cryptoDetails.supply.circulating,
+              website: cryptoDetails.websiteUrl,
+              name: cryptoDetails.name,
+              symbol: cryptoDetails.symbol,
+              iconUrl: cryptoDetails.iconUrl,
+              type: null,
+              secRegistered: null,
+              votingEnabled: null
+            })
+          } else {
+            setTokenData(response.data);
+          }
         } catch (error) {
           console.error('Error fetching token data:', error);
         }
       };
+      
       fetchTokenData()
-    },[cryptoDetails]);
-    
-    if(isFetching) return <Loader />;
+    },[cryptoDetails, uuid]);
+
+    if(isFetching || !tokenData) return <Loader />;
   return (
     <div className="tokenPage">
-      <UpdateTokenDescription cryptoDetails={cryptoDetails} address={address} chain={chain} />
+      <UpdateTokenDescription cryptoDetails={tokenData} address={address} chain={chain} />
       <Row className="coin-stats-card">
       <Title level={2} className="header-item">
-        <img src={data?.data?.coin?.iconUrl} className="logo" alt="no logo" />
-        {data?.data?.coin.name} ({data?.data?.coin.symbol})
+        <img src={!tokenData.iconUrl ? cryptoDetails.iconUrl : tokenData.iconUrl} className="logo" alt="no logo" />
+        {!tokenData.name ? cryptoDetails.name : tokenData.name} ({!tokenData.symbol ? cryptoDetails.symbol : tokenData.symbol})
       </Title>
         <div className="header-item">USD Price <br />${(cryptoDetails?.price) && millify(cryptoDetails?.price)}</div>
-        {!cryptoDetails?.supply.max ? null :<div className="header-item">Max Supply <br />{cryptoDetails?.supply?.max && millify(cryptoDetails?.supply?.total)} {data?.data?.coin.symbol} </div>}
-        <div className ="header-item">Circulating Supply <br />{cryptoDetails?.supply?.circulating && millify(cryptoDetails?.supply?.circulating)} {data?.data?.coin.symbol} </div>
+        {(!tokenData.maxSupply && !cryptoDetails?.supply.max) ? null : (
+        <div className="header-item">
+          Max Supply <br />
+          {tokenData.maxSupply || cryptoDetails?.supply?.max
+            ? millify(tokenData.maxSupply || cryptoDetails?.supply?.max)
+            : 'N/A'} {tokenData.symbol || cryptoDetails.symbol}
+        </div>
+        )}
+        <div className="header-item">
+          Circulating Supply <br />
+          {tokenData.circulatingSupply || cryptoDetails?.supply?.circulating
+            ? millify(tokenData.circulatingSupply || cryptoDetails?.supply?.circulating)
+            : 'N/A'} {tokenData.symbol || cryptoDetails.symbol}
+        </div>
         <div className="header-item">Market Cap <br />{cryptoDetails?.marketCap && millify(cryptoDetails?.marketCap)}</div>
       </Row>
       
       <Col className="chart-order">
         <Col className="left-column">
           <Row className="chart">
-          <LineChart coinHistory={coinHistory} currentPrice={millify(cryptoDetails.price)} coinName={cryptoDetails.name}/>
+          <LineChart coinHistory={coinHistory} currentPrice={millify(cryptoDetails.price)} coinName={!tokenData.name ? cryptoDetails.name : tokenData.name}/>
           <div className="time-period-buttons">
               {time.map((date) => (
                 <div
@@ -100,28 +133,28 @@ function TokenDetails(props) {
               Market Order
             </div>
           </div>
-          {orderType === 'limit' ? <OrderUnavailable /> /*<LimitOrder uuid={uuid} />*/ : <MarketOrder symbol ={data?.data?.coin.symbol} chain = {chain} uuid={uuid} address={address} usdPrice={cryptoDetails?.price} tokenName={cryptoDetails.name} />}
+          {orderType === 'limit' ? <OrderUnavailable /> /*<LimitOrder uuid={uuid} />*/ : <MarketOrder symbol ={!tokenData.symbol ? cryptoDetails.symbol : tokenData.symbol} chain = {chain} uuid={uuid} address={address} usdPrice={cryptoDetails?.price} tokenName={!tokenData.name ? cryptoDetails.name : tokenData.name} />}
         </Row>
         <Row className="website-container">
           <Title level={2} className="website-header">
             Description
           </Title>
           <div className="description">
-            {HTMLReactParser(cryptoDetails.description)}
+            {HTMLReactParser(!tokenData.description ? cryptoDetails.description : tokenData.description)}
           </div>
         </Row>
         <Row className="website-container">
           <Title level={2} className="website-header">
             Website
           </Title>
-          <a href={cryptoDetails?.websiteUrl} className="website" >
-            {cryptoDetails?.websiteUrl}
+          <a href={!tokenData.website ? cryptoDetails?.websiteUrl : tokenData.website} className="website" >
+            {!tokenData.website ? cryptoDetails?.websiteUrl : tokenData.website}
           </a>
         </Row>
         </Col>
       </Col>
       <Row className = "transactions">
-        <Transactions chain={chain} symbol ={data?.data?.coin.symbol}/>
+        <Transactions chain={chain} symbol ={!tokenData.symbol ? cryptoDetails.symbol : tokenData.symbol} />
       </Row>
     </div>
   )

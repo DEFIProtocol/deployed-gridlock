@@ -19,9 +19,13 @@ function UpdateTokenDescription(props) {
    const fetchData = async () => {
      try {
        try {
-         const response = await axios.get(url);
-         const responseDeconstruct = response.data.result.pop();
-         setCreatorAddress(responseDeconstruct.contractCreator);
+        if(!cryptoDetails.creatorAddress){
+          const response = await axios.get(url);
+          const responseDeconstruct = response.data.result.pop();
+          setCreatorAddress(responseDeconstruct.contractCreator);
+        } else {
+          setCreatorAddress(cryptoDetails.creatorAddress)
+        }
         } catch (error) {
           console.error('Error fetching transactions:', error);
         }
@@ -33,7 +37,7 @@ function UpdateTokenDescription(props) {
     
     fetchData();
     setHasAccess(isAdminAddress === true || isCreatorAddress === true)
-  }, [url, isAdminAddress, isCreatorAddress]);
+  }, [url, isAdminAddress, isCreatorAddress, cryptoDetails]);
 
   const handleOpenModal = () => {
     setShowModal(true);
