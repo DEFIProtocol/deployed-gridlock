@@ -35,7 +35,27 @@ function TokenDetails(props) {
     useEffect(()=> {
       const fetchTokenData = async () => {
         try {
-          if (!cryptoDetails) return;
+          if (!tokenData) {
+            setTokenData({
+              uuid: uuid,
+              chains: null,
+              creatorAddress: null,
+              Announcements: null,
+              adminAddresses: null,
+              description: cryptoDetails.description,
+              maxSupply: cryptoDetails.supply.max,
+              circulatingSupply: cryptoDetails.supply.circulating,
+              website: cryptoDetails.websiteUrl,
+              name: cryptoDetails.name,
+              symbol: cryptoDetails.symbol,
+              iconUrl: cryptoDetails.iconUrl,
+              type: null,
+              secRegistered: null,
+              votingEnabled: null
+            });
+            return;
+          }
+      
           const response = await axios.get(`${process.env.REACT_APP_BACKEND}/api/tokens/${cryptoDetails.uuid}`);
           if (!response) {
             setTokenData({
@@ -54,7 +74,7 @@ function TokenDetails(props) {
               type: null,
               secRegistered: null,
               votingEnabled: null
-            })
+            });
           } else {
             setTokenData(response.data);
           }
@@ -62,9 +82,8 @@ function TokenDetails(props) {
           console.error('Error fetching token data:', error);
         }
       };
-      
       fetchTokenData()
-    },[cryptoDetails, uuid]);
+    },[cryptoDetails, uuid, tokenData]);
 
     if(isFetching || !tokenData) return <Loader />;
   return (
