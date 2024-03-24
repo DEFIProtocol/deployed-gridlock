@@ -177,8 +177,12 @@
 .modal-body {
   display: flex;
   align-items: center;
+  flex-direction: column;
 }
-
+.container-row {
+  display: flex;
+  justify-content: space-between; /* Adjust as needed */
+}
 .address-container {
   border-radius: .5em;
   border: 1px solid #F9F6EE;
