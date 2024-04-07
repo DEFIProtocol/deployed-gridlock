@@ -24,7 +24,7 @@ header {
 
 }
 .header-page{
-  width: 80%;
+  width: 90%;
 }
 .leftH {
   display: flex;
@@ -117,6 +117,9 @@ header {
   }
 }
 
+.header-page{
+  width: 85%;
+}
 .link {
   text-decoration: none;
   color: white;

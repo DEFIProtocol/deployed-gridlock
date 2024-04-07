@@ -25,7 +25,7 @@ const save = async () => {
       chains: cryptoInfo.chains,
       creatorAddress: cryptoInfo.creatorAddress,
       Announcements: cryptoInfo.Announcements,
-      adminAddresses: cryptoInfo.adminAddress,
+      adminAddresses: admins,
       description: cryptoInfo.description,
       maxSupply: cryptoInfo.maxSupply,
       circulatingSupply: cryptoInfo.circulatingSupply,

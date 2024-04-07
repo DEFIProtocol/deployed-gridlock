@@ -51,34 +51,67 @@ function UpdateTokenDescription(props) {
   return (
     <div
     style={{
+      display: 'flex',
+      justifyContent: 'center', // Center the buttons horizontally
       position: 'sticky',
       top: '10vh',
       marginLeft: "57vw",
       background: 'transparent', // Transparent background for the div
       zIndex: 100,
     }}
-  >
-    <button
-      style={{
-        background: 'lime', // Button background color
-        fontSize: '2em',
-        borderRadius: '.5em',
-        border: '3px solid black',
-        marginBottom: '3vh',
-      }}
-      onClick={handleOpenModal}
-    >
-      UpdateTokenDescription
-    </button>
-    {showModal && (
-        <TokenBlockChainDesc
-          cryptoDetails={cryptoDetails} 
-          tokenObject={tokenObject}
-          onClose={handleCloseModal}
-          creatorsAddress = {creatorAddress}
-        />
-      )}
-  </div>
+>
+<button
+  style={{
+    background: 'lime', // Button background color
+    fontSize: '1.5em',
+    lineHeight: '1',
+    borderRadius: '.5em',
+    border: '3px solid black',
+    marginBottom: '3vh',
+    marginRight: '1rem', // Add margin-right for spacing between buttons
+  }}
+  onClick={handleOpenModal}
+>
+  Update Token
+</button>
+<button
+  style={{
+    background: 'orange', // Button background color
+    fontSize: '1.5em',
+    lineHeight: '1',
+    borderRadius: '.5em',
+    border: '3px solid black',
+    marginBottom: '3vh',
+    marginRight: '1rem', // Add margin-right for spacing between buttons
+  }}
+  /* onClick={handleOpenAnnouncementModal}*/
+>
+  Add Announcement
+</button>
+<button
+  style={{
+    background: 'blue', // Button background color
+    fontSize: '1.5em',
+    lineHeight: '1',
+    borderRadius: '.5em',
+    border: '3px solid black',
+    marginBottom: '3vh',
+  }}
+ /* onClick={handleOpenSECModal} */
+>
+  Register with SEC
+</button>
+
+  {showModal && (
+      <TokenBlockChainDesc
+        cryptoDetails={cryptoDetails} 
+        tokenObject={tokenObject}
+        onClose={handleCloseModal}
+        creatorsAddress = {creatorAddress}
+      />
+    )}
+</div>
+
   
   );
 }
@@ -88,3 +121,10 @@ return null;
 
 
 export default UpdateTokenDescription
+
+//{showAnnouncementModal && (
+     // { Render your Announcement modal component here }
+   //   )}
+ //     {showSECModal && (
+    //      {der your SEC modal component here }
+   //     )} 
