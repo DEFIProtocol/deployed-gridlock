@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import AllTokens from "../../AllTokens.json";
-import { TokenBlockChainDesc } from "./";
+import { TokenBlockChainDesc, AddAnnouncements } from "./";
     //https://api.etherscan.io/api?module=contract&action=getcontractcreation&contractaddresses=0x495f947276749Ce646f68AC8c248420045cb7b5e&apikey=YourApiKeyToken
 
 function UpdateTokenDescription(props) {
     const { address, chain, cryptoDetails } = props;
     const [showModal, setShowModal] = useState(false);
+    const [showAddAnnouncementModal, setShowAddAnnouncementModal] = useState(false);
     const [creatorAddress, setCreatorAddress] = useState();
     const [ hasAccess, setHasAccess ] = useState(false);
     const isAdminAddress = process.env.REACT_APP_ADMIN_ADDRESS === address
@@ -46,6 +47,13 @@ function UpdateTokenDescription(props) {
   const handleCloseModal = () => {
     setShowModal(false);
   };
+  const handleOpenAddAnnouncementModal = () => {
+    setShowAddAnnouncementModal(true);
+  };
+
+  const handleCloseAddAnnouncementModal = () => {
+    setShowAddAnnouncementModal(false);
+  };
  
  if (hasAccess) {
   return (
@@ -84,7 +92,7 @@ function UpdateTokenDescription(props) {
     marginBottom: '3vh',
     marginRight: '1rem', // Add margin-right for spacing between buttons
   }}
-  /* onClick={handleOpenAnnouncementModal}*/
+  onClick={handleOpenAddAnnouncementModal}
 >
   Add Announcement
 </button>
@@ -101,6 +109,14 @@ function UpdateTokenDescription(props) {
 >
   Register with SEC
 </button>
+  {showAddAnnouncementModal && (
+        <AddAnnouncements
+          onClose={handleCloseAddAnnouncementModal} 
+          cryptoDetails={cryptoDetails} 
+          tokenObject={tokenObject}
+          creatorsAddress={creatorAddress}
+        />
+  )}
 
   {showModal && (
       <TokenBlockChainDesc

@@ -55,7 +55,7 @@ console.log(cryptoInfo)
         <input
           className="inputBox"
           placeholder={!cryptoInfo.tokenType ? "Commodity, Company, Utility... etc." : ""}
-          value={!cryptoInfo.tokenType ? null : cryptoInfo.tokenTyp}
+          value={!cryptoInfo.tokenType ? null : cryptoInfo.tokenType}
           onChange={(e) => setCryptoInfo({ ...cryptoInfo, tokenType: e.target.value })}
         />
       </label>

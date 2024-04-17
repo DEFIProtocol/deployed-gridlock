@@ -6,4 +6,5 @@ export { default as useEthereum } from "./useEthereum";
 export { default as OrderUnavailable } from "./OrderUnavailable";
 export { default as Transactions } from "./Transactions";
 export { default as UpdateTokenDescription } from './UpdateTokenDescription';
-export { default as TokenBlockChainDesc } from "./TokenBlockChainDesc"
+export { default as TokenBlockChainDesc } from "./TokenBlockChainDesc";
+export { default as AddAnnouncements } from "./AddAnnouncements";
