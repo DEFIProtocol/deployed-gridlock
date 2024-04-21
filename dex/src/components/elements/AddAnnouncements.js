@@ -5,7 +5,7 @@ function AddAnnouncements(props) {
   const { onClose, cryptoDetails } = props;
   const [announcement, setAnnouncement] = useState({
     exhibit: "",
-    date: "",
+    date: new Date().toISOString().split('T')[0],
     stateOfInc: "",
     title: "",
     description: "",
@@ -43,34 +43,37 @@ function AddAnnouncements(props) {
           />
         </label>
         <label>
-          Date:
-          <input
-            className="date"
-            placeholder="date of filing"
-            onChange={(e) => setAnnouncement({ ...announcement, date: e.target.value })}
-          />
-        </label>
+            Date:
+            <input
+              className="inputBox"
+              placeholder="date of filing"
+              value={announcement.date} // Set the value of the input to the date from state
+              onChange={(e) => setAnnouncement({ ...announcement, date: e.target.value })}
+            />
+          </label>
       </div>
       <label>
         State of Incorporated:
         <input
-          className="stateOfInc"
+          className="inputBox"
           placeholder="New York, California.., ect"
           onChange={(e) => setAnnouncement({ ...announcement, stateOfInc: e.target.value })}
         />
       </label>
+      <div>
       <label>
         Title:
         <input
           placeholder="Title of Announcement"
           onChange={(e) => setAnnouncement({ ...announcement, title: e.target.value })}
-          className="title"
-        />
+          className="inputBox"
+          />
       </label>
+          </div>
       <div className="textarea-container">
         <textarea
           className="textArea"
-          value={announcement.description}
+          placeHolder="Announcement description"
           onChange={(e) => setAnnouncement({ ...announcement, description: e.target.value })}
         />
       </div>
@@ -79,11 +82,13 @@ function AddAnnouncements(props) {
         <input
           placeholder="Link to SEC filing"
           onChange={(e) => setAnnouncement({ ...announcement, linkToForm: e.target.value })}
-          className="linkToForm"
+          className="inputBox"
         />
       </label>
-      <button onClick={() => save().then(onClose)}>Save Announcement</button>
-      <button onClick={onClose}>Close</button>
+      <div className="button-container">
+    <button className="button" onClick={() => save().then(onClose)}>Save Announcement</button>
+    <button className="button" onClick={onClose}>Close</button>
+  </div>
     </div>
   </div>
   )

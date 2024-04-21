@@ -140,6 +140,9 @@ function TokenDetails(props) {
               <div className="stat-item">Rank: <br/> {cryptoDetails?.rank}</div>
             </div>
           </Row>
+          <Row>
+           
+          </Row>
         </Col>
 
         <Col className="right-column">
