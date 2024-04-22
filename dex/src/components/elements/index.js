@@ -8,3 +8,4 @@ export { default as Transactions } from "./Transactions";
 export { default as UpdateTokenDescription } from './UpdateTokenDescription';
 export { default as TokenBlockChainDesc } from "./TokenBlockChainDesc";
 export { default as AddAnnouncements } from "./AddAnnouncements";
+export { default as Announcement } from "./Announcement"

@@ -3,7 +3,7 @@ import { useParams, useLocation } from "react-router-dom";
 import { Row, Typography, Col } from "antd";
 import HTMLReactParser from 'html-react-parser';
 import "./tokenIndex.css";
-import { MarketOrder, LineChart, Loader, OrderUnavailable, Transactions, UpdateTokenDescription } from "./elements";
+import { MarketOrder, LineChart, Loader, OrderUnavailable, Transactions, UpdateTokenDescription, Announcement } from "./elements";
 import millify from "millify";
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from './services/cryptoApi';
 import axios from 'axios';
@@ -20,6 +20,7 @@ function TokenDetails(props) {
   const { data, isFetching } = useGetCryptoDetailsQuery(uuid)
   const { data: coinHistory } = useGetCryptoHistoryQuery({coinId: uuid, timePeriod: timeperiod});
   const [orderType, setOrderType] =useState("market");
+  const [ fetched, setFetched] = useState(false)
   const cryptoDetails = data?.data?.coin
 
   console.log(name)
@@ -77,13 +78,16 @@ function TokenDetails(props) {
             });
           } else {
             setTokenData(response.data);
+            setFetched(true);
           }
         } catch (error) {
           console.error('Error fetching token data:', error);
         }
       };
-      fetchTokenData()
-    },[cryptoDetails, uuid, tokenData]);
+      if(!fetched) {
+        fetchTokenData()
+      }
+    },[cryptoDetails, uuid, tokenData, fetched]);
 
     if(isFetching || !tokenData) return <Loader />;
   return (
@@ -141,7 +145,9 @@ function TokenDetails(props) {
             </div>
           </Row>
           <Row>
-           
+            {!tokenData.Announcement ? null : 
+           <Announcement announcements={tokenData.Announcement} />
+            }
           </Row>
         </Col>
 
