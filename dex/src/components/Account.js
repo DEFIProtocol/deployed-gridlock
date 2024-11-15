@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import fetch from "node-fetch";
 import { Link } from "react-router-dom";
 import { Card } from "antd";
-import { StarOutlined, StarFilled } from '@ant-design/icons';
+import { CheckOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import millify from "millify";
 import "./tokenIndex.css";
 import { useGetCryptosQuery } from './services/cryptoApi';
@@ -225,12 +225,12 @@ return (
                     {holdings?.amount[index]} {token.symbol}
                   </Link>
                   {watchlist && watchlist.includes(token?.uuid) ? (
-                    <StarFilled
+                    <CheckOutlined
                       style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
                       onClick={() => removeFromWatchlist(token?.uuid)}
                     />
                   ) : (
-                    <StarOutlined
+                    <PlusCircleOutlined
                       style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
                       onClick={() => addToWatchlist(token?.uuid)}
                     />
@@ -275,12 +275,12 @@ return (
                     ${token.price == null ? "--" : millify(token.price)}
                   </Link>
                   {watchlist && watchlist.includes(token?.uuid) ? (
-                    <StarFilled
+                    <CheckOutlined
                       style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
                       onClick={() => removeFromWatchlist(token?.uuid)}
                     />
                   ) : (
-                    <StarOutlined
+                    <PlusCircleOutlined
                       style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
                       onClick={() => addToWatchlist(token?.uuid)}
                     />
