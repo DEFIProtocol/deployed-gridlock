@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card } from "antd";
-import { StarOutlined, StarFilled } from '@ant-design/icons';
+import { PlusCircleOutlined, CheckOutlined } from '@ant-design/icons';
 import millify from "millify";
 import "./tokenIndex.css";
 import { useGetCryptosQuery } from './services/cryptoApi';
@@ -196,12 +196,12 @@ useEffect(() => {
                             {token.price == null ? "--" : millify(token.price)}
                         </div>
                         {watchlist && watchlist.includes(token?.uuid) ? (
-                        <StarFilled
+                        <CheckOutlined
                           style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
                           onClick={() => removeFromWatchlist(token?.uuid)}
                         />
                       ) : (
-                        <StarOutlined
+                        <PlusCircleOutlined
                           style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
                           onClick={() => addToWatchlist(token?.uuid)}
                         />
