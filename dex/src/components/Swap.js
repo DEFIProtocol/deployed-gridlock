@@ -8,7 +8,7 @@ import polygonList from "../polygon.json";
 import AllTokens from "../AllTokens.json";
 import { useSendTransaction, useWaitForTransaction } from "wagmi";
 import { useGetCryptosQuery } from './services/cryptoApi';
-import { Loader } from "./elements";
+import { Loader, BugWarning } from "./elements";
 import { useEthereum } from "./elements";
 
 function Swap(props) {
@@ -280,6 +280,7 @@ const fetchPrices = useCallback(async (one, two) => {
 
   return (
     <div className="swapPage">
+      <BugWarning />
     {contextHolder}
     <Modal
       open={isOpen}

@@ -186,7 +186,7 @@ useEffect(() => {
                           <img className="logo" src={token.iconUrl} alt="noLogo" />
                           <div style={{ float: "right" }}>
                             <h4 className="name">{token.name}</h4>
-                            <span className="symbol">{token.symbol}</span>
+                            <span className="symbol">{tokenList.symbol}</span>
                           </div>
                         </div>
                         <div onClick={() => navigate(`/${token?.name}/${token?.uuid}?chain=${chain}`)} className="type">
