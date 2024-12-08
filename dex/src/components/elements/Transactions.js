@@ -60,6 +60,8 @@ function Transactions(props) {
 
     const totalPages = Math.ceil(transactions.length / rowsPerPage);
 
+    console.log("remove this" + creatorsAddress)
+
     const handlePageInputChange = (event) => {
       const inputPage = parseInt(event.target.value, 10);
       if (!isNaN(inputPage) && inputPage >= 1 && inputPage <= totalPages) {
