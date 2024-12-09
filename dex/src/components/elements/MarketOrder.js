@@ -49,6 +49,9 @@ function MarketOrder(props) {
     data: null,
     value: null,
   })
+
+
+
   const {data, sendTransaction}= useSendTransaction({
     request: {
       from: address,
@@ -65,7 +68,6 @@ function MarketOrder(props) {
     setSlippage(e.taget.value);
   }
   
-  console.log(decimalInteger)
   const axiosHeaders = {
     headers: {
       Authorization: `Bearer ${process.env.REACT_APP_1INCH_API_KEY}`,
@@ -186,11 +188,11 @@ function MarketOrder(props) {
   
   function calculateTokenAmount() {
     if (checked === "eth") {
-      return String(amount * (baseLine.padEnd(18 + baseLine.length, '0')));
+      return String(amount * (baseLine.padEnd(decimalInteger + baseLine.length, '0')));
     } else if (checked === "usd") {
-      return String((amount / cryptoDetails.price) * (baseLine.padEnd(18 + baseLine.length, '0')));
+      return String((amount / cryptoDetails.price) * (baseLine.padEnd(decimalInteger + baseLine.length, '0')));
     } else {
-      return String((amount * ethExRate) * (baseLine.padEnd(18 + baseLine.length, "0")));
+      return String((amount * ethExRate) * (baseLine.padEnd(decimalInteger + baseLine.length, "0")));
     }
   }
   

@@ -4,7 +4,7 @@ import { Row, Typography, Col } from "antd";
 import HTMLReactParser from 'html-react-parser';
 import "./tokenIndex.css";
 import tokenList from "../tokenList";
-import { MarketOrder, LineChart, Loader, OrderUnavailable, Transactions, UpdateTokenDescription, Announcement, BugWarning } from "./elements";
+import { MarketOrder, LineChart, Loader, OrderUnavailable, Transactions, UpdateTokenDescription, Announcement } from "./elements";
 import millify from "millify";
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from './services/cryptoApi';
 import axios from 'axios';
@@ -95,7 +95,6 @@ function TokenDetails(props) {
     if(isFetching || !tokenData) return <Loader />;
   return (
     <div className="tokenPage">
-      <BugWarning />
       <UpdateTokenDescription cryptoDetails={tokenData} address={address} chain={chain} />
       <Row className="coin-stats-card">
       <Title level={2} className="header-item">

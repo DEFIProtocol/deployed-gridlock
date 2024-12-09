@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import fetch from "node-fetch";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Card } from "antd";
 import { CheckOutlined, PlusCircleOutlined } from '@ant-design/icons';
 import millify from "millify";
@@ -11,12 +11,15 @@ import tokenList from "../tokenList"
 import {ethers} from "ethers";
 import { useEthereum } from "./elements";
 
+
 function Account(props) {
   const {address} = props
   const [ uuid, setUuid] =useState();
   const [balance, setBalance] = useState();
   const [ watchlist, setWatchlist] = useState();
   const [totalHoldingsValue, setTotalHoldingsValue] = useState(''); 
+  const navigate = useNavigate();
+  const chain = "Ethereum";
   const { data, isFetching } = useGetCryptosQuery(1200);
   const { cryptoDetails } = useEthereum();
   const cryptos = data?.data?.coins;
@@ -206,38 +209,36 @@ return (
           .filter((token) => uuid.includes(token.uuid) && token.uuid !== "Mtfb0obXVh59u")
           .map((token, index) => (
             <div key={index}>
-              <Card className="daoCard">
-                <div className="cardContainer">
-                  <Link to={`/${token?.name}/${token?.uuid}`} className="tokenDao">
-                    <img className="logo" src={token.iconUrl} alt="noLogo" />
-                    <div style={{ float: "right" }}>
-                      <h4 className="name">{token.name}</h4>
-                      <span className="symbol">{token.symbol}</span>
-                    </div>
-                  </Link>
-                  <Link to={`/${token?.name}/${token?.uuid}`} className="type">
-                    {token.marketCap == null ? "--" : millify(token.marketCap)}
-                  </Link>
-                  <Link to={`/${token?.name}/${token?.uuid}`} className="lastPrice">
-                    ${token.price == null ? "--" : millify(token.price)}
-                  </Link>
-                  <Link to={`/${token?.name}/${token?.uuid}`} className="amount">
-                    {holdings?.amount[index]} {token.symbol}
-                  </Link>
-                  {watchlist && watchlist.includes(token?.uuid) ? (
-                    <CheckOutlined
-                      style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
-                      onClick={() => removeFromWatchlist(token?.uuid)}
-                    />
-                  ) : (
-                    <PlusCircleOutlined
-                      style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
-                      onClick={() => addToWatchlist(token?.uuid)}
-                    />
-                  )}
-                </div>
-              </Card>
-            </div>
+  <Card className="daoCard">
+    <div className="cardContainer">
+      <div onClick={() => navigate(`/${token?.name}/${token?.uuid}?chain=${chain}`)}>
+        <img className="logo" src={token.iconUrl} alt="noLogo" />
+        <div style={{ float: "right" }}>
+          <h4 className="name">{token.name}</h4>
+          <span className="symbol">{token.symbol}</span>
+        </div>
+      </div>
+      <div onClick={() => navigate(`/${token?.name}/${token?.uuid}?chain=${chain}`)} className="type">
+        {token.marketCap == null ? "--" : millify(token.marketCap)}
+      </div>
+      <div onClick={() => navigate(`/${token?.name}/${token?.uuid}?chain=${chain}`)} className="lastPrice">
+        {token.price == null ? "--" : millify(token.price)}
+      </div>
+      {watchlist && watchlist.includes(token?.uuid) ? (
+        <CheckOutlined
+          style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
+          onClick={() => removeFromWatchlist(token?.uuid)}
+        />
+      ) : (
+        <PlusCircleOutlined
+          style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
+          onClick={() => addToWatchlist(token?.uuid)}
+        />
+      )}
+    </div>
+  </Card>
+</div>
+
           ))
       ) : (
         <div>
@@ -261,32 +262,32 @@ return (
             <div key={index}>
               <Card className="daoCard">
                 <div className="cardContainer">
-                  <Link to={`/${token?.name}/${token?.uuid}`} className="tokenDao">
-                    <img className="logo" src={token.iconUrl} alt="noLogo" />
-                    <div style={{ float: "right" }}>
-                      <h4 className="name">{token.name}</h4>
-                      <span className="symbol">{token.symbol}</span>
-                    </div>
-                  </Link>
-                  <Link to={`/${token?.name}/${token?.uuid}`} className="type">
-                    {token.marketCap == null ? "--" : millify(token.marketCap)}
-                  </Link>
-                  <Link to={`/${token?.name}/${token?.uuid}`} className="lastPrice">
-                    ${token.price == null ? "--" : millify(token.price)}
-                  </Link>
-                  {watchlist && watchlist.includes(token?.uuid) ? (
-                    <CheckOutlined
-                      style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
-                      onClick={() => removeFromWatchlist(token?.uuid)}
-                    />
-                  ) : (
-                    <PlusCircleOutlined
-                      style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
-                      onClick={() => addToWatchlist(token?.uuid)}
-                    />
-                  )}
-                </div>
-              </Card>
+                <div onClick={() => navigate(`/${token?.name}/${token?.uuid}?chain=${chain}`)}>
+                          <img className="logo" src={token.iconUrl} alt="noLogo" />
+                          <div style={{ float: "right" }}>
+                            <h4 className="name">{token.name}</h4>
+                            <span className="symbol">{tokenList.symbol}</span>
+                          </div>
+                        </div>
+                        <div onClick={() => navigate(`/${token?.name}/${token?.uuid}?chain=${chain}`)} className="type">
+                            {token.marketCap == null ? "--" : millify(token.marketCap)}
+                        </div>
+                        <div onClick={() => navigate(`/${token?.name}/${token?.uuid}?chain=${chain}`)} className="lastPrice">
+                            {token.price == null ? "--" : millify(token.price)}
+                        </div>
+                        {watchlist && watchlist.includes(token?.uuid) ? (
+                        <CheckOutlined
+                          style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
+                          onClick={() => removeFromWatchlist(token?.uuid)}
+                        />
+                      ) : (
+                        <PlusCircleOutlined
+                          style={{ color: "lime", fontSize: "1.5em", cursor: "pointer" }}
+                          onClick={() => addToWatchlist(token?.uuid)}
+                        />
+                      )}
+                      </div>
+                  </Card>
             </div>
           ))
       ) : (
