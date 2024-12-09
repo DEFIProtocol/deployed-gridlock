@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.42d54f3d.css",
-    "main.js": "/static/js/main.8a5e29f1.js",
+    "main.css": "/static/css/main.e19d8dc0.css",
+    "main.js": "/static/js/main.50ecc3b2.js",
     "static/media/USdebtClock.png": "/static/media/USdebtClock.2d02d14b6efe3437c3ce.png",
     "static/media/city.jpg": "/static/media/city.c7ae7f1e90c3a7c3a4cb.jpg",
     "static/media/skyskraper.jpg": "/static/media/skyskraper.fa8519f0018af6f4e91b.jpg",
     "static/media/limitOrder.jpg": "/static/media/limitOrder.5966e48871a18cd0706e.jpg",
     "static/media/handshake.jpg": "/static/media/handshake.ac3f73e330c8b1a322be.jpg",
     "static/media/vote.jpg": "/static/media/vote.72443a8c6a848d2ade5b.jpg",
+    "static/media/WLGRLOGO.png": "/static/media/WLGRLOGO.9df980d7f4e6f5943832.png",
     "index.html": "/index.html",
     "static/media/eth.svg": "/static/media/eth.df265e367364f285053a1285ad8d418d.svg",
-    "main.42d54f3d.css.map": "/static/css/main.42d54f3d.css.map",
-    "main.8a5e29f1.js.map": "/static/js/main.8a5e29f1.js.map"
+    "main.e19d8dc0.css.map": "/static/css/main.e19d8dc0.css.map",
+    "main.50ecc3b2.js.map": "/static/js/main.50ecc3b2.js.map"
   },
   "entrypoints": [
-    "static/css/main.42d54f3d.css",
-    "static/js/main.8a5e29f1.js"
+    "static/css/main.e19d8dc0.css",
+    "static/js/main.50ecc3b2.js"
   ]
 }

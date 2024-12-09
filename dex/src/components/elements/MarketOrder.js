@@ -65,6 +65,7 @@ function MarketOrder(props) {
     setSlippage(e.taget.value);
   }
   
+  console.log(decimalInteger)
   const axiosHeaders = {
     headers: {
       Authorization: `Bearer ${process.env.REACT_APP_1INCH_API_KEY}`,

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Eth from "../eth.svg";
 import {Link} from "react-router-dom";
 import { MenuOutlined } from '@ant-design/icons';
+import WLGRLOGO from "../WLGRLOGO.png"
 
 
 function Header(props) {
@@ -34,8 +35,9 @@ function Header(props) {
         }
         <Link to ="/" className="link">
           <div className="gridLock">
-            <div className="grid">grid</div>
-            <div className="lock">Lock</div>
+          <img className="logoGRL" src={WLGRLOGO} alt="noLogo" />
+          { /*<div className="grid">grid</div>
+          <div className="lock">Lock</div> */}
           </div>
         </Link>
         {!activeMenu && isOpen ? (

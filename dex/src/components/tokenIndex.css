@@ -262,6 +262,10 @@
     width: 32px !important;
     float: left !important;
   }
+  .logoGRL{
+    width: 4vw !important;
+    float: left !important;
+  }
 
   .amount {
     color: lime;
