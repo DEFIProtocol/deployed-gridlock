@@ -6,7 +6,7 @@ import { SettingOutlined, } from "@ant-design/icons";
 import axios from 'axios';
 import { useSendTransaction, useWaitForTransaction } from "wagmi";
 import { useEthereum } from ".";
-
+ 
 const getChainLabel = (chain) => {
   switch (chain) {
     case 'Arbitrum':
@@ -28,14 +28,15 @@ const getChainLabel = (chain) => {
       return '';
   }
 };
-
+ 
 function MarketOrder(props) {
-  const { address, usdPrice, tokenName, chain, symbol } = props
+  const { address, usdPrice, tokenName, chain, symbol, decimals } = props;
   const tokenObject= AllTokens.find((token) => token.symbol.toLowerCase() === symbol.toLowerCase());
   const [messageApi, contextHolder] = message.useMessage()
   const [amount, setAmount] = useState(null);
   const [slippage, setSlippage] = useState(2.5);
   const [txDetailsSent, setTxDetailsSent] = useState(false);
+  const decimalInteger = parseInt(Number(`1e+${decimals}`), 10);
   const [chainId, setChainId]= useState();
   const [ selectedChain, setSelectedChain ] = useState(chain);
   const ethAddress = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
@@ -59,7 +60,7 @@ function MarketOrder(props) {
   const {isLoading, isSuccess} = useWaitForTransaction({
     hash: data?.hash
   })
-
+ 
   function handleSlippageChange(e){
     setSlippage(e.taget.value);
   }
@@ -201,14 +202,14 @@ function MarketOrder(props) {
       return String(amount * (baseLine.padEnd(tokenObject.decimals + baseLine.length, "0")));
     }
   }
-
+ 
   useEffect(() => {
     if (txDetails.to && address && !txDetailsSent) { // Add a check for txDetailsSent
       sendTransaction();
       setTxDetailsSent(true); // Set txDetailsSent to true to avoid repeated calls
     }
   }, [txDetails.to, address, sendTransaction, txDetailsSent]);
-
+ 
   useEffect(() => {
     messageApi.destroy();
     if(isLoading){
@@ -219,7 +220,7 @@ function MarketOrder(props) {
       })
     }
   }, [isLoading, messageApi])
-
+ 
   useEffect(()=> {
     switch(selectedChain)  {
     case 'Arbitrum':
@@ -252,7 +253,7 @@ function MarketOrder(props) {
     default:
       return '';
   }},[selectedChain])
-
+ 
   useEffect(() => {
     messageApi.destroy();
     if(isSuccess){
@@ -269,9 +270,9 @@ function MarketOrder(props) {
       })
     }
   }, [isSuccess, messageApi, txDetails.to])
-
+ 
   console.log(txDetails)
-
+ 
   const settings = (
     <>
       <div>Slippage Tolerance</div>
@@ -310,7 +311,7 @@ function MarketOrder(props) {
             {' '}
             Order Priced in Ethereum
           </label>
-
+ 
         <br />
         <input
           type="checkbox"
@@ -363,5 +364,5 @@ function MarketOrder(props) {
     </>
   );
 }
-
+ 
 export default MarketOrder;

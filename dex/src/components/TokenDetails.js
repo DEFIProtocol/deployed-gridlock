@@ -3,18 +3,20 @@ import { useParams, useLocation } from "react-router-dom";
 import { Row, Typography, Col } from "antd";
 import HTMLReactParser from 'html-react-parser';
 import "./tokenIndex.css";
+import tokenList from "../tokenList";
 import { MarketOrder, LineChart, Loader, OrderUnavailable, Transactions, UpdateTokenDescription, Announcement, BugWarning } from "./elements";
 import millify from "millify";
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from './services/cryptoApi';
 import axios from 'axios';
-
+ 
 const {Title} = Typography;
-
+ 
 function TokenDetails(props) {
   const { address } = props;
   const location = useLocation();
   const chain = new URLSearchParams(location.search).get('chain');
   const { name, uuid } = useParams();
+  const decimals = tokenList.find(dec => dec.uuid === uuid)
   const [timeperiod, setTimeperiod] = useState("7d");
   const [tokenData, setTokenData]= useState(null);
   const { data, isFetching } = useGetCryptoDetailsQuery(uuid)
@@ -22,11 +24,10 @@ function TokenDetails(props) {
   const [orderType, setOrderType] =useState("market");
   const [ fetched, setFetched] = useState(false)
   const cryptoDetails = data?.data?.coin
-
+ 
+  console.log(decimals.decimals)
   console.log(name)
-  console.log(tokenData)
-  
-
+ 
     const time = ['7d', '30d', '3m', '1y', '3y', '5y'];
     
     const handleTimePeriodClick = (value) => {
@@ -41,6 +42,7 @@ function TokenDetails(props) {
               uuid: uuid,
               chains: null,
               creatorAddress: null,
+              decimals: decimals.decimals,
               Announcements: null,
               adminAddresses: null,
               description: cryptoDetails.description,
@@ -64,6 +66,7 @@ function TokenDetails(props) {
               chains: null,
               creatorAddress: null,
               Announcements: null,
+              decimals: decimals.decimals,
               adminAddresses: null,
               description: cryptoDetails.description,
               maxSupply: cryptoDetails.supply.max,
@@ -87,8 +90,8 @@ function TokenDetails(props) {
       if(!fetched) {
         fetchTokenData()
       }
-    },[cryptoDetails, uuid, tokenData, fetched]);
-
+    },[cryptoDetails, uuid, tokenData, fetched, decimals.decimals]);
+ 
     if(isFetching || !tokenData) return <Loader />;
   return (
     <div className="tokenPage">
@@ -151,7 +154,7 @@ function TokenDetails(props) {
             }
           </Row>
         </Col>
-
+ 
         <Col className="right-column">
         <Row className="card-order">
           <div className="orderChoice">
@@ -162,7 +165,7 @@ function TokenDetails(props) {
               Market Order
             </div>
           </div>
-          {orderType === 'limit' ? <OrderUnavailable /> /*<LimitOrder uuid={uuid} />*/ : <MarketOrder symbol ={!tokenData.symbol ? cryptoDetails.symbol : tokenData.symbol} chain = {chain} uuid={uuid} address={address} usdPrice={cryptoDetails?.price} tokenName={!tokenData.name ? cryptoDetails.name : tokenData.name} />}
+          {orderType === 'limit' ? <OrderUnavailable /> /*<LimitOrder uuid={uuid} />*/ : <MarketOrder symbol ={!tokenData.symbol ? cryptoDetails.symbol : tokenData.symbol} chain = {chain} uuid={uuid} address={address} usdPrice={cryptoDetails?.price} tokenName={!tokenData.name ? cryptoDetails.name : tokenData.name} decimals={decimals.decimals} />}
         </Row>
         <Row className="website-container">
           <Title level={2} className="website-header">
@@ -188,7 +191,7 @@ function TokenDetails(props) {
     </div>
   )
 }
-
+ 
 export default TokenDetails;
 /*{cryptoDetails.links?.map((link) => (
             <Row className="coin-link" key={link.name}>

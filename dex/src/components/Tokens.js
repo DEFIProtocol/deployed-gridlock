@@ -9,7 +9,7 @@ import { Loader } from "./elements";
 import tokenList from "../tokenList.json"
 import polygonList from "../polygon.json"
 import BNBList from "../BNB.json"
-
+ 
 function Tokens(props) {
   const { address } = props;
   const [query, setQuery] = useState('');
@@ -24,15 +24,17 @@ function Tokens(props) {
     Polygon: polygonList,
   }), []);
   const excludedUuids = useMemo(() => ['razxDUgYGNAdQ', 'zNZHO_Sjf'], []);
-
+ 
   const calculateArrays = useCallback((chain, excludedUuids) => {
     const filteredTokens = chains[chain].filter((token) => !excludedUuids.includes(token.uuid));
-
+ 
+    // const findDecimals = 
+ 
     const toks = filteredTokens.map((token) => token.uuid);
     const commodityArray = filteredTokens.filter((token) => token.type === 'commodity').map((token) => token.uuid);
     const companyArray = filteredTokens.filter((token) => token.type === 'company').map((token) => token.uuid);
     const currencyArray = filteredTokens.filter((token) => token.type === 'currency').map((token) => token.uuid);
-
+    console.log(toks)
     return {
       toks,
       commodityArray,
@@ -40,7 +42,7 @@ function Tokens(props) {
       currencyArray,
     };
   }, [chains]);
-
+ 
   const [selectedArray, setSelectedArray] = useState();
   const [objectArray, setObjectArray] = useState({
     toks: [],
@@ -48,16 +50,16 @@ function Tokens(props) {
     companyArray: [],
     currencyArray: [],
   });
-
+ 
   const handleArrayChange = (newArray) => {
     setSelectedArray(newArray);
   };
-
+ 
   const handleChain = (value) => {
     setChain(value);
     const { toks, commodityArray, companyArray, currencyArray } = calculateArrays(value, excludedUuids);
     setObjectArray({toks, commodityArray, companyArray, currencyArray})}
-
+ 
 const addToWatchlist = async (uuid) => {
   try {
     const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/addToWatchlist`, {
@@ -78,7 +80,7 @@ const addToWatchlist = async (uuid) => {
     console.error('Error adding token to watchlist:', error);
   }
 };
-
+ 
 const removeFromWatchlist = async (uuid) => {
   try {
     const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/removeFromWatchlist`, {
@@ -99,7 +101,7 @@ const removeFromWatchlist = async (uuid) => {
     console.error('Error removing token from watchlist:', error);
   }
 };
-
+ 
 useEffect(() => {
   const fetchData = async () => {
     try {
@@ -112,21 +114,21 @@ useEffect(() => {
       console.error("Error fetching data:", error);
     }
   };
-
+ 
   fetchData();
 }, [address]);
-
+ 
 useEffect(() => {
   const { toks, commodityArray, companyArray, currencyArray } = calculateArrays(chain, excludedUuids);
   setObjectArray({ toks, commodityArray, companyArray, currencyArray });
 }, [chain, calculateArrays, excludedUuids]);
-
+ 
 useEffect(() => {
   setSelectedArray(objectArray.toks);
 }, [objectArray]);
-
+ 
   if(isFetching) return <Loader />;
-
+ 
   return (
   <div className="ETHDEX">
     <div className="selectChain">
@@ -140,7 +142,7 @@ useEffect(() => {
         Polygon
       </div>
     </div>
-
+ 
     <div className="selectedArrayButtons">
         <div className= "filters">Filters:</div>
         <button className={`selectedArray ${selectedArray === objectArray.toks ? 'underline' : ''}`} onClick={() => handleArrayChange(objectArray.toks)}>All</button>
@@ -148,7 +150,7 @@ useEffect(() => {
         <button className={`selectedArray ${selectedArray === objectArray.companyArray ? 'underline' : ''}`} onClick={() => handleArrayChange(objectArray.companyArray)}>Company</button>
         <button className={`selectedArray ${selectedArray === objectArray.currencyArray ? 'underline' : ''}`} onClick={() => handleArrayChange(objectArray.currencyArray)}>Forex</button>
       </div>
-
+ 
       <div style={{ textAlign: "center" }}>
         <input
           placeholder="Search..."
@@ -214,5 +216,6 @@ useEffect(() => {
     </div>
   );
 }
-
+ 
 export default Tokens
+ 
