@@ -34,6 +34,10 @@ function Swap(props) {
     }
   };
   
+  console.log(tokenOne)
+  console.log(tokenTwo)
+
+
   const [txDetails, setTxDetails] = useState({
     to: null,
     data: null,
