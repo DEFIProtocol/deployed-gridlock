@@ -1,3 +1,6 @@
+## License
+This project is licensed under the Business Source License 1.1. See the [LICENSE](./LICENSE) file for more details.
+
 # gridLock
 
 gridLock is intended to be a open-source project that is accepting contributions from developers of all skill levels, and developers will be rewarded with ownership. It was built off of the Moralis dexStarter template on IAmJaysWay github page. If Jay or Moralis view this before me contacting you, I plan on awarding you based on the ownership of the intellectual property. 

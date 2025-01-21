@@ -1,0 +1,34 @@
+# Business Source License 1.1
+
+## Copyright
+Copyright (c) 2025 Gridlock under management of Beau Allgood
+
+## Grant of License
+Subject to the terms and conditions of this license, Licensor hereby grants You a non-exclusive, royalty-free, worldwide license to use, copy, modify, and distribute the Licensed Work.
+
+## Restrictions
+You may not use the Licensed Work in a production environment unless You obtain a separate commercial license from Licensor. This includes offering the Licensed Work to third parties on a hosted or embedded basis to compete with Licensor’s paid versions.
+
+## Change Date
+This license will automatically convert to an open-source license on [Change Date], which must be within four years of the publication date of the Licensed Work.
+
+## Change License
+Upon conversion, the Licensed Work will be relicensed under the following open-source license: [Open Source License Name].
+
+## Additional Use Grant
+You may make production use of the Licensed Work, provided Your use does not include offering the Licensed Work to third parties on a hosted or embedded basis in order to compete with Licensor’s paid version(s) of the Licensed Work.
+
+## Termination
+If You violate any of the terms of this license, Your rights under this license will terminate automatically.
+
+## Disclaimer of Warranty
+THE LICENSED WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+## Limitation of Liability
+IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE LICENSED WORK OR THE USE OR OTHER DEALINGS IN THE LICENSED WORK.
+
+## General
+Any questions regarding this license should be directed via email to: [Your Email Address]
+
+## How to Apply the License
+To apply this license to your project, include the following text in your LICENSE file:

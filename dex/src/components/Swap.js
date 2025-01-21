@@ -33,10 +33,6 @@ function Swap(props) {
       Authorization: `Bearer ${process.env.REACT_APP_1INCH_API_KEY}`
     }
   };
-  
-  console.log(tokenOne)
-  console.log(tokenTwo)
-
 
   const [txDetails, setTxDetails] = useState({
     to: null,
@@ -158,7 +154,8 @@ const fetchPrices = useCallback(async (one, two) => {
       content: (
         <div style={{color: "white"}}>
           <p>
-            Are you sure you want to swap {amount / 1e+18 } (${((amount / 1e+18) * prices.firstTokenPrice).toFixed(2)}) {quoteResponse.fromToken.symbol}?
+            Are you sure you want to swap {a
+            .mount / 1e+18 } (${((amount / 1e+18) * prices.firstTokenPrice).toFixed(2)}) {quoteResponse.fromToken.symbol}?
           </p>
           <div style={{margin: "10%"}}>
             <img className= "logo" src={quoteResponse.fromToken.logoURI} alt={quoteResponse.fromToken.name} />

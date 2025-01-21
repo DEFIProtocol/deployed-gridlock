@@ -35,9 +35,10 @@ function Header(props) {
         }
         <Link to ="/" className="link">
           <div className="gridLock">
-          <img className="logoGRL" src={OutlinedLogo} alt="noLogo" />
-          { /*<div className="grid">grid</div>
-          <div className="lock">Lock</div> */}
+          { //<img className="logoGRL" src={OutlinedLogo} alt="noLogo" />
+          }
+          <div className="grid">grid</div>
+          <div className="lock">Lock</div>
           </div>
         </Link>
         {!activeMenu && isOpen ? (
